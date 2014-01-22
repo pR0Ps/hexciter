@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ColorSelector : MonoBehaviour {
+public class ColorSelector : InteractableObject {
 
 	HexaCube hex1;
 	HexaCube hex2;
@@ -18,17 +18,32 @@ public class ColorSelector : MonoBehaviour {
 		hex2.GUIColorLerp(hex2col);
 	}
 
-	//Switch the hexes around and lerp the back hex to the new next color
-	public void Swap (HexColors newNext) {
+	//When tapped, swap the cubes
+	public override void TapAction () {
+		Swap ();
+	}
+
+	//Swap the hexes around
+	public void Swap(){
 		if (hexOneInFront) {
 			hexOneInFront = false;
 			animation.Play ("Flip1");
-			hex1.GUIColorLerp(newNext);
 		}
 		else {
 			hexOneInFront = true;
 			animation.Play ("Flip2");
-			hex2.GUIColorLerp(newNext);
 		}
+	}
+
+	//Switch the hexes around and lerp the back hex to the new next color
+	public void Swap (HexColors newNext) {
+		//Change the color
+		if (hexOneInFront)
+			hex1.GUIColorLerp(newNext);
+		else
+			hex2.GUIColorLerp(newNext);
+
+		//Start the swap animation
+		Swap ();
 	}
 }

@@ -47,13 +47,13 @@ public class GridLogic : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKeyDown(KeyCode.R)) {
-			Application.LoadLevel("main2");
+			Application.LoadLevel("main");
 		}
 
 		if (moves <= 0) {
 			gameOverTextMesh.gameObject.SetActive(true);
 			if (InputHandler.GetInstance().inputSignalDown)
-				Application.LoadLevel("main2");
+				Application.LoadLevel("main");
 			return;
 		}
 

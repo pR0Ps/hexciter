@@ -7,7 +7,6 @@ public class GridLogic : MonoBehaviour {
 
 	public static GridLogic Instance;
 
-	List<GridPlace> gridPlaces = new List<GridPlace>();
 	GridPlace origin;
 	GridPlace northWestCorner;
 	bool spawned;
@@ -19,10 +18,9 @@ public class GridLogic : MonoBehaviour {
 	public TextMesh movesTextMesh;
 	public TextMesh gameOverTextMesh;
 
-	bool flood = true;
-
 	GameObject actionChooser;
 	bool actionChooserVisible;
+	float actionChooserTime;
 	GridPlace selected;
 
 	void Awake () {
@@ -35,17 +33,18 @@ public class GridLogic : MonoBehaviour {
 	void Start () {
 		ColorSelector.Instance.Init ();
 		movesTextMesh.text = moves.ToString("N0");
-
-		gridPlaces = GetComponentsInChildren<GridPlace>().ToList();
+		
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
 		origin.SlowSpawn();
 	}
 
 	public void Select (GridPlace gp) {
+
 		selected = gp;
 		
 		if (!selected.busy && selected.alive) {
 			actionChooserVisible = true;
+			actionChooserTime = Time.time;
 			actionChooser.transform.position = selected.transform.position - Vector3.forward * 5;
 			actionChooser.animation.Play ("show");
 		}
@@ -67,40 +66,48 @@ public class GridLogic : MonoBehaviour {
 		}
 
 		if (InputHandler.Instance.inputSignalUp) {
-			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(InputHandler.Instance.inputVector));
-			if (col) {
-				if (col.name == "capture")
-					flood = true;
-				else if (col.name == "destroy")
-					flood = false;
+			if (actionChooserVisible) {
+
+				Vector2 diff = (Vector2)actionChooser.transform.position - (Vector2)Camera.main.ScreenToWorldPoint(InputHandler.Instance.inputVector);
+				float OFFSET = 0.8f;
+				float TAPTIME = 0.5f;
+
+				if (diff.magnitude < OFFSET && Time.time - actionChooserTime < TAPTIME) {
+					//Action was a tap - don't remove the action chooser
+					Debug.Log("TAP");
+				}
 				else {
-					if (actionChooserVisible)
-						actionChooser.animation.Play ("hide");
+					Debug.Log("SLIIIIDE");
+					//Action was a drag - perform action based on up position
+
+					if (diff.magnitude > OFFSET){
+						//capture
+						if (diff.x > 0){
+							moves--;
+							selected.Fill(selectedColor);
+						}
+						else {
+							moves --;
+							int multiplier = 1;
+							if (selectedColor == selected.hexaCube.hexColor)
+								multiplier = 2;
+							
+							score += Integrate(selected.TallyScore(selected.hexaCube.hexColor)) * multiplier;
+							
+							scoreTextMesh.text = score.ToString("N0");
+							
+							selected.Kill();
+						}
+						
+						//Made a move, update count and color chooser
+						movesTextMesh.text = moves.ToString("N0");
+						ColorSelector.Instance.NewColor();
+					}
+
+					//Hide actionchoser
+					actionChooser.animation.Play ("hide");
 					actionChooserVisible = false;
-					return;
 				}
-				if (flood) {
-					moves --;
-					selected.Fill(selectedColor);
-				}
-				else {
-					moves --;
-					int multiplier = 1;
-					if (selectedColor == selected.hexaCube.hexColor)
-						multiplier = 2;
-
-					int scoredThisKill = Integrate(selected.TallyScore(selected.hexaCube.hexColor)) * multiplier;
-					score += scoredThisKill;
-
-					scoreTextMesh.text = score.ToString("N0");
-
-					selected.Kill ();
-				}
-				movesTextMesh.text = moves.ToString("N0");
-				ColorSelector.Instance.NewColor();
-
-				actionChooser.animation.Play ("hide");
-				actionChooserVisible = false;
 			}
 		}
 	}

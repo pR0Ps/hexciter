@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InputHandler : MonoBehaviour {
 	
-	static private InputHandler instance;//Singleton Instance
+	static public InputHandler Instance; // Singleton Instance
 	
 	#region Public Fields
 	public Vector2 inputSignalDelta;	
@@ -12,7 +12,7 @@ public class InputHandler : MonoBehaviour {
 	public bool inputSignalUp;
 	public Vector2 inputVector;
 	
-	public float inputEndMagnitude;//the distance of the most recent input drag
+	public float inputEndMagnitude; // the distance of the most recent input drag
 	
 	public Vector2 inputPosition;
 	public float inputZoom;
@@ -21,15 +21,15 @@ public class InputHandler : MonoBehaviour {
 	#region Private Fields
 	private bool oneTouchLastFrame;
 	
-	private Vector2 inputPrevFrame;//inputVector for previous frame
-	private Vector2 inputOrigin;//inputVector when input (click or single finger tap) is received
+	private Vector2 inputPrevFrame; // inputVector for previous frame
+	private Vector2 inputOrigin; // inputVector when input (click or single finger tap) is received
 	
-	private float pinchDistance;//distance between two fingers
-	private float previousPinchDistance;//distance between two fingers last frame
-	private float deltaPinch;//delta distance between two frames
-	private float quarterScreenHypotenuse;//used for pinch precision
+	private float pinchDistance; // distance between two fingers
+	private float previousPinchDistance; // distance between two fingers last frame
+	private float deltaPinch; // delta distance between two frames
+	private float quarterScreenHypotenuse; // used for pinch precision
 	
-	private bool twoTouchLock;//A bool to make a single touch after a two touch ignored until zero touches
+	private bool twoTouchLock; // A bool to make a single touch after a two touch ignored until zero touches
 	//Used so that when the user releases both fingers after zooming, they don't fire off a signle unintended touch
 	
 	private bool inputSignalDownLastFrame;
@@ -40,25 +40,14 @@ public class InputHandler : MonoBehaviour {
 	#endregion
 	
 	void Awake () {
+		Instance = this;
 		quarterScreenHypotenuse = Mathf.Sqrt(Screen.width * Screen.width + Screen.height * Screen.height)/8f;
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
 			useMobile = true;
 		else
 			useMobile = false;
-		
-		//Debug.Log ("Use mobile?: " + useMobile.ToString());
-		
-		if (!instance) {
-			instance = this;	
-		}
-		else
-			Destroy(this);
 	}
-	
-	public static InputHandler GetInstance () {
-		return instance;
-	}
-	
+
 	void Update () {
 		
 		inputSignalDown = false;
@@ -70,7 +59,7 @@ public class InputHandler : MonoBehaviour {
 			PCInput();
 		
 		//Clamp the zoom value: 70% out 170% in
-		inputZoom = Mathf.Clamp(inputZoom, -.7f, 1.3f);
+		//what is this inputZoom = Mathf.Clamp(inputZoom, -.7f, 1.3f);
 
 		//Deal with a touch/click start
 		if (inputSignalDown) {
@@ -90,7 +79,33 @@ public class InputHandler : MonoBehaviour {
 		}
 		else
 			inputSignalDelta = Vector2.zero;
-		
+
+		Interactions ();
+	}
+
+	private GameObject downObject; // this is the object last clicked down on, use when you need to know if a full click (up and down) on the same object was performed
+
+	// put all the clicking/releasing for classes that inherit InteractableObject here
+	// the physics2D overlap will ONLY detect objects which are on the "Interactable" layer
+	// in this way, you can always infer the the collider returned is something that inherits InteractiveObject
+	void Interactions () {
+		if (inputSignalDown) {
+			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVector), 256);
+			if (col) {
+				col.GetComponent<InteractiveObject>().DownAction();
+				downObject = col.gameObject;
+			}
+		}
+		if (inputSignalUp) {
+			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVector), 256); // 256 is the layer mask for the eight layer (2^8)
+			if (col) {
+				col.GetComponent<InteractiveObject>().UpAction();
+				if (col.gameObject == downObject) {
+					col.GetComponent<InteractiveObject>().TapAction();
+				}
+			}
+			downObject = null;
+		}
 	}
 	
 	void MobileInput () {

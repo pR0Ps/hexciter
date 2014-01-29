@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,7 +11,7 @@ public enum HexColors {
 	Red
 }
 
-public class HexaCube : InteractableObject {
+public class HexaCube : InteractiveObject {
 
 	public List<Color> colors;
 	public HexColors hexColor;

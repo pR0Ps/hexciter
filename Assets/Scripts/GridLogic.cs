@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class GridLogic : MonoBehaviour {
-	
+
+	public static GridLogic Instance;
+
 	List<GridPlace> gridPlaces = new List<GridPlace>();
 	GridPlace origin;
 	GridPlace northWestCorner;
@@ -17,8 +19,6 @@ public class GridLogic : MonoBehaviour {
 	public TextMesh movesTextMesh;
 	public TextMesh gameOverTextMesh;
 
-	public ColorSelector colorSelector;
-
 	HexColors selectedColor;
 	HexColors nextColor;
 	bool flood = true;
@@ -28,7 +28,9 @@ public class GridLogic : MonoBehaviour {
 	GridPlace selected;
 
 	void Awake () {
+		// tell the game to run at 60 fps, maybe put this some where better later
 		Application.targetFrameRate = 60;
+		Instance = this;
 		actionChooser = GameObject.Find("ActionChooser");
 	}
 
@@ -36,7 +38,7 @@ public class GridLogic : MonoBehaviour {
 		selectedColor = (HexColors)Random.Range(0, 6);
 		nextColor = (HexColors)Random.Range(0, 6);
 
-		colorSelector.Init (selectedColor, nextColor);
+		ColorSelector.Instance.Init (selectedColor, nextColor);
 		movesTextMesh.text = moves.ToString("N0");
 
 		gridPlaces = GetComponentsInChildren<GridPlace>().ToList();
@@ -44,6 +46,16 @@ public class GridLogic : MonoBehaviour {
 		origin.SlowSpawn();
 	}
 
+	public void Select (GridPlace gp) {
+		selected = gp;
+		
+		if (!selected.busy && selected.alive) {
+			actionChooserVisible = true;
+			actionChooser.transform.position = selected.transform.position - Vector3.forward * 5;
+			actionChooser.animation.Play ("show");
+		}
+	}
+	
 	void Update () {
 
 		if (Input.GetKeyDown(KeyCode.R)) {
@@ -52,26 +64,13 @@ public class GridLogic : MonoBehaviour {
 
 		if (moves <= 0) {
 			gameOverTextMesh.gameObject.SetActive(true);
-			if (InputHandler.GetInstance().inputSignalDown)
+			if (InputHandler.Instance.inputSignalDown)
 				Application.LoadLevel("main");
 			return;
 		}
 
-		if (InputHandler.GetInstance().inputSignalDown) {
-			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(InputHandler.GetInstance().inputVector));
-			if (col) {
-				selected = col.GetComponent<GridPlace>();
-
-				if (selected && !selected.busy && selected.alive) {
-					actionChooserVisible = true;
-					actionChooser.transform.position = selected.transform.position - Vector3.forward * 5;
-					actionChooser.animation.Play ("show");
-				}
-			}
-		}
-
-		if (InputHandler.GetInstance().inputSignalUp) {
-			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(InputHandler.GetInstance().inputVector));
+		if (InputHandler.Instance.inputSignalUp) {
+			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(InputHandler.Instance.inputVector));
 			if (col) {
 				if (col.name == "capture")
 					flood = true;
@@ -103,7 +102,7 @@ public class GridLogic : MonoBehaviour {
 				movesTextMesh.text = moves.ToString("N0");
 				selectedColor = nextColor;
 				nextColor = (HexColors)Random.Range(0,6);
-				colorSelector.Swap(nextColor);
+				ColorSelector.Instance.Swap(nextColor);
 
 				actionChooser.animation.Play ("hide");
 				actionChooserVisible = false;

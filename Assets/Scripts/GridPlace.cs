@@ -38,7 +38,7 @@ public class Siblings {
 	}
 }
 
-public class GridPlace : InteractableObject {
+public class GridPlace : InteractiveObject {
 	public GameObject HexaCubePrefab;
 	public HexaCube hexaCube;
 
@@ -55,6 +55,10 @@ public class GridPlace : InteractableObject {
 		hexaCube.transform.parent = transform;
 		hexaCube.transform.localPosition = Vector3.zero;
 		hexaCube.gridPlace = this;
+	}
+
+	public override void DownAction () {
+		GridLogic.Instance.Select(this);
 	}
 
 	public void Fill (HexColors fillColor) {

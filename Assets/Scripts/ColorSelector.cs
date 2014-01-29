@@ -1,18 +1,23 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class ColorSelector : InteractableObject {
+public class ColorSelector : InteractiveObject {
+
+	public static ColorSelector Instance;
 
 	HexaCube hex1;
 	HexaCube hex2;
+	Animation anim;
 	
 	bool hexOneInFront = true;
 
-	void Start () {
-		hex1 = transform.FindChild("HexaCube1").GetComponent<HexaCube>();
-		hex2 = transform.FindChild("HexaCube2").GetComponent<HexaCube>();
+	void Awake () {
+		Instance = this;
+		hex1 = transform.FindChild("rotator/HexaCube1").GetComponent<HexaCube>();
+		hex2 = transform.FindChild("rotator/HexaCube2").GetComponent<HexaCube>();
+		anim = GetComponentInChildren<Animation>();
 	}
-
+	
 	public void Init (HexColors hex1col, HexColors hex2col) {
 		hex1.GUIColorLerp(hex1col);
 		hex2.GUIColorLerp(hex2col);
@@ -27,11 +32,11 @@ public class ColorSelector : InteractableObject {
 	public void Swap(){
 		if (hexOneInFront) {
 			hexOneInFront = false;
-			animation.Play ("Flip1");
+			anim.Play ("Flip1");
 		}
 		else {
 			hexOneInFront = true;
-			animation.Play ("Flip2");
+			anim.Play ("Flip2");
 		}
 	}
 

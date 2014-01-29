@@ -19,8 +19,6 @@ public class GridLogic : MonoBehaviour {
 	public TextMesh movesTextMesh;
 	public TextMesh gameOverTextMesh;
 
-	HexColors selectedColor;
-	HexColors nextColor;
 	bool flood = true;
 
 	GameObject actionChooser;
@@ -35,10 +33,7 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	void Start () {
-		selectedColor = (HexColors)Random.Range(0, 6);
-		nextColor = (HexColors)Random.Range(0, 6);
-
-		ColorSelector.Instance.Init (selectedColor, nextColor);
+		ColorSelector.Instance.Init ();
 		movesTextMesh.text = moves.ToString("N0");
 
 		gridPlaces = GetComponentsInChildren<GridPlace>().ToList();
@@ -57,6 +52,8 @@ public class GridLogic : MonoBehaviour {
 	}
 	
 	void Update () {
+
+		HexColors selectedColor = ColorSelector.Instance.Current();
 
 		if (Input.GetKeyDown(KeyCode.R)) {
 			Application.LoadLevel("main");
@@ -100,9 +97,7 @@ public class GridLogic : MonoBehaviour {
 					selected.Kill ();
 				}
 				movesTextMesh.text = moves.ToString("N0");
-				selectedColor = nextColor;
-				nextColor = (HexColors)Random.Range(0,6);
-				ColorSelector.Instance.Swap(nextColor);
+				ColorSelector.Instance.NewColor();
 
 				actionChooser.animation.Play ("hide");
 				actionChooserVisible = false;

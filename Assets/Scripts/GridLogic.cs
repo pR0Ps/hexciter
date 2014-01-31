@@ -20,6 +20,7 @@ public class GridLogic : MonoBehaviour {
 
 	GameObject actionChooser;
 	bool actionChooserVisible;
+	bool actionChooserTapped;
 	float actionChooserTime;
 	GridPlace selected;
 
@@ -28,6 +29,7 @@ public class GridLogic : MonoBehaviour {
 		Application.targetFrameRate = 60;
 		Instance = this;
 		actionChooser = GameObject.Find("ActionChooser");
+		actionChooserTapped = false;
 	}
 
 	void Start () {
@@ -75,6 +77,16 @@ public class GridLogic : MonoBehaviour {
 				if (diff.magnitude < OFFSET && Time.time - actionChooserTime < TAPTIME) {
 					//Action was a tap - don't remove the action chooser
 					Debug.Log("TAP");
+
+					if (actionChooserTapped){
+						//Action chooser was already opened by tapping.
+						//Look for a tap on the buttons
+						actionChooserTapped = false;
+					}
+					else{
+						//Action chooser was just brought up
+						actionChooserTapped = true;
+					}
 				}
 				else {
 					Debug.Log("SLIIIIDE");

@@ -1,0 +1,5 @@
+proj.AppId=661259641145
+android.SetupDone=true
+ios.ClientId=661259641145-f0mcgo5um2iklm2prjesefc1hvvfcgpa.apps.googleusercontent.com
+ios.BundleId=com.teamsalt.hexciter
+ios.SetupDone=true

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class InputHandler : MonoBehaviour {
 	
-	static public InputHandler Instance; // Singleton Instance
+	public static InputHandler Instance {get; private set;} // Singleton Instance
 	
 	#region Public Fields
 	public Vector2 inputSignalDelta;	
@@ -38,6 +38,8 @@ public class InputHandler : MonoBehaviour {
 	private float totalPinch;
 	public bool useMobile = false;
 	#endregion
+
+	const int LAYER_MASK = 768;
 	
 	void Awake () {
 		Instance = this;
@@ -90,14 +92,17 @@ public class InputHandler : MonoBehaviour {
 	// in this way, you can always infer the the collider returned is something that inherits InteractiveObject
 	void Interactions () {
 		if (inputSignalDown) {
-			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVector), 256);
+			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVector), LAYER_MASK);
 			if (col) {
 				col.GetComponent<InteractiveObject>().DownAction();
 				downObject = col.gameObject;
 			}
+			else {
+				GridLogic.Instance.Deselect();
+			}
 		}
 		if (inputSignalUp) {
-			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVector), 256); // 256 is the layer mask for the eight layer (2^8)
+			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVector), LAYER_MASK);
 			if (col) {
 				col.GetComponent<InteractiveObject>().UpAction();
 				if (col.gameObject == downObject) {

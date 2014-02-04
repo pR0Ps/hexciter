@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GPGManager: MonoBehaviour {
+public class SocialManager: MonoBehaviour {
+
+	public static SocialManager Instance {get; private set;} // Singleton Instance
 
 	//Only flesh out this class if we are on a platform that supports GPG
 	#if (UNITY_IPHONE || UNITY_ANDROID)
 
 	//Activate the play games platform
 	void Awake(){
+		Instance = this;
 		Debug.Log ("Activating GPG");
 		GooglePlayGames.PlayGamesPlatform.Activate();
 		Login ();
@@ -18,7 +21,6 @@ public class GPGManager: MonoBehaviour {
 			Social.localUser.Authenticate((bool success) => {
 				if(success){
 					Debug.Log("Logged in!");
-					UnlockAchievement();
 				}
 				else{
 					Debug.Log("Couldn't log in");
@@ -27,7 +29,7 @@ public class GPGManager: MonoBehaviour {
 		}
 	}
 
-	void Logout(){
+	public void Logout(){
 		if (Social.localUser.authenticated) {
 			((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
 		}
@@ -36,7 +38,7 @@ public class GPGManager: MonoBehaviour {
 		}
 	}
 
-	void PostScore(int score){
+	public void PostScore(int score){
 		Debug.Log("Attempting to post score");
 		Social.ReportScore(score, "CgkIucKVsZ8TEAIQAg", (bool success) => {
 			if(success){
@@ -45,11 +47,10 @@ public class GPGManager: MonoBehaviour {
 			else{
 				Debug.Log("Couldn't post score");
 			}
-			ShowLeaderboards();
 		});
 	}
 
-	void UnlockAchievement(){
+	public void UnlockAchievement(){
 		Social.ReportProgress("CgkIucKVsZ8TEAIQAA", 100.0f, (bool success) => {
 			if(success){
 				Debug.Log("Unlocked achievement!");
@@ -57,11 +58,10 @@ public class GPGManager: MonoBehaviour {
 			else{
 				Debug.Log("Couldn't unlock achievement");
 			}
-			ShowAchievements();
 		});
 	}
 
-	void IncrementAchievement(){
+	public void IncrementAchievement(){
 		((GooglePlayGames.PlayGamesPlatform) Social.Active).IncrementAchievement(
 			"CgkIucKVsZ8TEAIQAQ", 1, (bool success) => {
 			if(success){
@@ -70,15 +70,14 @@ public class GPGManager: MonoBehaviour {
 			else{
 				Debug.Log("Couldn't increment achievement");
 			}
-			ShowAchievements();
 		});
 	}
 
-	void ShowAchievements(){
+	public void ShowAchievements(){
 		Social.ShowAchievementsUI();
 	}
 
-	void ShowLeaderboards(){
+	public void ShowLeaderboards(){
 		Debug.Log("Attempting show scores");
 		Social.ShowLeaderboardUI();
 	}

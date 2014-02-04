@@ -11,6 +11,8 @@ public class GridLogic : MonoBehaviour {
 	GridPlace northWestCorner;
 	bool spawned;
 
+	bool gameover;
+
 	public AnimationCurve ScoreCurve;
 	int score;
 	int moves = 30;
@@ -19,6 +21,7 @@ public class GridLogic : MonoBehaviour {
 	public TextMesh gameOverTextMesh;
 
 	GameObject actionChooser;
+
 	float actionChooserTime;
 	GridPlace selected;
 	const float OFFSET = 0.8f;
@@ -33,6 +36,7 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	void Start () {
+		gameover = false;
 		ColorSelector.Instance.Init ();
 		movesTextMesh.text = moves.ToString("N0");
 		
@@ -79,7 +83,16 @@ public class GridLogic : MonoBehaviour {
 			Application.LoadLevel("main");
 
 		if (moves <= 0) {
-			gameOverTextMesh.gameObject.SetActive(true);
+			if (!gameover){
+				gameover = true;
+				gameOverTextMesh.gameObject.SetActive(true);
+
+				#if (UNITY_IPHONE || UNITY_ANDROID)
+				SocialManager.Instance.PostScore(score);
+				SocialManager.Instance.ShowLeaderboards();
+				#endif
+			}
+
 			if (InputHandler.Instance.inputSignalDown)
 				Application.LoadLevel("main");
 			return;

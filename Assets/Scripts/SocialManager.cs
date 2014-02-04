@@ -13,6 +13,14 @@ public class SocialManager: MonoBehaviour {
 		Instance = this;
 		Debug.Log ("Activating GPG");
 		GooglePlayGames.PlayGamesPlatform.Activate();
+
+		//Set up human-readable mappings
+		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("complete-takeover", "CgkIucKVsZ8TEAIQCQ");
+		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("hexciting", "CgkIucKVsZ8TEAIQCA");
+		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("30-move", "CgkIucKVsZ8TEAIQAg");
+		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("60-move", "CgkIucKVsZ8TEAIQBw");
+
+		//Attempt to login to the service
 		Login ();
 	}
 	
@@ -40,7 +48,7 @@ public class SocialManager: MonoBehaviour {
 
 	public void PostScore(int score){
 		Debug.Log("Attempting to post score");
-		Social.ReportScore(score, "CgkIucKVsZ8TEAIQAg", (bool success) => {
+		Social.ReportScore(score, "30-move", (bool success) => {
 			if(success){
 				Debug.Log("Posted score!");
 			}
@@ -51,7 +59,7 @@ public class SocialManager: MonoBehaviour {
 	}
 
 	public void UnlockAchievement(){
-		Social.ReportProgress("CgkIucKVsZ8TEAIQAA", 100.0f, (bool success) => {
+		Social.ReportProgress("complete-takeover", 100.0f, (bool success) => {
 			if(success){
 				Debug.Log("Unlocked achievement!");
 			}
@@ -63,7 +71,7 @@ public class SocialManager: MonoBehaviour {
 
 	public void IncrementAchievement(){
 		((GooglePlayGames.PlayGamesPlatform) Social.Active).IncrementAchievement(
-			"CgkIucKVsZ8TEAIQAQ", 1, (bool success) => {
+			"hexciting", 1, (bool success) => {
 			if(success){
 				Debug.Log("Incremented achievement by 1!");
 			}

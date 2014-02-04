@@ -18,7 +18,7 @@ public class GPGManager: MonoBehaviour {
 			Social.localUser.Authenticate((bool success) => {
 				if(success){
 					Debug.Log("Logged in!");
-
+					UnlockAchievement();
 				}
 				else{
 					Debug.Log("Couldn't log in");
@@ -37,6 +37,7 @@ public class GPGManager: MonoBehaviour {
 	}
 
 	void PostScore(int score){
+		Debug.Log("Attempting to post score");
 		Social.ReportScore(score, "CgkIucKVsZ8TEAIQAg", (bool success) => {
 			if(success){
 				Debug.Log("Posted score!");
@@ -44,6 +45,7 @@ public class GPGManager: MonoBehaviour {
 			else{
 				Debug.Log("Couldn't post score");
 			}
+			ShowLeaderboards();
 		});
 	}
 
@@ -55,6 +57,7 @@ public class GPGManager: MonoBehaviour {
 			else{
 				Debug.Log("Couldn't unlock achievement");
 			}
+			ShowAchievements();
 		});
 	}
 
@@ -67,6 +70,7 @@ public class GPGManager: MonoBehaviour {
 			else{
 				Debug.Log("Couldn't increment achievement");
 			}
+			ShowAchievements();
 		});
 	}
 
@@ -75,6 +79,7 @@ public class GPGManager: MonoBehaviour {
 	}
 
 	void ShowLeaderboards(){
+		Debug.Log("Attempting show scores");
 		Social.ShowLeaderboardUI();
 	}
 

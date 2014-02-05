@@ -83,6 +83,18 @@ public class InputHandler : MonoBehaviour {
 			inputSignalDelta = Vector2.zero;
 
 		Interactions ();
+
+		//Put this somewhere else?
+		//Android back button
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			if (Application.loadedLevelName == "game"){
+				Application.LoadLevel("menu");
+			}
+			else if (Application.loadedLevelName == "menu"){
+				Debug.Log("Exiting");
+				Application.Quit();
+			}
+		}
 	}
 
 	private GameObject downObject; // this is the object last clicked down on, use when you need to know if a full click (up and down) on the same object was performed

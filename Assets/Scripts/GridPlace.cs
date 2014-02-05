@@ -61,24 +61,6 @@ public class GridPlace : InteractiveObject {
 		GridLogic.Instance.Select(this);
 	}
 
-	public void Fill (HexColors fillColor) {
-		if (!busy && alive) {
-			busy = true;
-			StartCoroutine(FillSiblings(hexaCube.hexColor, fillColor));
-      		hexaCube.Fill(fillColor);
-		}
-	}
-
-	IEnumerator FillSiblings (HexColors rootColor, HexColors fillColor) {
-		yield return new WaitForSeconds (0.1f);
-		List<GridPlace> existingSibs = sibs.ExistingSibs();
-		for (int i = 0; i < existingSibs.Count; i ++) {
-			if (existingSibs[i].hexaCube.hexColor == rootColor) {
-				existingSibs[i].Fill(fillColor);
-			}
-		}
-	}
-
 	public int TallyScore (HexColors rootColor) {
 		scored = true;
 		int tally = 1;
@@ -91,13 +73,35 @@ public class GridPlace : InteractiveObject {
 		return tally;
 	}
 
-	public void Kill () {
+	public bool Fill (HexColors fillColor) {
+		if (!busy && alive) {
+			busy = true;
+			StartCoroutine(FillSiblings(hexaCube.hexColor, fillColor));
+      		hexaCube.Fill(fillColor);
+			return true;
+		}
+		return false;
+	}
+
+	IEnumerator FillSiblings (HexColors rootColor, HexColors fillColor) {
+		yield return new WaitForSeconds (0.1f);
+		List<GridPlace> existingSibs = sibs.ExistingSibs();
+		for (int i = 0; i < existingSibs.Count; i ++) {
+			if (existingSibs[i].hexaCube.hexColor == rootColor) {
+				existingSibs[i].Fill(fillColor);
+			}
+		}
+	}
+
+	public bool Kill () {
 		if (!busy && alive) {
 			scored = false;
 			busy = true;
 			StartCoroutine(KillSiblings(hexaCube.hexColor));
 			hexaCube.Kill();
+			return true;
 		}
+		return false;
 	}
 	
 	IEnumerator KillSiblings (HexColors rootColor) {

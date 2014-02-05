@@ -97,7 +97,8 @@ public class InputHandler : MonoBehaviour {
 				col.GetComponent<InteractiveObject>().DownAction();
 				downObject = col.gameObject;
 			}
-			else {
+			//TODO: A bit of a hack...
+			else if (GridLogic.Instance != null){
 				GridLogic.Instance.Deselect();
 			}
 		}

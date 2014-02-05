@@ -91,22 +91,26 @@ public class GridLogic : MonoBehaviour {
 	
 	void Update () {
 
-		if (Input.GetKeyDown(KeyCode.R))
-			Application.LoadLevel("main");
-
 		if (moves <= 0) {
 			if (!gameover){
 				gameover = true;
 				gameOverTextMesh.gameObject.SetActive(true);
 
 				#if (UNITY_IPHONE || UNITY_ANDROID)
-				SocialManager.Instance.PostScore(score);
-				SocialManager.Instance.ShowLeaderboards();
+				Social.ReportScore(score, "30-move", (bool success) => {
+					if(success){
+						Debug.Log("Posted score!");
+					}
+					else{
+						Debug.Log("Couldn't post score");
+					}
+				});
 				#endif
 			}
 
 			if (InputHandler.Instance.inputSignalDown)
-				Application.LoadLevel("main");
+				Application.LoadLevel("menu");
+
 			return;
 		}
 

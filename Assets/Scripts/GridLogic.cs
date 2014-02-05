@@ -64,17 +64,29 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	public void Flood () {
-		selected.Fill(ColorSelector.Instance.Current());
+		if (selected.Fill (ColorSelector.Instance.Current())) {
+			DoMove ();
+		}
 	}
 	
 	public void Destroy () {
-		int multiplier = 1;
-		if (ColorSelector.Instance.Current() == selected.hexaCube.hexColor)
-			multiplier = 2;
-		// Score = bonus multiplier * number of hexes in the chain * 100
-		score += selected.TallyScore(selected.hexaCube.hexColor) * multiplier * 100;
-		scoreTextMesh.text = score.ToString("N0");
-		selected.Kill();
+		if (selected.Kill()) {
+			int multiplier = 1;
+			if (ColorSelector.Instance.Current () == selected.hexaCube.hexColor)
+					multiplier = 2;
+			// Score = bonus multiplier * number of hexes in the chain * 100
+			score += selected.TallyScore (selected.hexaCube.hexColor) * multiplier * 100;
+			scoreTextMesh.text = score.ToString ("N0");
+			DoMove ();
+		}
+	}
+
+	//Anytyime a move is made, this is called
+	public void DoMove(){
+		//Update count and color chooser
+		moves --;
+		movesTextMesh.text = moves.ToString("N0");
+		ColorSelector.Instance.NewColor();
 	}
 	
 	void Update () {
@@ -104,14 +116,10 @@ public class GridLogic : MonoBehaviour {
 				if (diff.magnitude >= OFFSET || Time.time - actionChooserTime > TAPTIME) {
 					//Action was a drag - perform action based on up position
 					if (diff.magnitude >= OFFSET && Time.time - actionChooserTime < SWIPETIME){
-						moves --;
 						if (diff.x > 0)
 							Flood();
 						else
 							Destroy();
-						//Made a move, update count and color chooser
-						movesTextMesh.text = moves.ToString("N0");
-						ColorSelector.Instance.NewColor();
 					}
 					Deselect();
 				}

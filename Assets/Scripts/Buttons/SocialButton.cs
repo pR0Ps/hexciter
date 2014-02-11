@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SignInButton : InteractiveObject {
+public class SocialButton : InteractiveObject {
+
+	public GameObject button = null;
 
 	//Set up the social system
 	public void Awake(){
 		//TODO: This happens every time the menu is loaded
-
+		
 		#if UNITY_ANDROID
+		button = transform.Find("gpgicon").gameObject;
+
 		Debug.Log ("Activating GPG/GC");
 		GooglePlayGames.PlayGamesPlatform.Activate();
 		
@@ -19,25 +23,39 @@ public class SignInButton : InteractiveObject {
 		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("60-move", "CgkIucKVsZ8TEAIQBw");
 		#elif UNITY_IPHONE
 		//TODO: UNTESTED
+		button = transform.Find("gcicon").gameObject;
+
 		Debug.Log ("Activating GC");
-		GameCenterPlatform.Activate();
+		//GameCenterPlatform.Activate();
 		#else
 		Debug.Log ("Not on mobile, not logging into GPG/GC");
 		return;
 		#endif
+
+		if (button != null) button.SetActive(true);
 	}
-	
+
+	public void Start (){
+		if (Social.localUser.authenticated){
+			if (button != null) button.SetActive(false);
+		}
+	}
+
 	public override void TapAction () {
 		//Attempt to login to the service
 		if (!Social.localUser.authenticated) {
 			Social.localUser.Authenticate((bool success) => {
 				if(success){
-					Debug.Log("Logged in!");
+					if (button != null) button.SetActive(false);
 				}
 				else{
 					Debug.Log("Couldn't log in");
 				}
 			});
 		}
+	}
+
+	public void Shake(){
+		gameObject.animation.Play();
 	}
 }

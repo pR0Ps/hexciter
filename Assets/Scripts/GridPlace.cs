@@ -5,18 +5,18 @@ using System.Collections.Generic;
 [System.Serializable]
 public class Siblings {
 	private List<GridPlace> existingSibs;
-
+	
 	public GridPlace NorthEast;
 	public GridPlace East;
 	public GridPlace SouthEast;
 	public GridPlace SouthWest;
 	public GridPlace West;
 	public GridPlace NorthWest;
-
+	
 	public List<GridPlace> ExistingSibs () {
 		if (existingSibs != null)
 			return existingSibs;
-
+		
 		List<GridPlace> exSibs = new List<GridPlace>();
 		
 		if (NorthEast)
@@ -31,9 +31,9 @@ public class Siblings {
 			exSibs.Add(West);
 		if (NorthWest)
 			exSibs.Add(NorthWest);
-
+		
 		existingSibs = exSibs;
-
+		
 		return existingSibs;
 	}
 }
@@ -41,27 +41,27 @@ public class Siblings {
 public class GridPlace : InteractiveObject {
 	public GameObject HexaCubePrefab;
 	public HexaCube hexaCube;
-
+	
 	public bool busy;
 	public bool alive;
-
+	
 	public bool scored;
-
+	
 	[SerializeField]
 	public Siblings sibs;
-
+	
 	public void Awake () {
 		hexaCube = (Object.Instantiate(HexaCubePrefab) as GameObject).GetComponent<HexaCube>();
 		hexaCube.transform.parent = transform;
 		hexaCube.transform.localPosition = Vector3.zero;
 		hexaCube.gridPlace = this;
 	}
-
+	
 	public override void DownAction () {
 		GridLogic.Instance.Select(this);
 	}
-
-	public int TallyScore (HexColors rootColor) {
+	
+	public int TallyScore (Constants.HexColors rootColor) {
 		scored = true;
 		int tally = 1;
 		List<GridPlace> existingSibs = sibs.ExistingSibs();
@@ -72,18 +72,18 @@ public class GridPlace : InteractiveObject {
 		}
 		return tally;
 	}
-
-	public bool Fill (HexColors fillColor) {
+	
+	public bool Fill (Constants.HexColors fillColor) {
 		if (!busy && alive) {
 			busy = true;
 			StartCoroutine(FillSiblings(hexaCube.hexColor, fillColor));
-      		hexaCube.Fill(fillColor);
+			hexaCube.Fill(fillColor);
 			return true;
 		}
 		return false;
 	}
-
-	IEnumerator FillSiblings (HexColors rootColor, HexColors fillColor) {
+	
+	IEnumerator FillSiblings (Constants.HexColors rootColor, Constants.HexColors fillColor) {
 		yield return new WaitForSeconds (0.1f);
 		List<GridPlace> existingSibs = sibs.ExistingSibs();
 		for (int i = 0; i < existingSibs.Count; i ++) {
@@ -92,7 +92,7 @@ public class GridPlace : InteractiveObject {
 			}
 		}
 	}
-
+	
 	public bool Kill () {
 		if (!busy && alive) {
 			scored = false;
@@ -104,7 +104,7 @@ public class GridPlace : InteractiveObject {
 		return false;
 	}
 	
-	IEnumerator KillSiblings (HexColors rootColor) {
+	IEnumerator KillSiblings (Constants.HexColors rootColor) {
 		yield return new WaitForSeconds (0.1f);
 		List<GridPlace> existingSibs = sibs.ExistingSibs();
 		for (int i = 0; i < existingSibs.Count; i ++) {
@@ -113,8 +113,8 @@ public class GridPlace : InteractiveObject {
 			}
 		}
 	}
-
-
+	
+	
 	public void SlowSpawn () {
 		if (!busy && !alive) {
 			busy = true;
@@ -122,14 +122,14 @@ public class GridPlace : InteractiveObject {
 			StartCoroutine(SlowSpawnSiblings());
 		}
 	}
-
+	
 	private IEnumerator SlowSpawnSiblings () {
 		yield return new WaitForSeconds(.3f);
 		foreach (GridPlace gp in sibs.ExistingSibs()) {
 			gp.SlowSpawn();
 		}
 	}
-
+	
 	public void Despawn () {
 		if (!busy && alive) {
 			busy = true;
@@ -137,21 +137,21 @@ public class GridPlace : InteractiveObject {
 			StartCoroutine(DespawnSiblings());
 		}
 	}
-
+	
 	private IEnumerator DespawnSiblings () {
 		yield return new WaitForSeconds(.1f);
 		foreach (GridPlace gp in sibs.ExistingSibs()) {
 			gp.Despawn();
 		}
 	}
-
+	
 	//An editor utility function to populate sibling lists
 	//Called by in Editor/DiscoverSiblings.cs
 	//Casts 6 rays out in a hexagon to discover siblings
 	public void DiscoverSiblings () {
-
+		
 		Collider2D hit;
-
+		
 		//NorthEas Raycast
 		if (hit = Physics2D.OverlapPoint((Vector2)transform.position + new Vector2(0.8f, 1.38f))) {
 			sibs.NorthEast = hit.transform.GetComponent<GridPlace>();
@@ -177,7 +177,7 @@ public class GridPlace : InteractiveObject {
 			sibs.NorthWest = hit.transform.GetComponent<GridPlace>();
 		}
 	}
-
+	
 	void OnDrawGizmos() {
 		Gizmos.color = Color.white;
 		if (sibs.NorthEast)

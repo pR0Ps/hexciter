@@ -93,15 +93,13 @@ public class GridPlace : InteractiveObject {
 		}
 	}
 	
-	public bool Kill () {
+	public void Kill () {
 		if (!busy && alive) {
 			scored = false;
 			busy = true;
 			StartCoroutine(KillSiblings(hexaCube.hexColor));
 			hexaCube.Kill();
-			return true;
 		}
-		return false;
 	}
 	
 	IEnumerator KillSiblings (Constants.HexColors rootColor) {

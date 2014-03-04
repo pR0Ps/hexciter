@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class ObjectPoolManager : MonoBehaviour {
 	
-	static public ObjectPoolManager Singleton;
+	static public ObjectPoolManager Instance;
 	Dictionary<string, Stack<GameObject>> objectPool = new Dictionary<string, Stack<GameObject>>();
 	Dictionary<string, GameObject> prefabs = new Dictionary<string, GameObject>();
 	
 	void Start () {
-		if (!Singleton) {
-			Singleton = this;	
+		if (!Instance) {
+			Instance = this;	
 		}
 		foreach (Object o in Resources.LoadAll("PooledObjects")) {
 			if (o.GetType() == typeof(GameObject)) {
@@ -19,7 +19,7 @@ public class ObjectPoolManager : MonoBehaviour {
 			}
 		}
 	}
-	
+
 	public GameObject Pop (string goName) {
 		if (objectPool[goName].Count == 0) {
 			GameObject newGameObject = GameObject.Instantiate(prefabs[goName]) as GameObject;

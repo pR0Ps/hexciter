@@ -40,19 +40,20 @@ public class GridLogic : MonoBehaviour {
 			DoMove ();
 		}
 	}
-	
-	public void Destroy (GridPlace start) {
-		if (start.Kill()) {
-			int multiplier = 1;
-			if (ColorSelector.Instance.Current() == start.hexaCube.hexColor){
-				multiplier = 2;
-			}
 
-			// Score = bonus multiplier * number of hexes in the chain * 100
-			score += start.TallyScore(start.hexaCube.hexColor) * multiplier * 100;
-			scoreTextMesh.text = score.ToString ("N0");
-			DoMove ();
-		}
+	public void Destroy (GridPlace start) {
+		int multiplier = 1;
+		if (ColorSelector.Instance.Current () == start.hexaCube.hexColor) multiplier = 2;
+
+		int tally = start.TallyScore(start.hexaCube.hexColor);
+		int earnedScore = tally * multiplier * 100;
+
+		score += earnedScore;
+		scoreTextMesh.text = score.ToString ("N0");
+		start.Kill ();
+
+		ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show (earnedScore, start.transform.position);
+		DoMove ();
 	}
 
 	//Anytyime a move is made, this is called

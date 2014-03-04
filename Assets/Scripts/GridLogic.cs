@@ -20,19 +20,10 @@ public class GridLogic : MonoBehaviour {
 	public TextMesh movesTextMesh;
 	public TextMesh gameOverTextMesh;
 
-	GameObject actionChooser;
-
-	float actionChooserTime;
-	GridPlace selected;
-	const float OFFSET = 0.8f;
-	const float TAPTIME = 0.5f;
-	const float SWIPETIME = 1.5f;
-
 	void Awake () {
 		// tell the game to run at 60 fps, maybe put this some where better later
 		Application.targetFrameRate = 60;
 		Instance = this;
-		actionChooser = GameObject.Find("ActionChooser");
 	}
 
 	void Start () {
@@ -44,38 +35,21 @@ public class GridLogic : MonoBehaviour {
 		origin.SlowSpawn();
 	}
 
-	public void Select (GridPlace gp) {
-		if (selected == gp) {
-			Deselect ();
-			return;
-		}
-		selected = gp;
-		if (!selected.busy && selected.alive) {
-			ActionChooser.Instance.Show();
-			actionChooserTime = Time.time;
-			actionChooser.transform.position = selected.transform.position - Vector3.forward * 5;
-		}
-	}
-
-	public void Deselect () {
-		selected = null;
-		if (ActionChooser.Instance.Visible)
-			ActionChooser.Instance.Hide ();
-	}
-
-	public void Flood () {
-		if (selected.Fill (ColorSelector.Instance.Current())) {
+	public void Flood(GridPlace start) {
+		if (start.Fill (ColorSelector.Instance.Current())) {
 			DoMove ();
 		}
 	}
 	
-	public void Destroy () {
-		if (selected.Kill()) {
+	public void Destroy (GridPlace start) {
+		if (start.Kill()) {
 			int multiplier = 1;
-			if (ColorSelector.Instance.Current () == selected.hexaCube.hexColor)
-					multiplier = 2;
+			if (ColorSelector.Instance.Current() == start.hexaCube.hexColor){
+				multiplier = 2;
+			}
+
 			// Score = bonus multiplier * number of hexes in the chain * 100
-			score += selected.TallyScore (selected.hexaCube.hexColor) * multiplier * 100;
+			score += start.TallyScore(start.hexaCube.hexColor) * multiplier * 100;
 			scoreTextMesh.text = score.ToString ("N0");
 			DoMove ();
 		}
@@ -112,22 +86,6 @@ public class GridLogic : MonoBehaviour {
 				Application.LoadLevel("menu");
 
 			return;
-		}
-
-		if (InputHandler.Instance.inputSignalUp) {
-			if (ActionChooser.Instance.Visible) {
-				Vector2 diff = (Vector2)actionChooser.transform.position - (Vector2)Camera.main.ScreenToWorldPoint(InputHandler.Instance.inputVector);
-				if (diff.magnitude >= OFFSET || Time.time - actionChooserTime > TAPTIME) {
-					//Action was a drag - perform action based on up position
-					if (diff.magnitude >= OFFSET && Time.time - actionChooserTime < SWIPETIME){
-						if (diff.x > 0)
-							Flood();
-						else
-							Destroy();
-					}
-					Deselect();
-				}
-			}
 		}
 	}
 }

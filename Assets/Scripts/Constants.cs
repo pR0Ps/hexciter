@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Constants : MonoBehaviour {
+public static class Constants {
 	
 	public const int NUMBER_OF_COLORS = 5;
 	

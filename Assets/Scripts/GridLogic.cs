@@ -70,15 +70,17 @@ public class GridLogic : MonoBehaviour {
 	}
 	
 	public void Destroy () {
-		if (selected.Kill()) {
-			int multiplier = 1;
-			if (ColorSelector.Instance.Current () == selected.hexaCube.hexColor)
-					multiplier = 2;
-			// Score = bonus multiplier * number of hexes in the chain * 100
-			score += selected.TallyScore (selected.hexaCube.hexColor) * multiplier * 100;
-			scoreTextMesh.text = score.ToString ("N0");
-			DoMove ();
-		}
+		int multiplier = 1;
+		if (ColorSelector.Instance.Current () == selected.hexaCube.hexColor)
+				multiplier = 2;
+		int tally = selected.TallyScore(selected.hexaCube.hexColor);
+		int earnedScore = tally * multiplier * 100;
+		score += earnedScore;
+		scoreTextMesh.text = score.ToString ("N0");
+		selected.Kill ();
+		Debug.Log (tally);
+		ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show (earnedScore, selected.transform.position);
+		DoMove ();
 	}
 
 	//Anytyime a move is made, this is called

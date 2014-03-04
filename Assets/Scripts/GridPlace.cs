@@ -58,7 +58,7 @@ public class GridPlace : InteractiveObject {
 	}
 
 	public override void DownAction () {
-		GridLogic.Instance.Select(this);
+		PlayerActions.Instance.DownAction(this);
 	}
 
 	public int TallyScore (HexColors rootColor) {
@@ -113,7 +113,6 @@ public class GridPlace : InteractiveObject {
 			}
 		}
 	}
-
 
 	public void SlowSpawn () {
 		if (!busy && !alive) {

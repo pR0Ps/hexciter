@@ -109,10 +109,6 @@ public class InputHandler : MonoBehaviour {
 				col.GetComponent<InteractiveObject>().DownAction();
 				downObject = col.gameObject;
 			}
-			//TODO: A bit of a hack...
-			else if (GridLogic.Instance != null){
-				GridLogic.Instance.Deselect();
-			}
 		}
 		if (inputSignalUp) {
 			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVector), LAYER_MASK);

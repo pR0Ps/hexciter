@@ -73,6 +73,8 @@ public class HexaCube : InteractiveObject {
 	
 	public void Despawn () {
 		animation.Play("Despawn");
+		if (!gridPlace)
+			return;
 		gridPlace.busy = true;
 	}
 	
@@ -84,11 +86,15 @@ public class HexaCube : InteractiveObject {
 	}
 	
 	void DespawnedCallback () {
+		if (!gridPlace)
+			return;
 		gridPlace.busy = false;
 		gridPlace.alive = true;
 	}
 	
 	void WiggleCallback () {
+		if (!gridPlace)
+			return;
 		gridPlace.busy = false;
 		gridPlace.alive = true;
 	}

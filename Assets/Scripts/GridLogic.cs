@@ -20,6 +20,7 @@ public class GridLogic : MonoBehaviour {
 	int maxmoves;
 	int minscore;
 	public TextMesh scoreTextMesh;
+	public TextMesh targetTextMesh;
 	public TextMesh gameOverTextMesh;
 
 	void Awake () {
@@ -37,12 +38,17 @@ public class GridLogic : MonoBehaviour {
 		origin.SlowSpawn();
 	}
 
+	void UpdateUI(){
+		ProgressBar.Instance.SetPercent(moves/(float)maxmoves);
+		targetTextMesh.text = minscore.ToString("N0");
+	}
+
 	void NextLevel(){
 		level++;
 		maxmoves = ProgressBar.NUM_HEXES;
 		moves = 0;
 		minscore = score + level * 2000;
-		ProgressBar.Instance.SetPercent(moves/(float)maxmoves);
+		UpdateUI();
 	}
 
 	public void Flood(GridPlace start) {
@@ -59,7 +65,7 @@ public class GridLogic : MonoBehaviour {
 		int earnedScore = tally * multiplier * 100;
 
 		score += earnedScore;
-		scoreTextMesh.text = score.ToString ("N0");
+		scoreTextMesh.text = score.ToString("N0");
 		start.Kill ();
 
 		ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show (earnedScore, start.transform.position);
@@ -70,8 +76,8 @@ public class GridLogic : MonoBehaviour {
 	public void DoMove(){
 		//Update count and color chooser
 		moves++;
+		UpdateUI();
 		ColorSelector.Instance.NewColor();
-		ProgressBar.Instance.SetPercent(moves/(float)maxmoves);
 	}
 	
 	void Update () {

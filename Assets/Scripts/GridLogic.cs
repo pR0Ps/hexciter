@@ -15,9 +15,11 @@ public class GridLogic : MonoBehaviour {
 
 	public AnimationCurve ScoreCurve;
 	int score;
-	int moves = 30;
+	int level;
+	int moves;
+	int maxmoves;
+	int minscore;
 	public TextMesh scoreTextMesh;
-	public TextMesh movesTextMesh;
 	public TextMesh gameOverTextMesh;
 
 	void Awake () {
@@ -28,16 +30,24 @@ public class GridLogic : MonoBehaviour {
 
 	void Start () {
 		gameover = false;
+		level = 1;
 		ColorSelector.Instance.Init ();
-		movesTextMesh.text = moves.ToString("N0");
 		
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
 		origin.SlowSpawn();
 	}
 
+	void NextLevel(){
+		level++;
+		maxmoves = ProgressBar.NUM_HEXES;
+		moves = 0;
+		minscore = score + level * 2000;
+		ProgressBar.Instance.SetPercent(moves/(float)maxmoves);
+	}
+
 	public void Flood(GridPlace start) {
 		if (start.Fill (ColorSelector.Instance.Current())) {
-			DoMove ();
+			DoMove();
 		}
 	}
 
@@ -59,14 +69,14 @@ public class GridLogic : MonoBehaviour {
 	//Anytyime a move is made, this is called
 	public void DoMove(){
 		//Update count and color chooser
-		moves --;
-		movesTextMesh.text = moves.ToString("N0");
+		moves++;
 		ColorSelector.Instance.NewColor();
+		ProgressBar.Instance.SetPercent(moves/(float)maxmoves);
 	}
 	
 	void Update () {
 
-		if (moves <= 0) {
+		if (moves >= maxmoves && score < minscore) {
 			if (!gameover){
 				gameover = true;
 				gameOverTextMesh.gameObject.SetActive(true);
@@ -87,6 +97,9 @@ public class GridLogic : MonoBehaviour {
 				Application.LoadLevel("menu");
 
 			return;
+		}
+		else if (moves >= maxmoves){
+			NextLevel();
 		}
 	}
 }

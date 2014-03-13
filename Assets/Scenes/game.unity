@@ -121,6 +121,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6a0b782c6483742ae57f1167125ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3919437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 1145744096}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 3919438}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3919438
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 1145744096}
+  m_GameObject: {fileID: 3919437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1354425211}
+  m_Father: {fileID: 546876446}
 --- !u!1 &19134461
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,7 +365,7 @@ Transform:
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 409366643}
-  m_Father: {fileID: 1034207830}
+  m_Father: {fileID: 1024665624}
 --- !u!1 &60137716
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +392,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1878551878}
-  m_Father: {fileID: 495900505}
+  m_Father: {fileID: 795413430}
 --- !u!1 &69919118
 GameObject:
   m_ObjectHideFlags: 0
@@ -571,12 +598,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!1001 &93522453
 Prefab:
   m_ObjectHideFlags: 0
@@ -726,12 +753,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &140913144
 Transform:
   m_ObjectHideFlags: 0
@@ -861,8 +888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653eb8f9c444d5c468967b9e2fbfdc47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swiping: 0
-  selected: {fileID: 0}
 --- !u!1 &170319416
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,12 +940,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &170319419
 Transform:
   m_ObjectHideFlags: 0
@@ -984,12 +1009,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &172903399
 Transform:
   m_ObjectHideFlags: 0
@@ -1053,12 +1078,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &180949361
 Transform:
   m_ObjectHideFlags: 0
@@ -1097,7 +1122,7 @@ Transform:
   m_LocalPosition: {x: -1.60000002, y: 2.75999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 306159077}
+  - {fileID: 902515845}
   m_Father: {fileID: 1527007}
 --- !u!114 &220063397
 MonoBehaviour:
@@ -1422,12 +1447,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &300885737
 Transform:
   m_ObjectHideFlags: 0
@@ -1465,7 +1490,7 @@ Transform:
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 69919119}
-  m_Father: {fileID: 943597537}
+  m_Father: {fileID: 800924410}
 --- !u!1 &306159076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,7 +1517,7 @@ Transform:
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 1700326248}
-  m_Father: {fileID: 220063396}
+  m_Father: {fileID: 902515845}
 --- !u!1 &311418716
 GameObject:
   m_ObjectHideFlags: 0
@@ -1739,12 +1764,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &360798872
 Transform:
   m_ObjectHideFlags: 0
@@ -2125,12 +2150,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &480999084
 Transform:
   m_ObjectHideFlags: 0
@@ -2168,7 +2193,7 @@ Transform:
   m_LocalPosition: {x: -.200000003, y: .200000003, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 60137717}
+  - {fileID: 795413430}
   m_Father: {fileID: 269582954}
 --- !u!114 &495900507
 MonoBehaviour:
@@ -2317,12 +2342,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!1 &516329255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,12 +2400,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &516329258
 Transform:
   m_ObjectHideFlags: 0
@@ -2457,7 +2482,7 @@ Transform:
   m_LocalPosition: {x: -2.4000001, y: 4.13999987, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1354425211}
+  - {fileID: 3919438}
   m_Father: {fileID: 1527007}
 --- !u!114 &546876447
 MonoBehaviour:
@@ -2543,12 +2568,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &586584149
 Transform:
   m_ObjectHideFlags: 0
@@ -2560,6 +2585,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 317096471}
+--- !u!1 &612691557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 1744868160}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 612691558}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &612691558
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 1744868160}
+  m_GameObject: {fileID: 612691557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1764311440}
+  m_Father: {fileID: 1539830500}
 --- !u!1 &618924815
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,12 +2664,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &618924818
 Transform:
   m_ObjectHideFlags: 0
@@ -2681,12 +2733,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &627374535
 Transform:
   m_ObjectHideFlags: 0
@@ -2915,12 +2967,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &708533941
 Transform:
   m_ObjectHideFlags: 0
@@ -2984,12 +3036,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &711285811
 Transform:
   m_ObjectHideFlags: 0
@@ -3071,6 +3123,33 @@ Renderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
+--- !u!1 &795413429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 659229282}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 795413430}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &795413430
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 659229282}
+  m_GameObject: {fileID: 795413429}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 60137717}
+  m_Father: {fileID: 495900505}
 --- !u!1 &797835790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,12 +3213,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!1001 &800641954
 Prefab:
   m_ObjectHideFlags: 0
@@ -3237,6 +3316,33 @@ Prefab:
   m_RootGameObject: {fileID: 1279035642}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &800924409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 93522453}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 800924410}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &800924410
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 93522453}
+  m_GameObject: {fileID: 800924409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 305943964}
+  m_Father: {fileID: 943597537}
 --- !u!1 &827048288
 GameObject:
   m_ObjectHideFlags: 0
@@ -3289,12 +3395,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &827048291
 Transform:
   m_ObjectHideFlags: 0
@@ -3306,6 +3412,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 317096471}
+--- !u!1 &831999531
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 800641954}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 831999532}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &831999532
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 800641954}
+  m_GameObject: {fileID: 831999531}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 861181698}
+  m_Father: {fileID: 1279035643}
 --- !u!1 &852440418
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,12 +3502,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!1 &854601520
 GameObject:
   m_ObjectHideFlags: 0
@@ -3401,7 +3534,7 @@ Transform:
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 2118753282}
-  m_Father: {fileID: 1126570657}
+  m_Father: {fileID: 1262762270}
 --- !u!1 &861181697
 GameObject:
   m_ObjectHideFlags: 0
@@ -3428,7 +3561,7 @@ Transform:
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 311418717}
-  m_Father: {fileID: 1279035643}
+  m_Father: {fileID: 831999532}
 --- !u!1 &871288136
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,12 +3614,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &871288139
 Transform:
   m_ObjectHideFlags: 0
@@ -3550,12 +3683,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &900726245
 Transform:
   m_ObjectHideFlags: 0
@@ -3567,6 +3700,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 317096471}
+--- !u!1 &902515844
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 470947629}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 902515845}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &902515845
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 470947629}
+  m_GameObject: {fileID: 902515844}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 306159077}
+  m_Father: {fileID: 220063396}
 --- !u!1 &911551418
 GameObject:
   m_ObjectHideFlags: 0
@@ -3619,12 +3779,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &911551421
 Transform:
   m_ObjectHideFlags: 0
@@ -3688,12 +3848,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &912689098
 Transform:
   m_ObjectHideFlags: 0
@@ -3732,7 +3892,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 305943964}
+  - {fileID: 800924410}
   m_Father: {fileID: 1527007}
 --- !u!114 &943597538
 MonoBehaviour:
@@ -3818,12 +3978,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &944986268
 Transform:
   m_ObjectHideFlags: 0
@@ -3887,12 +4047,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &945227650
 Transform:
   m_ObjectHideFlags: 0
@@ -3956,12 +4116,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &995730862
 Transform:
   m_ObjectHideFlags: 0
@@ -3999,7 +4159,7 @@ Transform:
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 1106930195}
-  m_Father: {fileID: 1994093481}
+  m_Father: {fileID: 1903457746}
 --- !u!1 &1019939492
 GameObject:
   m_ObjectHideFlags: 0
@@ -4052,12 +4212,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1019939495
 Transform:
   m_ObjectHideFlags: 0
@@ -4069,6 +4229,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 317096471}
+--- !u!1 &1024665623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 255150673}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1024665624}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1024665624
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 255150673}
+  m_GameObject: {fileID: 1024665623}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 38220164}
+  m_Father: {fileID: 1034207830}
 --- !u!1 &1034207829
 GameObject:
   m_ObjectHideFlags: 0
@@ -4096,7 +4283,7 @@ Transform:
   m_LocalPosition: {x: -3.20000005, y: 5.51999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 38220164}
+  - {fileID: 1024665624}
   m_Father: {fileID: 1527007}
 --- !u!114 &1034207831
 MonoBehaviour:
@@ -4193,12 +4380,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!1 &1089567911
 GameObject:
   m_ObjectHideFlags: 0
@@ -4251,12 +4438,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1089567914
 Transform:
   m_ObjectHideFlags: 0
@@ -4392,12 +4579,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1108051208
 Transform:
   m_ObjectHideFlags: 0
@@ -4435,7 +4622,7 @@ Transform:
   m_LocalPosition: {x: .200000003, y: -.200000003, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1343084730}
+  - {fileID: 1401735474}
   m_Father: {fileID: 269582954}
 --- !u!114 &1120184711
 MonoBehaviour:
@@ -4478,7 +4665,7 @@ Transform:
   m_LocalPosition: {x: -.800000012, y: -1.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 854601521}
+  - {fileID: 1262762270}
   m_Father: {fileID: 1527007}
 --- !u!114 &1126570658
 MonoBehaviour:
@@ -4640,7 +4827,8 @@ MonoBehaviour:
   inputSignalHold: 0
   inputSignalDown: 0
   inputSignalUp: 0
-  inputVector: {x: 0, y: 0}
+  inputVectorScreen: {x: 0, y: 0}
+  inputVectorWorld: {x: 0, y: 0}
   inputEndMagnitude: 0
   inputPosition: {x: 0, y: 0}
   inputZoom: 0
@@ -4708,12 +4896,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1158830067
 Transform:
   m_ObjectHideFlags: 0
@@ -4777,12 +4965,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1174947658
 Transform:
   m_ObjectHideFlags: 0
@@ -4846,12 +5034,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1179856577
 Transform:
   m_ObjectHideFlags: 0
@@ -4915,12 +5103,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1201299549
 Transform:
   m_ObjectHideFlags: 0
@@ -4984,12 +5172,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1204261507
 Transform:
   m_ObjectHideFlags: 0
@@ -5053,12 +5241,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1204332589
 Transform:
   m_ObjectHideFlags: 0
@@ -5096,7 +5284,34 @@ Transform:
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 1933373868}
-  m_Father: {fileID: 1627700580}
+  m_Father: {fileID: 2012938440}
+--- !u!1 &1262762269
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 474958298}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1262762270}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1262762270
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 474958298}
+  m_GameObject: {fileID: 1262762269}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 854601521}
+  m_Father: {fileID: 1126570657}
 --- !u!1 &1272804292
 GameObject:
   m_ObjectHideFlags: 0
@@ -5196,7 +5411,7 @@ Transform:
   m_LocalPosition: {x: -.800000012, y: 1.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 861181698}
+  - {fileID: 831999532}
   m_Father: {fileID: 1527007}
 --- !u!114 &1279035644
 MonoBehaviour:
@@ -5282,12 +5497,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1291149152
 Transform:
   m_ObjectHideFlags: 0
@@ -5351,12 +5566,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1306488992
 Transform:
   m_ObjectHideFlags: 0
@@ -5394,7 +5609,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1272804293}
-  m_Father: {fileID: 1120184709}
+  m_Father: {fileID: 1401735474}
 --- !u!1 &1354425210
 GameObject:
   m_ObjectHideFlags: 0
@@ -5421,7 +5636,7 @@ Transform:
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 641449630}
-  m_Father: {fileID: 546876446}
+  m_Father: {fileID: 3919438}
 --- !u!1 &1380485735
 GameObject:
   m_ObjectHideFlags: 0
@@ -5474,12 +5689,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1380485738
 Transform:
   m_ObjectHideFlags: 0
@@ -5543,12 +5758,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1381527628
 Transform:
   m_ObjectHideFlags: 0
@@ -5560,6 +5775,33 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 317096471}
+--- !u!1 &1401735473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 1435093690}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1401735474}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1401735474
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 1435093690}
+  m_GameObject: {fileID: 1401735473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1343084730}
+  m_Father: {fileID: 1120184709}
 --- !u!1 &1434943250
 GameObject:
   m_ObjectHideFlags: 0
@@ -5612,12 +5854,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1434943253
 Transform:
   m_ObjectHideFlags: 0
@@ -5766,12 +6008,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1459710765
 Transform:
   m_ObjectHideFlags: 0
@@ -5835,12 +6077,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1480104262
 Transform:
   m_ObjectHideFlags: 0
@@ -5904,12 +6146,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1484196919
 Transform:
   m_ObjectHideFlags: 0
@@ -5973,12 +6215,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1486218301
 Transform:
   m_ObjectHideFlags: 0
@@ -6042,12 +6284,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1492745387
 Transform:
   m_ObjectHideFlags: 0
@@ -6086,7 +6328,7 @@ Transform:
   m_LocalPosition: {x: -2.4000001, y: -4.13999987, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1764311440}
+  - {fileID: 612691558}
   m_Father: {fileID: 1527007}
 --- !u!114 &1539830501
 MonoBehaviour:
@@ -6148,12 +6390,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!114 &1542748663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6241,12 +6483,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1556171415
 Transform:
   m_ObjectHideFlags: 0
@@ -6321,12 +6563,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!1 &1572089994
 GameObject:
   m_ObjectHideFlags: 0
@@ -6379,12 +6621,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1572089997
 Transform:
   m_ObjectHideFlags: 0
@@ -6448,12 +6690,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1589276423
 Transform:
   m_ObjectHideFlags: 0
@@ -6517,12 +6759,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1597983473
 Transform:
   m_ObjectHideFlags: 0
@@ -6561,7 +6803,7 @@ Transform:
   m_LocalPosition: {x: -3.20000005, y: -5.51999998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1214252999}
+  - {fileID: 2012938440}
   m_Father: {fileID: 1527007}
 --- !u!114 &1627700581
 MonoBehaviour:
@@ -6647,12 +6889,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1644874776
 Transform:
   m_ObjectHideFlags: 0
@@ -6860,12 +7102,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1722804608
 Transform:
   m_ObjectHideFlags: 0
@@ -7125,7 +7367,7 @@ Transform:
   m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
   m_Children:
   - {fileID: 1660839282}
-  m_Father: {fileID: 1539830500}
+  m_Father: {fileID: 612691558}
 --- !u!1 &1764548351
 GameObject:
   m_ObjectHideFlags: 0
@@ -7178,12 +7420,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1764548354
 Transform:
   m_ObjectHideFlags: 0
@@ -7317,12 +7559,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1857270972
 Transform:
   m_ObjectHideFlags: 0
@@ -7469,12 +7711,39 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
+--- !u!1 &1903457745
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 30176536}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1903457746}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1903457746
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 30176536}
+  m_GameObject: {fileID: 1903457745}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 996210961}
+  m_Father: {fileID: 1994093481}
 --- !u!1 &1918499805
 GameObject:
   m_ObjectHideFlags: 0
@@ -7527,12 +7796,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1918499808
 Transform:
   m_ObjectHideFlags: 0
@@ -7668,12 +7937,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1940363473
 Transform:
   m_ObjectHideFlags: 0
@@ -7737,12 +8006,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1957653574
 Transform:
   m_ObjectHideFlags: 0
@@ -7806,12 +8075,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &1986079344
 Transform:
   m_ObjectHideFlags: 0
@@ -7850,7 +8119,7 @@ Transform:
   m_LocalPosition: {x: -1.60000002, y: -2.75999999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 996210961}
+  - {fileID: 1903457746}
   m_Father: {fileID: 1527007}
 --- !u!114 &1994093482
 MonoBehaviour:
@@ -7884,6 +8153,33 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!1 &2012938439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 275287941}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2012938440}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2012938440
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
+  m_PrefabInternal: {fileID: 275287941}
+  m_GameObject: {fileID: 2012938439}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1214252999}
+  m_Father: {fileID: 1627700580}
 --- !u!1 &2057370727
 GameObject:
   m_ObjectHideFlags: 0
@@ -7936,12 +8232,12 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_Poly:
     m_Paths:
-    - - {x: 0, y: .826725245}
-      - {x: .710399628, y: .395654202}
-      - {x: .712928772, y: -.395082474}
-      - {x: -.00346565247, y: -.816426039}
-      - {x: -.703302383, y: -.414335251}
-      - {x: -.700773239, y: .39565444}
+    - - {x: 0, y: .916749656}
+      - {x: .80042392, y: .460671842}
+      - {x: .802953064, y: -.455098778}
+      - {x: -.00346565247, y: -.921454549}
+      - {x: -.793326795, y: -.459347457}
+      - {x: -.790797651, y: .455670714}
 --- !u!4 &2057370730
 Transform:
   m_ObjectHideFlags: 0

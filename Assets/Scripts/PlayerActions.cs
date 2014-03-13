@@ -4,8 +4,8 @@ using System.Collections;
 public class PlayerActions : MonoBehaviour {
 
 	public static PlayerActions Instance;
-	public bool swiping;
-	public GridPlace selected;
+	public bool swiping { get; private set; }
+	public GridPlace selected { get; private set; }
 
 	const float OFFSET = 0.8f;
 
@@ -49,7 +49,7 @@ public class PlayerActions : MonoBehaviour {
 	public void UpAction(){
 		if (swiping) {
 			// not the same place, do swiping action
-			Vector2 diff = (Vector2)selected.transform.position - (Vector2)Camera.main.ScreenToWorldPoint(InputHandler.Instance.inputVector);
+			Vector2 diff = (Vector2)selected.transform.position - (Vector2)Camera.main.ScreenToWorldPoint(InputHandler.Instance.inputVectorScreen);
 			if (Mathf.Abs(diff.x) >= OFFSET) {
 				//Action was a drag - perform action based on up positio
 				if (diff.x > 0)

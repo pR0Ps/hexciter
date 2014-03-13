@@ -10,8 +10,9 @@ public class InputHandler : MonoBehaviour {
 	public bool inputSignalHold;
 	public bool inputSignalDown;
 	public bool inputSignalUp;
-	public Vector2 inputVector;
-	
+	public Vector2 inputVectorScreen;
+	public Vector2 inputVectorWorld;
+
 	public float inputEndMagnitude; // the distance of the most recent input drag
 	
 	public Vector2 inputPosition;
@@ -65,19 +66,19 @@ public class InputHandler : MonoBehaviour {
 
 		//Deal with a touch/click start
 		if (inputSignalDown) {
-			inputOrigin = inputVector;
-			inputPrevFrame = inputVector;	
+			inputOrigin = inputVectorScreen;
+			inputPrevFrame = inputVectorScreen;	
 		}	
 
 		//Deal with a touch/click release
 		if (inputSignalUp) {
-			inputEndMagnitude = Vector2.Distance(inputOrigin, inputVector);
+			inputEndMagnitude = Vector2.Distance(inputOrigin, inputVectorScreen);
 		}
 		
 		//Determine delta position from start of input until now
 		if (inputSignalHold) {
-			inputSignalDelta = (inputVector - inputPrevFrame);// * (1 - inputZoom/3f);
-			inputPrevFrame = inputVector;
+			inputSignalDelta = (inputVectorScreen - inputPrevFrame);// * (1 - inputZoom/3f);
+			inputPrevFrame = inputVectorScreen;
 		}
 		else
 			inputSignalDelta = Vector2.zero;
@@ -104,14 +105,14 @@ public class InputHandler : MonoBehaviour {
 	// in this way, you can always infer the the collider returned is something that inherits InteractiveObject
 	void Interactions () {
 		if (inputSignalDown) {
-			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVector), LAYER_MASK);
+			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVectorScreen), LAYER_MASK);
 			if (col) {
 				col.GetComponent<InteractiveObject>().DownAction();
 				downObject = col.gameObject;
 			}
 		}
 		if (inputSignalUp) {
-			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVector), LAYER_MASK);
+			Collider2D col = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(inputVectorScreen), LAYER_MASK);
 			if (col) {
 				col.GetComponent<InteractiveObject>().UpAction();
 				if (col.gameObject == downObject) {
@@ -132,7 +133,8 @@ public class InputHandler : MonoBehaviour {
 		}
 		
 		if (Input.touchCount == 1 && !twoTouchLock) {
-			inputVector = Input.touches[0].position;
+			inputVectorScreen = Input.touches[0].position;
+			inputVectorWorld = Camera.main.ScreenToWorldPoint (inputVectorScreen);
 			inputSignalHold = true;
 			if (!oneTouchLastFrame) {		
 				inputSignalDown = true;
@@ -157,7 +159,8 @@ public class InputHandler : MonoBehaviour {
 	}
 	
 	void PCInput () {
-		inputVector = Input.mousePosition;
+		inputVectorScreen = Input.mousePosition;
+		inputVectorWorld = Camera.main.ScreenToWorldPoint (inputVectorScreen);
 		inputSignalDown = Input.GetMouseButtonDown(0);
 		inputSignalHold = Input.GetMouseButton(0);
 		inputSignalUp = Input.GetMouseButtonUp(0);

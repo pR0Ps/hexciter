@@ -6,7 +6,14 @@ public class HexaCube : InteractiveObject {
 	
 	public Constants.HexColors hexColor;
 	public GridPlace gridPlace;
-	
+
+	// used for the looking-at-finger effect
+	bool lookRotationEnabled = false;
+	Transform lookTransform;
+	Quaternion targetRotation;
+	float lookDistance = 15.0f; // the closer this is to 0, the more intense the look effect
+	float lookSpeed = 10.0f;
+
 	VertexColor vertexColor;
 	
 	IEnumerator ColorLerp (Constants.HexColors newHexColor) {
@@ -17,6 +24,26 @@ public class HexaCube : InteractiveObject {
 			t += Time.deltaTime * 2;
 			vertexColor.UpdateColor(Color.Lerp(initialColor, newColor, t));
 			yield return new WaitForEndOfFrame();
+		}
+	}
+
+
+	// only hex's belonging to a grid place should call this
+	// ie. we don't want other hexacubes fucking up
+	public void EnableLookRotation () {
+		lookRotationEnabled = true;
+	}
+
+	void Update () {
+		if (lookRotationEnabled) {
+			if (PlayerActions.Instance.swiping) {
+				Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, lookDistance);
+				targetRotation = Quaternion.LookRotation(lookPoint - lookTransform.position);
+			}
+			else
+				targetRotation = Quaternion.identity;
+
+			lookTransform.rotation = Quaternion.Slerp (lookTransform.rotation, targetRotation, lookSpeed * Time.deltaTime);
 		}
 	}
 	
@@ -35,6 +62,7 @@ public class HexaCube : InteractiveObject {
 	
 	void Awake () {
 		vertexColor = GetComponentInChildren<VertexColor> ();
+		lookTransform = transform.FindChild ("LookRotation");
 	}
 	
 	void RandomizeColor () {

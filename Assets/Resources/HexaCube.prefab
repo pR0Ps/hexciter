@@ -37,7 +37,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &100004
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -50,6 +50,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &100006
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400006}
+  m_Layer: 0
+  m_Name: LookRotation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &400000
 Transform:
   m_ObjectHideFlags: 1
@@ -57,10 +72,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.4730282, y: -5.27516556, z: -33.9699707}
+  m_LocalPosition: {x: 11.3706484, y: 13.5929928, z: -33.9699707}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 400004}
+  - {fileID: 400006}
   m_Father: {fileID: 0}
 --- !u!4 &400002
 Transform:
@@ -84,6 +99,18 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
+  m_Father: {fileID: 400006}
+--- !u!4 &400006
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 400004}
   m_Father: {fileID: 400000}
 --- !u!23 &2300000
 Renderer:
@@ -142,13 +169,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366d5ec72202c5f46a5bf9e4645ecdd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colors:
-  - {r: .206260815, g: .727582514, b: .801470578, a: 1}
-  - {r: .801470578, g: .523150563, b: .170901835, a: 1}
-  - {r: .462373227, g: .203287184, b: .691176474, a: 1}
-  - {r: .174632356, g: .698529422, b: .221602425, a: 1}
-  - {r: .867647052, g: .771818697, b: .236051053, a: 1}
-  - {r: .727941155, g: .176632777, b: .176632777, a: 1}
   hexColor: 0
   gridPlace: {fileID: 0}
 --- !u!114 &11400002

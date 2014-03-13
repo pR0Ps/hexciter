@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: b37ee8a0d99265f4081cc50ea3233b80
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: bucket
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 420
+        width: 540
+        height: 592
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: paintdrip
+      rect:
+        serializedVersion: 2
+        x: 626
+        y: 853
+        width: 178
+        height: 122
+      alignment: 9
+      pivot: {x: -.282957613, y: -.455076635}
+    - name: cube3
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 672
+        width: 256
+        height: 145
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: shard2
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 259
+        width: 90
+        height: 144
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: shard1
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 331
+        width: 99
+        height: 38
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: cube1
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 12
+        width: 245
+        height: 395
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: cube2
+      rect:
+        serializedVersion: 2
+        x: 661
+        y: 17
+        width: 343
+        height: 497
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: shard3
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 98
+        width: 71
+        height: 99
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: shard4
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 177
+        width: 126
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+    - name: shard5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 92
+        width: 81
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 

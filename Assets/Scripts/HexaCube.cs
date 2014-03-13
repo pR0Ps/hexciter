@@ -11,7 +11,7 @@ public class HexaCube : InteractiveObject {
 	bool lookRotationEnabled = false;
 	Transform lookTransform;
 	Quaternion targetRotation;
-	float lookDistance = 15.0f; // the closer this is to 0, the more intense the look effect
+	float lookDistance = 30.0f; // the closer this is to 0, the more intense the look effect
 	float lookSpeed = 10.0f;
 
 	VertexColor vertexColor;
@@ -26,8 +26,7 @@ public class HexaCube : InteractiveObject {
 			yield return new WaitForEndOfFrame();
 		}
 	}
-
-
+	
 	// only hex's belonging to a grid place should call this
 	// ie. we don't want other hexacubes fucking up
 	public void EnableLookRotation () {

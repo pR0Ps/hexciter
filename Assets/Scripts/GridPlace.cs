@@ -44,7 +44,6 @@ public class GridPlace : InteractiveObject {
 	
 	public bool busy;
 	public bool alive;
-	public bool scored;
 
 	Transform lookTransform;
 	Quaternion targetRotation;
@@ -72,7 +71,7 @@ public class GridPlace : InteractiveObject {
 		PlayerActions.Instance.DownAction(this);
 	}
 
-	public void DoScale(int depth, bool scale){
+	public void Scale(int depth, bool scale){
 		if (scale) {
 			//Scale
 			if (depth == 0){
@@ -91,17 +90,6 @@ public class GridPlace : InteractiveObject {
 		}
 	}
 
-	public void ScaleSiblings(bool normalize){
-		int depth = 0;
-		foreach (GridPlace[] ring in GridLogic.Instance.GetSiblings(this)){
-			foreach (GridPlace gp in ring){
-				gp.DoScale(depth, normalize);
-			}
-			if (depth > 2) break;
-			depth++;
-		}
-	}
-
 	void Update () {
 		if (PlayerActions.Instance.swiping) {
 			Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, lookDistance);
@@ -114,87 +102,6 @@ public class GridPlace : InteractiveObject {
 
 		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 10f * Time.deltaTime);
 		transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, 10f * Time.deltaTime);
-	}
-	
-	public int TallyScore (Constants.HexColors rootColor) {
-		scored = true;
-		int tally = 1;
-		List<GridPlace> existingSibs = sibs.ExistingSibs();
-		for (int i = 0; i < existingSibs.Count; i ++) {
-			if (!existingSibs[i].scored && existingSibs[i].hexaCube.hexColor == rootColor) {
-				tally += existingSibs[i].TallyScore(rootColor);
-			}
-		}
-		return tally;
-	}
-	
-	public bool Fill (Constants.HexColors fillColor) {
-		if (!busy && alive) {
-			busy = true;
-			StartCoroutine(FillSiblings(hexaCube.hexColor, fillColor));
-			hexaCube.Fill(fillColor);
-			return true;
-		}
-		return false;
-	}
-	
-	IEnumerator FillSiblings (Constants.HexColors rootColor, Constants.HexColors fillColor) {
-		yield return new WaitForSeconds (0.1f);
-		List<GridPlace> existingSibs = sibs.ExistingSibs();
-		for (int i = 0; i < existingSibs.Count; i ++) {
-			if (existingSibs[i].hexaCube.hexColor == rootColor) {
-				existingSibs[i].Fill(fillColor);
-			}
-		}
-	}
-	
-	public void Kill () {
-		if (!busy && alive) {
-			scored = false;
-			busy = true;
-			StartCoroutine(KillSiblings(hexaCube.hexColor));
-			hexaCube.Kill();
-		}
-	}
-	
-	IEnumerator KillSiblings (Constants.HexColors rootColor) {
-		yield return new WaitForSeconds (0.1f);
-		List<GridPlace> existingSibs = sibs.ExistingSibs();
-		for (int i = 0; i < existingSibs.Count; i ++) {
-			if (existingSibs[i].hexaCube.hexColor == rootColor) {
-				existingSibs[i].Kill();
-			}
-		}
-	}
-
-	public void SlowSpawn () {
-		if (!busy && !alive) {
-			busy = true;
-			hexaCube.SlowSpawn();
-			StartCoroutine(SlowSpawnSiblings());
-		}
-	}
-	
-	private IEnumerator SlowSpawnSiblings () {
-		yield return new WaitForSeconds(.3f);
-		foreach (GridPlace gp in sibs.ExistingSibs()) {
-			gp.SlowSpawn();
-		}
-	}
-	
-	public void Despawn () {
-		if (!busy && alive) {
-			busy = true;
-			hexaCube.Despawn();
-			StartCoroutine(DespawnSiblings());
-		}
-	}
-	
-	private IEnumerator DespawnSiblings () {
-		yield return new WaitForSeconds(.1f);
-		foreach (GridPlace gp in sibs.ExistingSibs()) {
-			gp.Despawn();
-		}
 	}
 	
 	//An editor utility function to populate sibling lists

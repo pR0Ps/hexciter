@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class GridLogic : MonoBehaviour {
 
@@ -51,10 +52,25 @@ public class GridLogic : MonoBehaviour {
 		UpdateUI();
 	}
 
+	//Get all siblings (pass in validity function that is always true)
+	public IEnumerable<GridPlace[]> GetSiblings(GridPlace gp) {
+		return GetSiblings(gp, (gp1, gp2) => {return true;});
+	}
+
+	//Only get connected siblings
+	public IEnumerable<GridPlace[]> GetConnectedSiblings(GridPlace gp) {
+		Func<GridPlace,GridPlace,Boolean> sameColour = (parent, sib) => {
+			return parent.hexaCube.hexColor == sib.hexaCube.hexColor;
+		};
+		return GetSiblings(gp, sameColour);
+	}
+
 	//Generator that yields lists of GridPlaces by increasing depth from the origin
 	//Returns the origin first, then a list of all it's siblings,
 	//then all their siblings, etc.
-	public IEnumerable<GridPlace[]> GetSiblings(GridPlace gp) {
+	//The optional valid function takes the parent and sibling GridPlaces and returns a bool
+	//representing if the sibling is a valid addition to the output set
+	public IEnumerable<GridPlace[]> GetSiblings(GridPlace gp, Func<GridPlace,GridPlace,Boolean> valid) {
 		Dictionary<GridPlace,int> seen = new Dictionary<GridPlace,int>();
 		Queue<GridPlace> queue = new Queue<GridPlace>();
 
@@ -81,7 +97,8 @@ public class GridLogic : MonoBehaviour {
 			GridPlace temp = queue.Dequeue();
 			List<GridPlace> siblings = temp.sibs.ExistingSibs();
 			for (int i = 0; i < siblings.Count; i ++) {
-				if (!seen.ContainsKey(siblings[i])){
+				//If the sibling is already in the queue of the validity check fails, skip it
+				if (!seen.ContainsKey(siblings[i]) && valid(temp, siblings[i])){
 					seen.Add(siblings[i], depth + 1);
 					queue.Enqueue(siblings[i]);
 				}

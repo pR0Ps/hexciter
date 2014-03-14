@@ -51,6 +51,44 @@ public class GridLogic : MonoBehaviour {
 		UpdateUI();
 	}
 
+	//Generator that yields lists of GridPlaces by increasing depth from the origin
+	//Returns the origin first, then a list of all it's siblings,
+	//then all their siblings, etc.
+	public IEnumerable<GridPlace[]> GetSiblings(GridPlace gp) {
+		Dictionary<GridPlace,int> seen = new Dictionary<GridPlace,int>();
+		Queue<GridPlace> queue = new Queue<GridPlace>();
+
+		int currDepth = -1;
+
+		//Add the start node
+		queue.Enqueue(gp);
+		seen.Add(gp, 0);
+
+		//BFS
+		while (queue.Count > 0){
+			//Check the depth of the oldest item in the queue
+			int depth = seen[queue.Peek()];
+			if (depth > currDepth){
+				//If the depth is greater than the current depth it means that all
+				//items of the previous depth have been removed from the queue
+				//What's left will be all the items at currDepth + 1
+				currDepth = depth;
+				yield return queue.ToArray();
+			}
+
+			//Take the oldest item out of the queue and add it's children the to the
+			//queue at depth + 1 (if they haven't already been added)
+			GridPlace temp = queue.Dequeue();
+			List<GridPlace> siblings = temp.sibs.ExistingSibs();
+			for (int i = 0; i < siblings.Count; i ++) {
+				if (!seen.ContainsKey(siblings[i])){
+					seen.Add(siblings[i], depth + 1);
+					queue.Enqueue(siblings[i]);
+				}
+			}
+		}
+	}
+
 	public void Flood(GridPlace start) {
 		if (start.Fill (ColorSelector.Instance.Current())) {
 			DoMove();

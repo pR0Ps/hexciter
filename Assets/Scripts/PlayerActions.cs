@@ -20,6 +20,9 @@ public class PlayerActions : MonoBehaviour {
 
 	public void Deselect(){
 		swiping = false;
+		if (selected != null){
+			selected.ScaleSiblings(false);
+		}
 		selected = null;
 	}
 
@@ -43,6 +46,7 @@ public class PlayerActions : MonoBehaviour {
 		if (!swiping && !gp.busy && gp.alive) {
 			swiping = true;
 			selected = gp;
+			selected.ScaleSiblings(true);
 		}
 	}
 

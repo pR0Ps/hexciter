@@ -44,8 +44,15 @@ public class GridPlace : InteractiveObject {
 	
 	public bool busy;
 	public bool alive;
-	
 	public bool scored;
+
+	Transform lookTransform;
+	Quaternion targetRotation;
+	float lookDistance = 30.0f; // the closer this is to 0, the more intense the look effect
+	float lookSpeed = 10.0f;
+
+	Vector3 targetScale;
+	Vector3 targetPosition;
 	
 	[SerializeField]
 	public Siblings sibs;
@@ -55,11 +62,58 @@ public class GridPlace : InteractiveObject {
 		hexaCube.transform.parent = transform;
 		hexaCube.transform.localPosition = Vector3.zero;
 		hexaCube.gridPlace = this;
-		hexaCube.EnableLookRotation ();
+		lookTransform = hexaCube.transform.FindChild ("LookRotation");
+
+		targetScale = Vector3.one;
+		targetPosition = transform.localPosition;
 	}
-	
+
 	public override void DownAction () {
 		PlayerActions.Instance.DownAction(this);
+	}
+
+	public void DoScale(int depth, bool scale){
+		if (scale) {
+			//Scale
+			if (depth == 0){
+				//I was the chosen one
+				targetScale = Vector3.one * 1.2f;
+				targetPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -2);
+			}
+			else{
+				targetScale = Vector3.one * (float)(0.3 + 0.7 * (depth/3f));
+			}
+		}
+		else{
+			//Return to normal
+			targetScale = Vector3.one;
+			targetPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
+		}
+	}
+
+	public void ScaleSiblings(bool normalize){
+		int depth = 0;
+		foreach (GridPlace[] ring in GridLogic.Instance.GetSiblings(this)){
+			foreach (GridPlace gp in ring){
+				gp.DoScale(depth, normalize);
+			}
+			if (depth > 2) break;
+			depth++;
+		}
+	}
+
+	void Update () {
+		if (PlayerActions.Instance.swiping) {
+			Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, lookDistance);
+			targetRotation = Quaternion.LookRotation(lookPoint - lookTransform.position);
+		}
+		else
+			targetRotation = Quaternion.identity;
+
+		lookTransform.rotation = Quaternion.Slerp (lookTransform.rotation, targetRotation, lookSpeed * Time.deltaTime);
+
+		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 10f * Time.deltaTime);
+		transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, 10f * Time.deltaTime);
 	}
 	
 	public int TallyScore (Constants.HexColors rootColor) {

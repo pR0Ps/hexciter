@@ -2587,7 +2587,7 @@ GameObject:
   m_Icon: {fileID: 1170012219, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &505802299
 Transform:
   m_ObjectHideFlags: 0
@@ -4518,7 +4518,7 @@ GameObject:
   m_Icon: {fileID: 1170012219, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &945960094
 Transform:
   m_ObjectHideFlags: 0

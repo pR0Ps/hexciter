@@ -75,8 +75,8 @@ PlayerSettings:
     Others: 1
   iPhoneBundleIdentifier: com.teamsalt.hexciter
   productGUID: cad335a36aed17442a7c7d582076ee81
-  iPhoneBundleVersion: 0.0.0.5
-  AndroidBundleVersionCode: 5
+  iPhoneBundleVersion: 0.0.0.6
+  AndroidBundleVersionCode: 6
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 

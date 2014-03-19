@@ -47,8 +47,6 @@ public class GridPlace : InteractiveObject {
 
 	Transform lookTransform;
 	Quaternion targetRotation;
-	float lookDistance = 30.0f; // the closer this is to 0, the more intense the look effect
-	float lookSpeed = 10.0f;
 
 	Vector3 targetScale;
 	Vector3 targetPosition;
@@ -92,13 +90,13 @@ public class GridPlace : InteractiveObject {
 
 	void Update () {
 		if (PlayerActions.Instance.swiping) {
-			Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, lookDistance);
+			Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
 			targetRotation = Quaternion.LookRotation(lookPoint - lookTransform.position);
 		}
 		else
 			targetRotation = Quaternion.identity;
 
-		lookTransform.rotation = Quaternion.Slerp (lookTransform.rotation, targetRotation, lookSpeed * Time.deltaTime);
+		lookTransform.rotation = Quaternion.Slerp (lookTransform.rotation, targetRotation, Constants.CUBE_LOOK_SPEED * Time.deltaTime);
 
 		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 10f * Time.deltaTime);
 		transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, 10f * Time.deltaTime);

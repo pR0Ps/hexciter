@@ -25,4 +25,7 @@ public static class Constants {
 		new Color (0.728f, 0.177f, 0.177f, 1.0f),
 		new Color (0.500f, 0.500f, 0.500f, 1.0f),
 	};
+
+	public static float CUBE_LOOK_DIST = 150.0f; // the closer this is to 0, the more intense the look effect
+	public static float CUBE_LOOK_SPEED = 10.0f;
 }

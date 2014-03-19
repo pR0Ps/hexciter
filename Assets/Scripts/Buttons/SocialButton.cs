@@ -21,18 +21,18 @@ public class SocialButton : InteractiveObject {
 		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("hexciting", "CgkIucKVsZ8TEAIQCA");
 		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("30-move", "CgkIucKVsZ8TEAIQAg");
 		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("60-move", "CgkIucKVsZ8TEAIQBw");
+		button.SetActive(true);
 		#elif UNITY_IPHONE
 		//TODO: UNTESTED
 		button = transform.Find("gcicon").gameObject;
 
 		Debug.Log ("Activating GC");
 		//GameCenterPlatform.Activate();
+		button.SetActive(true);
 		#else
 		Debug.Log ("Not on mobile, not logging into GPG/GC");
 		return;
 		#endif
-
-		if (button != null) button.SetActive(true);
 	}
 
 	public void Start (){

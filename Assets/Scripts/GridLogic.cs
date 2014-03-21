@@ -87,30 +87,32 @@ public class GridLogic : MonoBehaviour {
 	
 	void Update () {
 
-		if (moves >= maxmoves && score < minscore) {
-			if (!gameover){
-				gameover = true;
-				gameOverTextMesh.gameObject.SetActive(true);
-
-				#if (UNITY_IPHONE || UNITY_ANDROID)
-				Social.ReportScore(score, "30-move", (bool success) => {
-					if(success){
-						Debug.Log("Posted score!");
-					}
-					else{
-						Debug.Log("Couldn't post score");
-					}
-				});
-				#endif
-			}
-
-			if (InputHandler.Instance.inputSignalDown)
-				Application.LoadLevel("menu");
-
-			return;
+		if (score >= minscore){
+			NextLevel();
 		}
 		else if (moves >= maxmoves){
-			NextLevel();
+			if (score >= minscore){
+				NextLevel();
+			}
+			else {
+				if (!gameover){
+					gameover = true;
+					gameOverTextMesh.gameObject.SetActive(true);
+					
+					#if (UNITY_IPHONE || UNITY_ANDROID)
+					Social.ReportScore(score, "30-move", (bool success) => {
+						if(success){
+							Debug.Log("Posted score!");
+						}
+						else{
+							Debug.Log("Couldn't post score");
+						}
+					});
+					#endif
+				}
+				if (InputHandler.Instance.inputSignalDown)
+					Application.LoadLevel("menu");
+			}
 		}
 	}
 }

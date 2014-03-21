@@ -20,7 +20,6 @@ public class GridLogic : MonoBehaviour {
 	int level;
 	int minscore;
 	public TextMesh scoreTextMesh;
-	public TextMesh targetTextMesh;
 	public TextMesh gameOverTextMesh;
 
 	void Awake () {
@@ -35,7 +34,6 @@ public class GridLogic : MonoBehaviour {
 		level = 1;
 		score = 0;
 		minscore = 4000;
-		targetTextMesh.text = minscore.ToString("N0");
 		ColorSelector.Instance.Init ();
 		
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
@@ -43,7 +41,6 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	void UpdateUI(){
-		targetTextMesh.text = minscore.ToString("N0");
 		scoreTextMesh.text = score.ToString("N0");
 	}
 

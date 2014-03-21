@@ -15,6 +15,7 @@ public class GridLogic : MonoBehaviour {
 
 	public AnimationCurve ScoreCurve;
 	int score;
+	int lastMoveScore;
 	int level;
 	int moves;
 	int maxmoves;
@@ -52,6 +53,7 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	public void Flood(GridPlace start) {
+		lastMoveScore /= 2; // halves your combo bonus
 		if (!start.busy && start.alive){
 			StartCoroutine(Utils.FillSiblings(start, ColorSelector.Instance.Current()));
 			DoMove();
@@ -63,7 +65,8 @@ public class GridLogic : MonoBehaviour {
 		if (ColorSelector.Instance.Current () == start.hexaCube.hexColor) multiplier = 2;
 
 		int tally = Utils.TallyScore(start);
-		int earnedScore = tally * multiplier * 100;
+		int earnedScore = ((int)(lastMoveScore * (tally/61f) + tally * 100)/10) * 10 * multiplier;
+		lastMoveScore = earnedScore;
 
 		score += earnedScore;
 		scoreTextMesh.text = score.ToString("N0");

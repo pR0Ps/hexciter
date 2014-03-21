@@ -84,7 +84,7 @@ GameObject:
   - 4: {fileID: 1527007}
   - 114: {fileID: 1527008}
   m_Layer: 9
-  m_Name: ProgressBar
+  m_Name: MoveProgress
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

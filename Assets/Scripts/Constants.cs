@@ -9,12 +9,12 @@ public static class Constants {
 
 	public enum HexColors {
 		Blue,
-		//Orange,
-		//Purple,
 		Green,
 		Yellow,
 		Red,
-		Grey
+		Grey,
+		Black,
+		White
 	}
 	
 	public static Color32[] Colors = new Color32[] {
@@ -22,7 +22,9 @@ public static class Constants {
 		HexToColor32("FF7600"),
 		HexToColor32("01939A"),
 		HexToColor32("67E300"),
-		new Color32 (128, 128, 128, 255)
+		new Color32 (128, 128, 128, 255),
+		new Color32 (0, 0, 0, 255),
+		new Color32 (255, 255, 255, 255),
 	};
 
 	static Color32 HexToColor32 (string hexadecimal) {

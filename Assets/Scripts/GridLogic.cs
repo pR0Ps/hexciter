@@ -14,11 +14,10 @@ public class GridLogic : MonoBehaviour {
 	bool gameover;
 
 	public AnimationCurve ScoreCurve;
+	private MoveProgress moves;
 	int score;
 	int lastMoveScore;
 	int level;
-	int moves;
-	int maxmoves;
 	int minscore;
 	public TextMesh scoreTextMesh;
 	public TextMesh targetTextMesh;
@@ -28,11 +27,15 @@ public class GridLogic : MonoBehaviour {
 		// tell the game to run at 60 fps, maybe put this some where better later
 		Application.targetFrameRate = 60;
 		Instance = this;
+		moves = MoveProgress.Instance;
 	}
 
 	void Start () {
 		gameover = false;
 		level = 1;
+		score = 0;
+		minscore = 4000;
+		targetTextMesh.text = minscore.ToString("N0");
 		ColorSelector.Instance.Init ();
 		
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
@@ -40,14 +43,16 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	void UpdateUI(){
-		ProgressBar.Instance.SetPercent(moves/(float)maxmoves);
 		targetTextMesh.text = minscore.ToString("N0");
+		scoreTextMesh.text = score.ToString("N0");
 	}
 
 	void NextLevel(){
+		int scorePer = level * 500;
+		score += moves.Remaining() * scorePer;
+		moves.ResetMoves(scorePer);
+
 		level++;
-		maxmoves = ProgressBar.NUM_HEXES;
-		moves = 0;
 		minscore = score + level * 2000;
 		UpdateUI();
 	}
@@ -70,7 +75,7 @@ public class GridLogic : MonoBehaviour {
 		lastMoveScore = earnedScore;
 
 		score += earnedScore;
-		scoreTextMesh.text = score.ToString("N0");
+		UpdateUI();
 		StartCoroutine(Utils.KillSiblings(start));
 
 		ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show (earnedScore, start.transform.position);
@@ -80,18 +85,20 @@ public class GridLogic : MonoBehaviour {
 	//Anytyime a move is made, this is called
 	public void DoMove(){
 		//Update count and color chooser
-		moves++;
-		UpdateUI();
+		moves.DoMove();
 		ColorSelector.Instance.NewColor();
 	}
 	
 	void Update () {
 
-		if (moves >= maxmoves && score < minscore) {
+		if (score >= minscore){
+			NextLevel();
+		}
+		else if (moves.NoneLeft()){
 			if (!gameover){
 				gameover = true;
 				gameOverTextMesh.gameObject.SetActive(true);
-
+				
 				#if (UNITY_IPHONE || UNITY_ANDROID)
 				Social.ReportScore(score, "30-move", (bool success) => {
 					if(success){
@@ -103,14 +110,8 @@ public class GridLogic : MonoBehaviour {
 				});
 				#endif
 			}
-
 			if (InputHandler.Instance.inputSignalDown)
 				Application.LoadLevel("menu");
-
-			return;
-		}
-		else if (moves >= maxmoves){
-			NextLevel();
 		}
 	}
 }

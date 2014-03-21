@@ -42,9 +42,9 @@ public class GridPlace : InteractiveObject {
 	public GameObject HexaCubePrefab;
 	public HexaCube hexaCube;
 	
-	public bool busy;
-	public bool alive;
-	public bool reserved;
+	public bool busy {get; set;}
+	public bool alive {get; set;}
+	public bool reserved {get; set;}
 
 	Transform lookTransform;
 	Quaternion targetRotation;

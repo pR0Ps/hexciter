@@ -716,8 +716,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1076258395}
     East: {fileID: 514336128}
@@ -931,8 +929,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1572089995}
     East: {fileID: 944986266}
@@ -1117,8 +1113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1179856575}
     East: {fileID: 911551419}
@@ -1185,8 +1179,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1204261505}
     East: {fileID: 360798870}
@@ -1253,8 +1245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1174947656}
     East: {fileID: 711285809}
@@ -1671,8 +1661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 0}
     East: {fileID: 1572089995}
@@ -1987,8 +1975,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1306488990}
     East: {fileID: 618924816}
@@ -2372,8 +2358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1204332587}
     East: {fileID: 995730860}
@@ -2664,8 +2648,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 852440419}
     East: {fileID: 180949359}
@@ -2732,8 +2714,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 0}
     East: {fileID: 0}
@@ -2949,8 +2929,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 945227648}
     East: {fileID: 1158830065}
@@ -3044,8 +3022,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 871288137}
     East: {fileID: 1889998723}
@@ -3112,8 +3088,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 514336128}
     East: {fileID: 1957653572}
@@ -3345,8 +3319,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1542748663}
     East: {fileID: 0}
@@ -3413,8 +3385,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1764548352}
     East: {fileID: 1089567912}
@@ -3578,8 +3548,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1486218299}
     East: {fileID: 1019939493}
@@ -3770,8 +3738,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 911551419}
     East: {fileID: 1204332587}
@@ -3865,8 +3831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1019939493}
     East: {fileID: 1174947656}
@@ -3987,8 +3951,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 140913142}
     East: {fileID: 1291149150}
@@ -4055,8 +4017,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 360798870}
     East: {fileID: 1179856575}
@@ -4150,8 +4110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1556825469}
     East: {fileID: 86120674}
@@ -4218,8 +4176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1380485736}
     East: {fileID: 1857270970}
@@ -4397,8 +4353,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1722804606}
     East: {fileID: 2057370728}
@@ -4465,8 +4419,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 0}
     East: {fileID: 0}
@@ -4588,8 +4540,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 627374533}
     East: {fileID: 1986079342}
@@ -4683,8 +4633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1589276421}
     East: {fileID: 586584147}
@@ -4839,8 +4787,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 797835791}
     East: {fileID: 852440419}
@@ -4907,8 +4853,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 516329256}
     East: {fileID: 0}
@@ -5047,8 +4991,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1492745385}
     East: {fileID: 708533939}
@@ -5363,8 +5305,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 0}
     East: {fileID: 0}
@@ -5431,8 +5371,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 586584147}
     East: {fileID: 1764548352}
@@ -5499,8 +5437,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 618924816}
     East: {fileID: 1556825469}
@@ -5567,8 +5503,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 995730860}
     East: {fileID: 1644874774}
@@ -5635,8 +5569,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 912689096}
     East: {fileID: 1306488990}
@@ -5703,8 +5635,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 86120674}
     East: {fileID: 627374533}
@@ -5958,8 +5888,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 944986266}
     East: {fileID: 1486218299}
@@ -6026,8 +5954,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1857270970}
     East: {fileID: 871288137}
@@ -6238,8 +6164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 0}
     East: {fileID: 300885735}
@@ -6306,8 +6230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 170319417}
     East: {fileID: 827048289}
@@ -6401,8 +6323,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 900726243}
     East: {fileID: 170319417}
@@ -6554,8 +6474,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 827048289}
     East: {fileID: 480999082}
@@ -6622,8 +6540,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 0}
     East: {fileID: 0}
@@ -6690,8 +6606,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 711285809}
     East: {fileID: 1597983471}
@@ -6758,8 +6672,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 2057370728}
     East: {fileID: 1589276421}
@@ -6826,8 +6738,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1484196917}
     East: {fileID: 1542748663}
@@ -6972,8 +6882,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1597983471}
     East: {fileID: 0}
@@ -7023,8 +6931,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 172903397}
     East: {fileID: 900726243}
@@ -7091,8 +6997,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1889998723}
     East: {fileID: 1076258395}
@@ -7159,8 +7063,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 0}
     East: {fileID: 1722804606}
@@ -7227,8 +7129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1480104260}
     East: {fileID: 945227648}
@@ -7295,8 +7195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1089567912}
     East: {fileID: 0}
@@ -7476,8 +7374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1986079342}
     East: {fileID: 1108051206}
@@ -7688,8 +7584,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 0}
     East: {fileID: 1918499806}
@@ -8005,8 +7899,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1158830065}
     East: {fileID: 516329256}
@@ -8143,8 +8035,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 300885735}
     East: {fileID: 140913142}
@@ -8294,8 +8184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1291149150}
     East: {fileID: 797835791}
@@ -8378,8 +8266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 0}
     East: {fileID: 0}
@@ -8518,8 +8404,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 480999082}
     East: {fileID: 1201299547}
@@ -8586,8 +8470,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 180949359}
     East: {fileID: 1484196917}
@@ -8654,8 +8536,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1957653572}
     East: {fileID: 1492745385}
@@ -8810,8 +8690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HexaCubePrefab: {fileID: 100000, guid: 562657e3deb10bf48a16fc711295a64d, type: 2}
   hexaCube: {fileID: 0}
-  busy: 0
-  alive: 0
   sibs:
     NorthEast: {fileID: 1918499806}
     East: {fileID: 1480104260}

@@ -86,16 +86,21 @@ public static class Utils {
 		}
 	}
 
+	//Set all the linked GridPlaces to reserved
+	public static void ReserveAll(GridPlace start){
+		foreach (GridPlace gp in Unpack<GridPlace>(GetSiblings(start, check_alive(true), check_color(start.hexaCube.hexColor)))){
+			gp.reserved = true;
+		}
+	}
+
 	//Tally the score starting with the passed in GridPlace
 	public static int TallyScore (GridPlace start) {
-		return Unpack<GridPlace>(GetSiblings(start, check_alive (true), check_color(start.hexaCube.hexColor))).Length;
-		/*int tally = 0;
+		int tally = 0;
 		foreach (GridPlace gp in Unpack<GridPlace>(GetSiblings(start, check_alive(true), check_color(start.hexaCube.hexColor)))){
-			//Do something here with combos?
+			gp.reserved = true;
 			tally += 1;
 		}
 		return tally;
-		*/
 	}
 
 	//Scale the siblings of the passed in GridPlace (to a depth of 2)
@@ -115,6 +120,7 @@ public static class Utils {
 		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_alive(true), check_color(start.hexaCube.hexColor))){
 			foreach (GridPlace gp in ring){
 				gp.busy = true;
+				gp.reserved = false;
 				gp.hexaCube.Fill(fillColor);
 			}
 			yield return new WaitForSeconds (0.1f);

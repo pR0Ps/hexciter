@@ -53,6 +53,7 @@ public class GridLogic : MonoBehaviour {
 
 	public void Flood(GridPlace start) {
 		if (!start.busy && start.alive){
+			Utils.ReserveAll(start);
 			StartCoroutine(Utils.FillSiblings(start, ColorSelector.Instance.Current()));
 			DoMove();
 		}

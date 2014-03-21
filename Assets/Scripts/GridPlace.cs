@@ -44,6 +44,7 @@ public class GridPlace : InteractiveObject {
 	
 	public bool busy;
 	public bool alive;
+	public bool reserved;
 
 	Transform lookTransform;
 	Quaternion targetRotation;

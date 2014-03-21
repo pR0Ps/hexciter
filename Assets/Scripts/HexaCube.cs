@@ -83,6 +83,7 @@ public class HexaCube : InteractiveObject {
 			return;
 		gridPlace.busy = false;
 		gridPlace.alive = true;
+		gridPlace.reserved = false;
 	}
 	
 	void DespawnedCallback () {

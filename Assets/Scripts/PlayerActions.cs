@@ -27,14 +27,14 @@ public class PlayerActions : MonoBehaviour {
 	}
 
 	public void Destroy(){
-		if (selected != null) {
+		if (selected != null && !selected.reserved) {
 			GridLogic.Instance.Destroy(selected);
 		}
 		Deselect();
 	}
 
 	public void Flood(){
-		if (selected != null){
+		if (selected != null && !selected.reserved){
 			GridLogic.Instance.Flood(selected);
 		}
 		Deselect();

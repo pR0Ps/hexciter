@@ -7,7 +7,7 @@ public class PlayerActions : MonoBehaviour {
 	public bool swiping { get; private set; }
 	public GridPlace selected { get; private set; }
 
-	const float OFFSET = 0.8f;
+	const float OFFSET = 1.7f;
 
 	void Awake(){
 		Instance = this;

@@ -41,6 +41,7 @@ public class Siblings {
 public class GridPlace : InteractiveObject {
 
 	private PlayerActions playerActions;
+	private InputHandler inputHandler;
 
 	public GameObject HexaCubePrefab;
 	public HexaCube hexaCube;
@@ -60,6 +61,7 @@ public class GridPlace : InteractiveObject {
 	
 	public void Awake () {
 		playerActions = GameObject.Find("PlayerActions").GetComponent<PlayerActions>();
+		inputHandler = GameObject.Find("InputHandler").GetComponent<InputHandler>();
 
 		hexaCube = (Object.Instantiate(HexaCubePrefab) as GameObject).GetComponent<HexaCube>();
 		hexaCube.transform.parent = transform;
@@ -97,7 +99,7 @@ public class GridPlace : InteractiveObject {
 	void Update () {
 		if (alive && !busy){
 			if (playerActions.swiping) {
-				Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
+				Vector3 lookPoint = new Vector3 (inputHandler.inputVectorWorld.x, inputHandler.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
 				targetRotation = Quaternion.LookRotation(lookPoint - lookTransform.position);
 			}
 			else

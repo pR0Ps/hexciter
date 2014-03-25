@@ -6,6 +6,7 @@ using System.Linq;
 public class GridLogic : MonoBehaviour {
 
 	private ColorSelector colorSelector;
+	private InputHandler inputHandler;
 
 	GridPlace origin;
 	GridPlace northWestCorner;
@@ -29,6 +30,7 @@ public class GridLogic : MonoBehaviour {
 
 		moves = GameObject.Find("GUICamera/MoveProgress").GetComponent<MoveProgress>();
 		colorSelector = GameObject.Find("GUICamera/ColorSelector").GetComponent<ColorSelector>();
+		inputHandler = GameObject.Find("InputHandler").GetComponent<InputHandler>();
 	}
 
 	void Start () {
@@ -111,7 +113,7 @@ public class GridLogic : MonoBehaviour {
 				});
 				#endif
 			}
-			if (InputHandler.Instance.inputSignalDown)
+			if (inputHandler.inputSignalDown)
 				Application.LoadLevel("menu");
 		}
 	}

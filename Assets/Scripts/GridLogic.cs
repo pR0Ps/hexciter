@@ -5,6 +5,8 @@ using System.Linq;
 
 public class GridLogic : MonoBehaviour {
 
+	private ColorSelector colorSelector;
+
 	GridPlace origin;
 	GridPlace northWestCorner;
 	bool spawned;
@@ -25,6 +27,8 @@ public class GridLogic : MonoBehaviour {
 		// tell the game to run at 60 fps, maybe put this some where better later
 		Application.targetFrameRate = 60;
 		moves = MoveProgress.Instance;
+
+		colorSelector = GameObject.Find("GUICamera/ColorSelector").GetComponent<ColorSelector>();
 	}
 
 	void Start () {
@@ -33,7 +37,7 @@ public class GridLogic : MonoBehaviour {
 		score = 0;
 		minscore = 4000;
 		targetTextMesh.text = minscore.ToString("N0");
-		ColorSelector.Instance.Init ();
+		colorSelector.Init ();
 		
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
 		StartCoroutine(Utils.SlowSpawnSiblings(origin));
@@ -58,14 +62,14 @@ public class GridLogic : MonoBehaviour {
 		lastMoveScore /= 2; // halves your combo bonus
 		if (!start.busy && start.alive){
 			Utils.ReserveAll(start);
-			StartCoroutine(Utils.FillSiblings(start, ColorSelector.Instance.Current()));
+			StartCoroutine(Utils.FillSiblings(start, colorSelector.Current()));
 			DoMove();
 		}
 	}
 
 	public void Destroy (GridPlace start) {
 		int multiplier = 1;
-		if (ColorSelector.Instance.Current () == start.hexaCube.hexColor) multiplier = 2;
+		if (colorSelector.Current () == start.hexaCube.hexColor) multiplier = 2;
 
 		int tally = Utils.TallyScore(start);
 		int earnedScore = ((int)(lastMoveScore * (tally/61f) + tally * 100)/10) * 10 * multiplier;
@@ -83,7 +87,7 @@ public class GridLogic : MonoBehaviour {
 	public void DoMove(){
 		//Update count and color chooser
 		moves.DoMove();
-		ColorSelector.Instance.NewColor();
+		colorSelector.NewColor();
 	}
 	
 	void Update () {

@@ -5,7 +5,6 @@ public class PlayerActions : MonoBehaviour {
 
 	private GridLogic gridLogic;
 
-	public static PlayerActions Instance;
 	public bool swiping { get; private set; }
 	public GridPlace selected { get; private set; }
 
@@ -13,7 +12,6 @@ public class PlayerActions : MonoBehaviour {
 
 	void Awake(){
 		gridLogic = GameObject.Find("Grid").GetComponent<GridLogic>();
-		Instance = this;
 	}
 	
 	void Start () {

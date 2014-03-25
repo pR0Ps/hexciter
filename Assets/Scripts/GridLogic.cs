@@ -26,8 +26,8 @@ public class GridLogic : MonoBehaviour {
 	void Awake () {
 		// tell the game to run at 60 fps, maybe put this some where better later
 		Application.targetFrameRate = 60;
-		moves = MoveProgress.Instance;
 
+		moves = GameObject.Find("GUICamera/MoveProgress").GetComponent<MoveProgress>();
 		colorSelector = GameObject.Find("GUICamera/ColorSelector").GetComponent<ColorSelector>();
 	}
 

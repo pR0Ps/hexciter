@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerActions : MonoBehaviour {
 
 	private GridLogic gridLogic;
+	private IconController iconController;
 
 	public bool swiping { get; private set; }
 	public GridPlace selected { get; private set; }
@@ -12,6 +13,7 @@ public class PlayerActions : MonoBehaviour {
 
 	void Awake(){
 		gridLogic = GameObject.Find("Grid").GetComponent<GridLogic>();
+		iconController = GameObject.Find("Icons").GetComponent<IconController>();
 	}
 	
 	void Start () {
@@ -69,10 +71,10 @@ public class PlayerActions : MonoBehaviour {
 	public void Update(){
 		if (swiping) {
 			Vector2 diff = (Vector2)selected.transform.position - (Vector2)InputHandler.Instance.inputVectorWorld;
-			IconController.Instance.SetTarget (Mathf.Clamp(diff.x/8.7f, -1, 1));
+			iconController.SetTarget (Mathf.Clamp(diff.x/8.7f, -1, 1));
 		}
 		else
-			IconController.Instance.SetInvisible ();
+			iconController.SetInvisible ();
 
 		if (swiping && InputHandler.Instance.inputSignalUp){
 			UpAction();

@@ -16,33 +16,22 @@ public class ScoreBar : MonoBehaviour {
 
 	public void ReportProgress (int currentScore, int startScore, int endScore) {
 		int progress = (int)(Mathf.Lerp(0, 1, (float)(currentScore - startScore)/(float)(endScore - startScore)) * 32);
+		Debug.Log (progress);
 		for (int i=0; i<32; i++) {
 			if (!activeCubes[i]) {
-				StopAllCoroutines();
+				//StopAllCoroutines();
 				if (progress < i) { // reporting progess decrease (ie, new level)
 					StartCoroutine(Despawn(progress, 32));
 					StartCoroutine(Flood (i, 32));
 				}
-
 				StartCoroutine(Flood (i, progress));
 				return;
 			}
 		}
 	}
-	//Testing Stuff
-	/*
-	public int cur;
-	public int start;
-	public int end;
-
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			ReportProgress(cur, start, end);
-		}
-	}
-	*/
 
 	public IEnumerator Despawn (int startIndex, int endIndex) {
+		yield return new WaitForSeconds(0.5f);
 		for (int i=startIndex; i<endIndex; i++) {
 			activeCubes[i] = false;
 			progressCubes[i].Despawn();

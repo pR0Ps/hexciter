@@ -4,14 +4,21 @@ using System.Collections.Generic;
 
 public class ObjectPoolManager : MonoBehaviour {
 	
-	static public ObjectPoolManager Instance;
+	private static ObjectPoolManager _instance;
+	public static ObjectPoolManager Instance {
+		get {
+			if (!_instance) {
+				_instance = GameObject.Find("ObjectPoolManager").GetComponent<ObjectPoolManager>();
+			}
+			return _instance;
+		}
+		private set {}
+	}
+	
 	Dictionary<string, Stack<GameObject>> objectPool = new Dictionary<string, Stack<GameObject>>();
 	Dictionary<string, GameObject> prefabs = new Dictionary<string, GameObject>();
-	
-	void Start () {
-		if (!Instance) {
-			Instance = this;	
-		}
+
+	void Awake () {
 		foreach (Object o in Resources.LoadAll("PooledObjects")) {
 			if (o.GetType() == typeof(GameObject)) {
 				prefabs.Add (o.name, o as GameObject);

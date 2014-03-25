@@ -3,6 +3,8 @@ using System.Collections;
 
 public class PlayerActions : MonoBehaviour {
 
+	private GridLogic gridLogic;
+
 	public static PlayerActions Instance;
 	public bool swiping { get; private set; }
 	public GridPlace selected { get; private set; }
@@ -10,6 +12,7 @@ public class PlayerActions : MonoBehaviour {
 	const float OFFSET = 1.7f;
 
 	void Awake(){
+		gridLogic = GameObject.Find("Grid").GetComponent<GridLogic>();
 		Instance = this;
 	}
 	
@@ -28,14 +31,14 @@ public class PlayerActions : MonoBehaviour {
 
 	public void Destroy(){
 		if (selected != null && !selected.reserved) {
-			GridLogic.Instance.Destroy(selected);
+			gridLogic.Destroy(selected);
 		}
 		Deselect();
 	}
 
 	public void Flood(){
 		if (selected != null && !selected.reserved){
-			GridLogic.Instance.Flood(selected);
+			gridLogic.Flood(selected);
 		}
 		Deselect();
 	}

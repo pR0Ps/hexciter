@@ -5,8 +5,6 @@ using System.Linq;
 
 public class GridLogic : MonoBehaviour {
 
-	public static GridLogic Instance;
-
 	GridPlace origin;
 	GridPlace northWestCorner;
 	bool spawned;
@@ -26,7 +24,6 @@ public class GridLogic : MonoBehaviour {
 	void Awake () {
 		// tell the game to run at 60 fps, maybe put this some where better later
 		Application.targetFrameRate = 60;
-		Instance = this;
 		moves = MoveProgress.Instance;
 	}
 

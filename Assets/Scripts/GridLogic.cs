@@ -18,7 +18,9 @@ public class GridLogic : MonoBehaviour {
 	int score;
 	int lastMoveScore;
 	int level;
-	int minscore;
+	int startScore;
+	int targetScore;
+	ScoreBar scoreBar;
 	public TextMesh scoreTextMesh;
 	public TextMesh gameOverTextMesh;
 
@@ -27,13 +29,15 @@ public class GridLogic : MonoBehaviour {
 		Application.targetFrameRate = 60;
 		Instance = this;
 		moves = MoveProgress.Instance;
+		scoreBar = GameObject.Find ("ScoreBar").GetComponent<ScoreBar> ();
 	}
 
 	void Start () {
 		gameover = false;
 		level = 1;
 		score = 0;
-		minscore = 4000;
+		startScore = 0;
+		targetScore = 4000;
 		ColorSelector.Instance.Init ();
 		
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
@@ -42,6 +46,7 @@ public class GridLogic : MonoBehaviour {
 
 	void UpdateUI(){
 		scoreTextMesh.text = score.ToString("N0");
+		scoreBar.ReportProgress (score, startScore, targetScore);
 	}
 
 	void NextLevel(){
@@ -50,7 +55,8 @@ public class GridLogic : MonoBehaviour {
 		moves.ResetMoves(scorePer);
 
 		level++;
-		minscore = score + level * 2000;
+		startScore = score;
+		targetScore = score + level * 2000;
 		UpdateUI();
 	}
 
@@ -72,6 +78,7 @@ public class GridLogic : MonoBehaviour {
 		lastMoveScore = earnedScore;
 
 		score += earnedScore;
+
 		UpdateUI();
 		StartCoroutine(Utils.KillSiblings(start));
 
@@ -88,7 +95,7 @@ public class GridLogic : MonoBehaviour {
 	
 	void Update () {
 
-		if (score >= minscore){
+		if (score >= targetScore){
 			NextLevel();
 		}
 		else if (moves.NoneLeft()){

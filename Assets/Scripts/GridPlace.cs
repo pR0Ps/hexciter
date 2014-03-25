@@ -90,14 +90,16 @@ public class GridPlace : InteractiveObject {
 	}
 
 	void Update () {
-		if (PlayerActions.Instance.swiping) {
-			Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
-			targetRotation = Quaternion.LookRotation(lookPoint - lookTransform.position);
-		}
-		else
-			targetRotation = Quaternion.identity;
+		if (alive && !busy){
+			if (PlayerActions.Instance.swiping) {
+				Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
+				targetRotation = Quaternion.LookRotation(lookPoint - lookTransform.position);
+			}
+			else
+				targetRotation = Quaternion.identity;
 
-		lookTransform.rotation = Quaternion.Slerp (lookTransform.rotation, targetRotation, Constants.CUBE_LOOK_SPEED * Time.deltaTime);
+			lookTransform.rotation = Quaternion.Slerp (lookTransform.rotation, targetRotation, Constants.CUBE_LOOK_SPEED * Time.deltaTime);
+		}
 
 		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 10f * Time.deltaTime);
 		transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, 10f * Time.deltaTime);

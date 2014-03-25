@@ -41,11 +41,16 @@ public class HexaCube : InteractiveObject {
 		hexColor = (Constants.HexColors)Random.Range(0, Constants.NUMBER_OF_COLORS);
 		vertexColor.UpdateColor(Constants.Colors[(int)hexColor]);
 	}
-	
+
 	public void Spawn () {
 		animation.Play("Spawn");
-		gridPlace.busy = true;
 		RandomizeColor();
+	}
+
+	public void Spawn (Constants.HexColors newColor) {
+		animation.Play("Spawn");
+		hexColor = newColor;
+		vertexColor.UpdateColor(Constants.Colors[(int)hexColor]);
 	}
 	
 	public void SlowSpawn () {
@@ -58,7 +63,7 @@ public class HexaCube : InteractiveObject {
 		hexColor = newColor;
 		vertexColor.UpdateColor(Constants.Colors[(int)hexColor]);
 	}
-	
+
 	public void Kill () {
 		StartCoroutine(KillCo());
 	}

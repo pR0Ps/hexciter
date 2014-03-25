@@ -2,14 +2,13 @@
 using System.Collections;
 
 public class MoveProgress : MonoBehaviour {
-	public static MoveProgress Instance;
+
 	public const int MAX_MOVES = 9;
 	HexaCube[] progressCubes = new HexaCube[MAX_MOVES]; // populated with the 9 child hexacubes
 	bool[] state = new bool[MAX_MOVES];
 
 	int _moves;
 	void Awake () {
-		Instance = this;
 
 		_moves = 0;
 		

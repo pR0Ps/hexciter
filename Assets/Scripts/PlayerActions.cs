@@ -3,14 +3,19 @@ using System.Collections;
 
 public class PlayerActions : MonoBehaviour {
 
-	public static PlayerActions Instance;
+	private GridLogic gridLogic;
+	private IconController iconController;
+	private InputHandler inputHandler;
+
 	public bool swiping { get; private set; }
 	public GridPlace selected { get; private set; }
 
 	const float OFFSET = 1.7f;
 
 	void Awake(){
-		Instance = this;
+		gridLogic = GameObject.Find("Grid").GetComponent<GridLogic>();
+		iconController = GameObject.Find("Icons").GetComponent<IconController>();
+		inputHandler = GameObject.Find("InputHandler").GetComponent<InputHandler>();
 	}
 	
 	void Start () {
@@ -28,14 +33,14 @@ public class PlayerActions : MonoBehaviour {
 
 	public void Destroy(){
 		if (selected != null && !selected.reserved) {
-			GridLogic.Instance.Destroy(selected);
+			gridLogic.Destroy(selected);
 		}
 		Deselect();
 	}
 
 	public void Flood(){
 		if (selected != null && !selected.reserved){
-			GridLogic.Instance.Flood(selected);
+			gridLogic.Flood(selected);
 		}
 		Deselect();
 	}
@@ -53,7 +58,7 @@ public class PlayerActions : MonoBehaviour {
 	public void UpAction(){
 		if (swiping) {
 			// not the same place, do swiping action
-			Vector2 diff = (Vector2)selected.transform.position - (Vector2)Camera.main.ScreenToWorldPoint(InputHandler.Instance.inputVectorScreen);
+			Vector2 diff = (Vector2)selected.transform.position - (Vector2)Camera.main.ScreenToWorldPoint(inputHandler.inputVectorScreen);
 			if (Mathf.Abs(diff.x) >= OFFSET) {
 				//Action was a drag - perform action based on up positio
 				if (diff.x > 0)
@@ -67,13 +72,13 @@ public class PlayerActions : MonoBehaviour {
 
 	public void Update(){
 		if (swiping) {
-			Vector2 diff = (Vector2)selected.transform.position - (Vector2)InputHandler.Instance.inputVectorWorld;
-			IconController.Instance.SetTarget (Mathf.Clamp(diff.x/8.7f, -1, 1));
+			Vector2 diff = (Vector2)selected.transform.position - (Vector2)inputHandler.inputVectorWorld;
+			iconController.SetTarget (Mathf.Clamp(diff.x/8.7f, -1, 1));
 		}
 		else
-			IconController.Instance.SetInvisible ();
+			iconController.SetInvisible ();
 
-		if (swiping && InputHandler.Instance.inputSignalUp){
+		if (swiping && inputHandler.inputSignalUp){
 			UpAction();
 		}
 	}

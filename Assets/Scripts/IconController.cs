@@ -3,12 +3,10 @@ using System.Collections;
 
 public class IconController : MonoBehaviour {
 
-	static public IconController Instance { get; private set; }
 	IconAnimation paintIcon;
 	IconAnimation cubeIcon;
 
 	void Awake () {
-		Instance = this;
 		paintIcon = transform.FindChild ("PaintBucket").GetComponent<IconAnimation> ();
 		cubeIcon = transform.FindChild ("CubeExplode").GetComponent<IconAnimation> ();
 	}

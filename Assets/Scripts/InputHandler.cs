@@ -3,8 +3,6 @@ using System.Collections;
 
 public class InputHandler : MonoBehaviour {
 	
-	public static InputHandler Instance {get; private set;} // Singleton Instance
-	
 	#region Public Fields
 	public Vector2 inputSignalDelta;	
 	public bool inputSignalHold;
@@ -43,7 +41,6 @@ public class InputHandler : MonoBehaviour {
 	const int LAYER_MASK = 768;
 	
 	void Awake () {
-		Instance = this;
 		quarterScreenHypotenuse = Mathf.Sqrt(Screen.width * Screen.width + Screen.height * Screen.height)/8f;
 		if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
 			useMobile = true;

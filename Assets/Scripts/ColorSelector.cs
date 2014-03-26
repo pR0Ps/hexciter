@@ -16,8 +16,8 @@ public class ColorSelector : InteractiveObject {
 	}
 	
 	public void Init () {
-		hex1.GUIColorLerp((Constants.HexColors)Random.Range(0, Constants.NUMBER_OF_COLORS));
-		hex2.GUIColorLerp((Constants.HexColors)Random.Range(0, Constants.NUMBER_OF_COLORS));
+		hex1.GUIColorLerp(Random.Range(0, Constants.NUMBER_OF_COLORS));
+		hex2.GUIColorLerp(Random.Range(0, Constants.NUMBER_OF_COLORS));
 	}
 	
 	//When tapped, swap the cubes
@@ -41,16 +41,16 @@ public class ColorSelector : InteractiveObject {
 	public void NewColor(){
 		//Change the color
 		if (hexOneInFront)
-			hex1.GUIColorLerp((Constants.HexColors)Random.Range(0, Constants.NUMBER_OF_COLORS));
+			hex1.GUIColorLerp(Random.Range(0, Constants.NUMBER_OF_COLORS));
 		else
-			hex2.GUIColorLerp((Constants.HexColors)Random.Range(0, Constants.NUMBER_OF_COLORS));
+			hex2.GUIColorLerp(Random.Range(0, Constants.NUMBER_OF_COLORS));
 		
 		//Start the swap animation
 		Swap ();
 	}
 	
 	//Get the current color in front
-	public Constants.HexColors Current (){
+	public int Current (){
 		if (hexOneInFront)
 			return hex1.hexColor;
 		else

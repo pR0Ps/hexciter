@@ -7,17 +7,22 @@ public class AudioController : MonoBehaviour {
 	
 	List<AudioClip> SFX = new List<AudioClip>();
 	List<AudioClip> Loops = new List<AudioClip>();
-	public static AudioController Instance {get; private set;}
 	AudioSource source;
-	
 	public string InitialSong;
+
+	private static AudioController _instance;
+
+	public static AudioController Instance {
+		get {
+			if (!_instance) {
+				_instance = GameObject.Find("AudioController").GetComponent<AudioController>();
+			}
+			return _instance;
+		}
+		private set {}
+	}
 		
 	void Awake() {
-		if (Instance) {
-			Destroy(gameObject);
-			return;
-		}
-		Instance = this;
 		source = GetComponent<AudioSource>();
 		DontDestroyOnLoad(gameObject);
 		foreach (object o in Resources.LoadAll("SFX")) {

@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ColorSelector : InteractiveObject {
 	
-	public static ColorSelector Instance;
-	
 	HexaCube hex1;
 	HexaCube hex2;
 	Animation anim;
@@ -12,7 +10,6 @@ public class ColorSelector : InteractiveObject {
 	bool hexOneInFront = true;
 	
 	void Awake () {
-		Instance = this;
 		hex1 = transform.FindChild("rotator/HexaCube1").GetComponent<HexaCube>();
 		hex2 = transform.FindChild("rotator/HexaCube2").GetComponent<HexaCube>();
 		anim = GetComponentInChildren<Animation>();

@@ -45,8 +45,8 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	void UpdateUI(){
-		scoreTextMesh.text = score.ToString("N0");
 		scoreBar.ReportProgress (score, startScore, targetScore);
+		scoreTextMesh.text = score.ToString("N0");
 	}
 
 	void NextLevel(){
@@ -78,7 +78,6 @@ public class GridLogic : MonoBehaviour {
 		lastMoveScore = earnedScore;
 
 		score += earnedScore;
-
 		UpdateUI();
 		StartCoroutine(Utils.KillSiblings(start));
 

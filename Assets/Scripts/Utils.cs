@@ -29,11 +29,6 @@ public static class Utils {
 			return gp.busy == busy;
 		};
 	}
-	public static Func<GridPlace,Boolean> check_alive(bool alive){
-		return gp => {
-			return gp.alive == alive;
-		};
-	}
 	public static Func<GridPlace,Boolean> check_color(int color){
 		return gp => {
 			return gp.hexaCube.hexColor == color;
@@ -99,7 +94,7 @@ public static class Utils {
 
 	//Set all the linked GridPlaces to reserved
 	public static void ReserveAll(GridPlace start){
-		foreach (GridPlace gp in Unpack<GridPlace>(GetSiblings(start, check_alive(true), check_color(start.hexaCube.hexColor)))){
+		foreach (GridPlace gp in Unpack<GridPlace>(GetSiblings(start, check_color(start.hexaCube.hexColor)))){
 			gp.reserved = true;
 		}
 	}
@@ -107,7 +102,7 @@ public static class Utils {
 	//Tally the score starting with the passed in GridPlace
 	public static int TallyScore (GridPlace start) {
 		int tally = 0;
-		foreach (GridPlace gp in Unpack<GridPlace>(GetSiblings(start, check_alive(true), check_color(start.hexaCube.hexColor)))){
+		foreach (GridPlace gp in Unpack<GridPlace>(GetSiblings(start, check_color(start.hexaCube.hexColor)))){
 			gp.reserved = true;
 			tally += 1;
 		}
@@ -128,7 +123,7 @@ public static class Utils {
 
 	//Fill the connected siblings of the passed in GridPlace
 	public static IEnumerator FillSiblings (GridPlace start, int fillColor) {
-		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_alive(true), check_color(start.hexaCube.hexColor))){
+		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_color(start.hexaCube.hexColor))){
 			foreach (GridPlace gp in ring){
 				gp.busy = true;
 				gp.reserved = false;
@@ -140,7 +135,7 @@ public static class Utils {
 
 	//Kill the connected siblings of the passed in GridPlace
 	public static IEnumerator KillSiblings (GridPlace start) {
-		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_alive(true), check_color(start.hexaCube.hexColor))){
+		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_color(start.hexaCube.hexColor))){
 			foreach (GridPlace gp in ring){
 				gp.busy = true;
 				gp.hexaCube.Kill();
@@ -151,7 +146,7 @@ public static class Utils {
 
 	//Slow spawn all siblings of the passed in GridPlace
 	public static IEnumerator SlowSpawnSiblings (GridPlace start) {
-		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_alive(false))){
+		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false))){
 			foreach (GridPlace gp in ring){
 				gp.busy = true;
 				gp.hexaCube.SlowSpawn();
@@ -162,7 +157,7 @@ public static class Utils {
 
 	//Despawn all siblings of the passed in GridPlace
 	public static IEnumerator DespawnSiblings (GridPlace start) {
-		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_alive(true))){
+		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false))){
 			foreach (GridPlace gp in ring){
 				gp.busy = true;
 				gp.hexaCube.Despawn();

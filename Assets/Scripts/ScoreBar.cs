@@ -4,9 +4,10 @@ using System.Collections;
 public class ScoreBar : MonoBehaviour {
 
 	public const int NUM_CUBES = 32;
+	private int progress;
 	HexaCube[] progressCubes = new HexaCube[NUM_CUBES];
 	bool[] activeCubes = new bool[NUM_CUBES];
-	
+
 	void Start () {
 		for (int i=0; i<NUM_CUBES; i++) {
 			progressCubes[i] = transform.FindChild(i.ToString()).GetComponent<HexaCube>();
@@ -37,8 +38,7 @@ public class ScoreBar : MonoBehaviour {
 	}
 
 	public void ReportProgress (int currentScore, int startScore, int endScore) {
-		int progress = (int)(Mathf.Lerp(0, 1, (float)(currentScore - startScore)/(float)(endScore - startScore)) * NUM_CUBES);
-		Debug.Log (progress);
+		progress = (int)(Mathf.Lerp(0, 1, (float)(currentScore - startScore)/(float)(endScore - startScore)) * NUM_CUBES);
 		for (int i=0; i<NUM_CUBES; i++) {
 			if (!activeCubes[i] || progress == NUM_CUBES) {
 				if (progress < i) { // reporting progess decrease (ie, new level)
@@ -67,4 +67,9 @@ public class ScoreBar : MonoBehaviour {
 			yield return new WaitForSeconds(0.05f);
 		}
 	}
+
+	public int NumBlackHexes () {
+		return NUM_CUBES - progress;
+	}
+
 }

@@ -30,14 +30,14 @@ public class PlayerActions : MonoBehaviour {
 	}
 
 	public void Destroy(){
-		if (selected != null && !selected.reserved) {
+		if (selected != null && !selected.reserved && selected.hexaCube.hexColor != Constants.HEX_BLACK) {
 			gridLogic.Destroy(selected);
 		}
 		Deselect();
 	}
 
 	public void Flood(){
-		if (selected != null && !selected.reserved){
+		if (selected != null && !selected.reserved && selected.hexaCube.hexColor != Constants.HEX_BLACK){
 			gridLogic.Flood(selected);
 		}
 		Deselect();
@@ -46,7 +46,7 @@ public class PlayerActions : MonoBehaviour {
 	public void DownAction(GridPlace gp){
 		if (gp == null) return;
 
-		if (!swiping && !gp.busy && gp.alive) {
+		if (!swiping && !gp.busy && gp.hexaCube.hexColor != Constants.HEX_BLACK) {
 			swiping = true;
 			selected = gp;
 			Utils.ScaleSiblings(selected, true);
@@ -54,7 +54,7 @@ public class PlayerActions : MonoBehaviour {
 	}
 
 	public void UpAction(){
-		if (swiping) {
+		if (!gridLogic.disabled && swiping) {
 			// not the same place, do swiping action
 			Vector2 diff = (Vector2)selected.transform.position - (Vector2)Camera.main.ScreenToWorldPoint(InputHandler.Instance.inputVectorScreen);
 			if (Mathf.Abs(diff.x) >= OFFSET) {

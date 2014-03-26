@@ -8,8 +8,7 @@ public class GridLogic : MonoBehaviour {
 	private ColorSelector colorSelector;
 
 	GridPlace origin;
-	GridPlace northWestCorner;
-	bool spawned;
+	GridPlace[] gridPlaces;
 
 	bool gameover;
 
@@ -23,6 +22,7 @@ public class GridLogic : MonoBehaviour {
 	ScoreBar scoreBar;
 	public TextMesh scoreTextMesh;
 	public TextMesh gameOverTextMesh;
+	public bool disabled { get; private set; }
 
 	void Awake () {
 		// tell the game to run at 60 fps, maybe put this some where better later
@@ -41,6 +41,8 @@ public class GridLogic : MonoBehaviour {
 		colorSelector.Init ();
 		
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
+		gridPlaces = GetComponentsInChildren<GridPlace> ();
+
 		StartCoroutine(Utils.SlowSpawnSiblings(origin));
 	}
 
@@ -50,19 +52,59 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	void NextLevel(){
+
+		//Calculate bonus points
 		int scorePer = level * 500;
 		score += moves.Remaining() * scorePer;
-		moves.ResetMoves(scorePer);
 
+		//Calculate how many black hexes to add
+		int leftover = scoreBar.NumBlackHexes ();
+
+		//Setup next level
+		moves.ResetMoves(scorePer);
 		level++;
 		startScore = score;
 		targetScore = score + level * 2000;
+		
 		UpdateUI();
+
+		//coroutine waits for everything to be at rest
+		StartCoroutine (LevelCleanup (leftover));
+
 	}
+
+	IEnumerator LevelCleanup (int leftover) {
+
+		disabled = true;
+
+		while (true) {
+			int i = 0;
+			for (i = 0; i < gridPlaces.Length; i++) {
+				if (gridPlaces[i].busy || gridPlaces[i].reserved) break;
+			}
+			if (i >= gridPlaces.Length) {
+				break;
+			}
+			yield return new WaitForEndOfFrame();
+		}
+
+		if (leftover != 0) {
+			GridPlace[] newBlacks = Utils.GetRandomNonBlack(origin, leftover);
+			for (int i = 0; i < newBlacks.Length; i++) {
+				newBlacks[i].hexaCube.spawnBlack = true;
+				newBlacks[i].hexaCube.Kill();
+			}
+		}
+
+		yield return new WaitForSeconds (1f);
+
+		disabled = false;
+	}
+
 
 	public void Flood(GridPlace start) {
 		lastMoveScore /= 2; // halves your combo bonus
-		if (!start.busy && start.alive){
+		if (!start.busy){
 			Utils.ReserveAll(start);
 			StartCoroutine(Utils.FillSiblings(start, colorSelector.Current()));
 			DoMove();
@@ -91,30 +133,35 @@ public class GridLogic : MonoBehaviour {
 		moves.DoMove();
 		colorSelector.NewColor();
 	}
-	
+
+	void GameOverLogic () {
+		if (!gameover) {
+			gameover = true;
+			gameOverTextMesh.gameObject.SetActive(true);
+			
+			#if (UNITY_IPHONE || UNITY_ANDROID)
+			Social.ReportScore(score, "30-move", (bool success) => {
+				if(success){
+					Debug.Log("Posted score!");
+				}
+				else{
+					Debug.Log("Couldn't post score");
+				}
+			});
+			#endif
+		}
+		if (InputHandler.Instance.inputSignalDown)
+			Application.LoadLevel("menu");
+	}
+
 	void Update () {
 
-		if (score >= targetScore){
+		if (score >= targetScore || moves.NoneLeft()){
 			NextLevel();
 		}
-		else if (moves.NoneLeft()){
-			if (!gameover){
-				gameover = true;
-				gameOverTextMesh.gameObject.SetActive(true);
-				
-				#if (UNITY_IPHONE || UNITY_ANDROID)
-				Social.ReportScore(score, "30-move", (bool success) => {
-					if(success){
-						Debug.Log("Posted score!");
-					}
-					else{
-						Debug.Log("Couldn't post score");
-					}
-				});
-				#endif
-			}
-			if (InputHandler.Instance.inputSignalDown)
-				Application.LoadLevel("menu");
+
+		if (gameover) {
+			// game over stuff
 		}
 	}
 }

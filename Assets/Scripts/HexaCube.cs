@@ -6,6 +6,7 @@ public class HexaCube : InteractiveObject {
 	
 	public int hexColor;
 	public GridPlace gridPlace;
+	public bool spawnBlack {get; set;}
 
 	VertexColor vertexColor;
 	
@@ -60,6 +61,10 @@ public class HexaCube : InteractiveObject {
 
 	private void DoSpawn(string anim, int color){
 		animation.Play(anim);
+		if (spawnBlack) {
+			color = Constants.HEX_BLACK;
+			spawnBlack = false;
+		}
 		hexColor = color;
 		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
 	}
@@ -87,7 +92,6 @@ public class HexaCube : InteractiveObject {
 		if (!gridPlace)
 			return;
 		gridPlace.busy = false;
-		gridPlace.alive = true;
 		gridPlace.reserved = false;
 	}
 	
@@ -95,13 +99,11 @@ public class HexaCube : InteractiveObject {
 		if (!gridPlace)
 			return;
 		gridPlace.busy = false;
-		gridPlace.alive = true;
 	}
 	
 	void WiggleCallback () {
 		if (!gridPlace)
 			return;
 		gridPlace.busy = false;
-		gridPlace.alive = true;
 	}
 }

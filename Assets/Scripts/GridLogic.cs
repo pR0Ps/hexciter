@@ -12,6 +12,7 @@ public class GridLogic : MonoBehaviour {
 	bool spawned;
 
 	bool gameover;
+	public bool disabled {get; set;}
 
 	public AnimationCurve ScoreCurve;
 	private MoveProgress moves;
@@ -30,6 +31,7 @@ public class GridLogic : MonoBehaviour {
 		scoreBar = GameObject.Find ("ScoreBar").GetComponent<ScoreBar> ();
 		moves = GameObject.Find("GUICamera/MoveProgress").GetComponent<MoveProgress>();
 		colorSelector = GameObject.Find("GUICamera/ColorSelector").GetComponent<ColorSelector>();
+		disabled = false;
 	}
 
 	void Start () {
@@ -49,7 +51,16 @@ public class GridLogic : MonoBehaviour {
 		scoreBar.ReportProgress (score, startScore, targetScore);
 	}
 
-	void NextLevel(){
+	IEnumerator NextLevel(){
+		disabled = true;
+		GridPlace[] all = Utils.Unpack<GridPlace>(Utils.GetSiblings(origin));
+
+		while (!all.All(gp => gp.alive && !gp.busy)){
+			yield return new WaitForEndOfFrame();
+		}
+
+		yield return new WaitForSeconds(0.2f);
+
 		int scorePer = level * 500;
 		score += moves.Remaining() * scorePer;
 		moves.ResetMoves(scorePer);
@@ -58,6 +69,39 @@ public class GridLogic : MonoBehaviour {
 		startScore = score;
 		targetScore = score + level * 2000;
 		UpdateUI();
+
+		disabled = false;
+	}
+
+	IEnumerator SpawnBlack(GridPlace[] gps){
+		while (disabled) {
+			yield return new WaitForEndOfFrame();
+		}
+		//create black hexes
+		foreach (GridPlace gp in gps){
+			gp.MakeBlack();
+		}
+
+		yield return new WaitForSeconds(2f);
+
+		if (gameover) {
+			EndGame();
+		}
+	}
+
+	void EndGame(){
+		gameOverTextMesh.gameObject.SetActive(true);
+
+		#if (UNITY_IPHONE || UNITY_ANDROID)
+		Social.ReportScore(score, "30-move", (bool success) => {
+			if(success){
+				Debug.Log("Posted score!");
+			}
+			else{
+				Debug.Log("Couldn't post score");
+			}
+		});
+		#endif
 	}
 
 	public void Flood(GridPlace start) {
@@ -86,7 +130,7 @@ public class GridLogic : MonoBehaviour {
 		DoMove ();
 	}
 
-	//Anytyime a move is made, this is called
+	//Anytime a move is made, this is called
 	public void DoMove(){
 		//Update count and color chooser
 		moves.DoMove();
@@ -95,27 +139,28 @@ public class GridLogic : MonoBehaviour {
 	
 	void Update () {
 
+		if (disabled) return;
+
 		if (score >= targetScore){
-			NextLevel();
+			StartCoroutine(NextLevel());
 		}
 		else if (moves.NoneLeft()){
-			if (!gameover){
-				gameover = true;
-				gameOverTextMesh.gameObject.SetActive(true);
-				
-				#if (UNITY_IPHONE || UNITY_ANDROID)
-				Social.ReportScore(score, "30-move", (bool success) => {
-					if(success){
-						Debug.Log("Posted score!");
-					}
-					else{
-						Debug.Log("Couldn't post score");
-					}
-				});
-				#endif
+			int remain = scoreBar.HexesRemaining();
+			GridPlace[] not_black = Utils.GetRandomNonBlack(origin, remain);
+
+			if(not_black.Length < remain){
+				if (!gameover){
+					gameover = true;
+					StartCoroutine(SpawnBlack(not_black));
+				}
+				else if (InputHandler.Instance.inputSignalDown && gameOverTextMesh.gameObject.activeSelf){
+					Application.LoadLevel("menu");
+				}
 			}
-			if (InputHandler.Instance.inputSignalDown)
-				Application.LoadLevel("menu");
+			else{
+				StartCoroutine(NextLevel());
+				StartCoroutine(SpawnBlack(not_black));
+			}
 		}
 	}
 }

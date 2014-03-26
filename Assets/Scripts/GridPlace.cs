@@ -94,6 +94,11 @@ public class GridPlace : InteractiveObject {
 		}
 	}
 
+	public void MakeBlack(){
+		hexaCube.spawnBlack = true;
+		hexaCube.Kill();
+	}
+
 	void Update () {
 		if (alive && !busy){
 			if (playerActions.swiping) {

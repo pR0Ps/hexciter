@@ -7,6 +7,8 @@ public class HexaCube : InteractiveObject {
 	public int hexColor;
 	public GridPlace gridPlace;
 
+	public bool spawnBlack {get; set;}
+
 	VertexColor vertexColor;
 	
 	IEnumerator ColorLerp (int newHexColor) {
@@ -35,6 +37,7 @@ public class HexaCube : InteractiveObject {
 	
 	void Awake () {
 		vertexColor = GetComponentInChildren<VertexColor> ();
+		spawnBlack = false;
 	}
 	
 	void RandomizeColor () {
@@ -43,24 +46,28 @@ public class HexaCube : InteractiveObject {
 	}
 
 	public void Spawn () {
-		animation.Play("Spawn");
-		RandomizeColor();
+		Spawn (Random.Range (0, Constants.NUMBER_OF_COLORS));
 	}
 
 	public void Spawn (int newColor) {
-		animation.Play("Spawn");
-		hexColor = newColor;
-		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
+		DoSpawn("Spawn", newColor);
 	}
 	
 	public void SlowSpawn () {
-		animation.Play("SlowSpawn");
-		RandomizeColor();
+		SlowSpawn (Random.Range (0, Constants.NUMBER_OF_COLORS));
 	}
 	
 	public void SlowSpawn (int newColor) {
-		animation.Play("SlowSpawn");
-		hexColor = newColor;
+		DoSpawn("SlowSpawn", newColor);
+	}
+
+	private void DoSpawn(string anim, int color){
+		animation.Play(anim);
+		if (spawnBlack) {
+			color = Constants.HEX_BLACK;
+			spawnBlack = false;
+		}
+		hexColor = color;
 		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
 	}
 

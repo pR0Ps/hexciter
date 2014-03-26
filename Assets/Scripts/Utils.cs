@@ -86,6 +86,17 @@ public static class Utils {
 		}
 	}
 
+	//Get num random non-black GridPlaces
+	public static GridPlace[] GetRandomNonBlack (GridPlace start, int num) {
+		//Get all grid places, filter by those that aren't black
+		GridPlace[] all = Unpack<GridPlace>(GetSiblings(start)).Where(gp => gp.hexaCube.hexColor != Constants.HEX_BLACK).ToArray();
+		if (all.Length <= num) {
+			return all;
+		}
+		//Shuffle the list and take the first num values
+		return all.OrderBy(gp => UnityEngine.Random.value).Take(num).ToArray();
+	}
+
 	//Set all the linked GridPlaces to reserved
 	public static void ReserveAll(GridPlace start){
 		foreach (GridPlace gp in Unpack<GridPlace>(GetSiblings(start, check_alive(true), check_color(start.hexaCube.hexColor)))){

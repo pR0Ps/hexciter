@@ -26,7 +26,7 @@ public class MoveProgress : MonoBehaviour {
 
 	void SpawnCube(int i){
 		if (!state[i]){
-			progressCubes[i].SlowSpawn(Constants.HexColors.Grey);
+			progressCubes[i].SlowSpawn(Constants.HEX_GREY);
 			state[i] = true;
 		}
 	}

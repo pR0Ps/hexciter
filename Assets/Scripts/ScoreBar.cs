@@ -37,13 +37,14 @@ public class ScoreBar : MonoBehaviour {
 
 	}
 
-	public void ReportProgress (int currentScore, int startScore, int endScore) {
+	public void ReportProgress (int currentScore, int startScore, int endScore, bool lose) {
 		progress = (int)(Mathf.Lerp(0, 1, (float)(currentScore - startScore)/(float)(endScore - startScore)) * NUM_CUBES);
 		for (int i=0; i<NUM_CUBES; i++) {
 			if (!activeCubes[i] || progress == NUM_CUBES) {
 				if (progress < i) { // reporting progess decrease (ie, new level)
 					StartCoroutine(Despawn(progress, NUM_CUBES));
-					StartCoroutine(Flood (i, NUM_CUBES));
+					if (!lose)
+						StartCoroutine(Flood (i, NUM_CUBES));
 				}
 				StartCoroutine(Flood (i, progress));
 				return;

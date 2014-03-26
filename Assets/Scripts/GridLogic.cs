@@ -47,8 +47,8 @@ public class GridLogic : MonoBehaviour {
 		StartCoroutine(Utils.SlowSpawnSiblings(origin));
 	}
 
-	void UpdateUI(){
-		scoreBar.ReportProgress (score, startScore, targetScore);
+	void UpdateUI(bool lose){
+		scoreBar.ReportProgress (score, startScore, targetScore, lose);
 		scoreTextMesh.text = score.ToString("N0");
 	}
 
@@ -67,7 +67,7 @@ public class GridLogic : MonoBehaviour {
 		startScore = score;
 		targetScore = score + level * 5000;
 		
-		UpdateUI();
+		UpdateUI(leftover != 0);
 
 		//coroutine waits for everything to be at rest
 		StartCoroutine (LevelCleanup (leftover));
@@ -132,7 +132,7 @@ public class GridLogic : MonoBehaviour {
 		lastMoveScore = earnedScore;
 
 		score += earnedScore;
-		UpdateUI();
+		UpdateUI(false);
 		StartCoroutine(Utils.KillSiblings(start));
 
 		ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show (earnedScore, start.transform.position);

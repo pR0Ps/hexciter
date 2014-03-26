@@ -43,24 +43,24 @@ public class HexaCube : InteractiveObject {
 	}
 
 	public void Spawn () {
-		animation.Play("Spawn");
-		RandomizeColor();
+		Spawn (Random.Range (0, Constants.NUMBER_OF_COLORS));
 	}
 
 	public void Spawn (int newColor) {
-		animation.Play("Spawn");
-		hexColor = newColor;
-		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
+		DoSpawn("Spawn", newColor);
 	}
-	
+
 	public void SlowSpawn () {
-		animation.Play("SlowSpawn");
-		RandomizeColor();
+		SlowSpawn (Random.Range (0, Constants.NUMBER_OF_COLORS));
 	}
-	
+
 	public void SlowSpawn (int newColor) {
-		animation.Play("SlowSpawn");
-		hexColor = newColor;
+		DoSpawn("SlowSpawn", newColor);
+	}
+
+	private void DoSpawn(string anim, int color){
+		animation.Play(anim);
+		hexColor = color;
 		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
 	}
 

@@ -7,24 +7,18 @@ public static class Constants {
 	
 	public const int NUMBER_OF_COLORS = 4;
 
-	public enum HexColors {
-		Blue,
-		Green,
-		Yellow,
-		Red,
-		Grey,
-		Black,
-		White
-	}
+	public const int HEX_BLACK = 4;
+	public const int HEX_WHITE = 5;
+	public const int HEX_GREY = 6;
 	
-	public static Color32[] Colors = new Color32[] {
+	public static Color32[] HEX_COLORS = new Color32[] {
 		HexToColor32("E40045"),
 		HexToColor32("FF7600"),
 		HexToColor32("01939A"),
 		HexToColor32("67E300"),
-		new Color32 (128, 128, 128, 255),
-		new Color32 (0, 0, 0, 255),
-		new Color32 (255, 255, 255, 255),
+		HexToColor32("000000"),
+		HexToColor32("FFFFFF"),
+		HexToColor32("808080"),
 	};
 
 	static Color32 HexToColor32 (string hexadecimal) {

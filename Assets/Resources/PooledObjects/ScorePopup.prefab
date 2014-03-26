@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 22.3581505, y: -8.01995945, z: -51.8190918}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400002}
@@ -69,7 +69,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 863b1a04ed0d69f408d16a129e1fff71, type: 3}
+  - {fileID: 2100000, guid: 93c705750bcfe044694a465bf48a8916, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -87,15 +87,15 @@ TextMesh:
   m_GameObject: {fileID: 100002}
   m_Text: 0
   m_OffsetZ: 0
-  m_CharacterSize: .100000001
+  m_CharacterSize: .200000003
   m_LineSpacing: 1
   m_Anchor: 1
-  m_Alignment: 0
+  m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 60
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 863b1a04ed0d69f408d16a129e1fff71, type: 3}
+  m_Font: {fileID: 12800000, guid: 93c705750bcfe044694a465bf48a8916, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190080

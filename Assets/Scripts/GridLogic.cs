@@ -8,9 +8,7 @@ public class GridLogic : MonoBehaviour {
 	private ColorSelector colorSelector;
 
 	GridPlace origin;
-	GridPlace[] gridPlaces;
-
-	bool gameover;
+	List<GridPlace> gridPlaces = new List<GridPlace>();
 
 	public AnimationCurve ScoreCurve;
 	private MoveProgress moves;
@@ -21,7 +19,7 @@ public class GridLogic : MonoBehaviour {
 	int targetScore;
 	ScoreBar scoreBar;
 	public TextMesh scoreTextMesh;
-	public TextMesh gameOverTextMesh;
+	public GameoverDialog gameoverDialog;
 	public bool disabled { get; private set; }
 
 	void Awake () {
@@ -33,15 +31,18 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	void Start () {
-		gameover = false;
 		level = 1;
 		score = 0;
 		startScore = 0;
 		targetScore = 4000;
 		colorSelector.Init ();
-		
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
-		gridPlaces = GetComponentsInChildren<GridPlace> ();
+
+		//populate the list of grid places
+		GridPlace[] GPs = GetComponentsInChildren<GridPlace> ();
+		for (int i = 0; i < GPs.Length; i++) {
+			gridPlaces.Add(GPs[i]);
+		}
 
 		StartCoroutine(Utils.SlowSpawnSiblings(origin));
 	}
@@ -79,26 +80,37 @@ public class GridLogic : MonoBehaviour {
 
 		while (true) {
 			int i = 0;
-			for (i = 0; i < gridPlaces.Length; i++) {
+			for (i = 0; i < gridPlaces.Count; i++) {
 				if (gridPlaces[i].busy || gridPlaces[i].reserved) break;
 			}
-			if (i >= gridPlaces.Length) {
+			if (i == gridPlaces.Count) {
 				break;
 			}
 			yield return new WaitForEndOfFrame();
 		}
 
+		bool gameover = false;
+
 		if (leftover != 0) {
-			GridPlace[] newBlacks = Utils.GetRandomNonBlack(origin, leftover);
-			for (int i = 0; i < newBlacks.Length; i++) {
-				newBlacks[i].hexaCube.spawnBlack = true;
-				newBlacks[i].hexaCube.Kill();
+			for (int i = 0; i < leftover && gridPlaces.Count > 0; i++) {
+				GridPlace newBlack = gridPlaces[Random.Range(0, gridPlaces.Count)];
+				gridPlaces.Remove(newBlack);
+				newBlack.hexaCube.spawnBlack = true;
+				newBlack.hexaCube.Kill();
 			}
 		}
 
-		yield return new WaitForSeconds (1f);
+		if (gridPlaces.Count == 0) {
+			gameover = true;
+		}
+		
+		yield return new WaitForSeconds (.7f);
 
 		disabled = false;
+
+		if (gameover) {
+			GameOver();
+		}
 	}
 
 
@@ -134,34 +146,32 @@ public class GridLogic : MonoBehaviour {
 		colorSelector.NewColor();
 	}
 
-	void GameOverLogic () {
-		if (!gameover) {
-			gameover = true;
-			gameOverTextMesh.gameObject.SetActive(true);
-			
-			#if (UNITY_IPHONE || UNITY_ANDROID)
-			Social.ReportScore(score, "30-move", (bool success) => {
-				if(success){
-					Debug.Log("Posted score!");
-				}
-				else{
-					Debug.Log("Couldn't post score");
-				}
-			});
-			#endif
+	void GameOver () {
+
+		int best = PlayerPrefs.GetInt ("Best_Score");
+
+		if (score > best) {
+			PlayerPrefs.SetInt ("Best_Score", score);
+			best = score;
 		}
-		if (InputHandler.Instance.inputSignalDown)
-			Application.LoadLevel("menu");
+
+		gameoverDialog.Show (score, best);
+
+		#if (UNITY_IPHONE || UNITY_ANDROID)
+		Social.ReportScore(score, "30-move", (bool success) => {
+			if(success){
+				Debug.Log("Posted score!");
+			}
+			else{
+				Debug.Log("Couldn't post score");
+			}
+		});
+		#endif
 	}
 
 	void Update () {
-
 		if (score >= targetScore || moves.NoneLeft()){
 			NextLevel();
-		}
-
-		if (gameover) {
-			// game over stuff
 		}
 	}
 }

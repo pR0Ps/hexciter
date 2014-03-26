@@ -74,9 +74,11 @@ PlayerSettings:
     16:9: 1
     Others: 1
   iPhoneBundleIdentifier: com.teamsalt.hexciter
+  metroEnableIndependentInputSource: 0
+  metroEnableLowLatencyPresentationAPI: 0
   productGUID: cad335a36aed17442a7c7d582076ee81
-  iPhoneBundleVersion: 0.0.0.6
-  AndroidBundleVersionCode: 6
+  iPhoneBundleVersion: 0.7
+  AndroidBundleVersionCode: 7
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -182,6 +184,7 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   metroCapabilities: {}
+  metroUnprocessedPlugins: []
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 
   blackberryDevicePassword: 

@@ -39,6 +39,9 @@ public class Siblings {
 }
 
 public class GridPlace : InteractiveObject {
+
+	private PlayerActions playerActions;
+
 	public GameObject HexaCubePrefab;
 	public HexaCube hexaCube;
 	
@@ -56,6 +59,8 @@ public class GridPlace : InteractiveObject {
 	public Siblings sibs;
 	
 	public void Awake () {
+		playerActions = GameObject.Find("PlayerActions").GetComponent<PlayerActions>();
+
 		hexaCube = (Object.Instantiate(HexaCubePrefab) as GameObject).GetComponent<HexaCube>();
 		hexaCube.transform.parent = transform;
 		hexaCube.transform.localPosition = Vector3.zero;
@@ -67,7 +72,7 @@ public class GridPlace : InteractiveObject {
 	}
 
 	public override void DownAction () {
-		PlayerActions.Instance.DownAction(this);
+		playerActions.DownAction(this);
 	}
 
 	public void Scale(int depth, bool scale){
@@ -91,7 +96,7 @@ public class GridPlace : InteractiveObject {
 
 	void Update () {
 		if (alive && !busy){
-			if (PlayerActions.Instance.swiping) {
+			if (playerActions.swiping) {
 				Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
 				targetRotation = Quaternion.LookRotation(lookPoint - lookTransform.position);
 			}

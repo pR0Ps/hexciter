@@ -3,14 +3,17 @@ using System.Collections;
 
 public class PlayerActions : MonoBehaviour {
 
-	public static PlayerActions Instance;
+	private GridLogic gridLogic;
+	private IconController iconController;
+
 	public bool swiping { get; private set; }
 	public GridPlace selected { get; private set; }
 
 	const float OFFSET = 1.7f;
 
 	void Awake(){
-		Instance = this;
+		gridLogic = GameObject.Find("Grid").GetComponent<GridLogic>();
+		iconController = GameObject.Find("Icons").GetComponent<IconController>();
 	}
 	
 	void Start () {
@@ -28,14 +31,14 @@ public class PlayerActions : MonoBehaviour {
 
 	public void Destroy(){
 		if (selected != null && !selected.reserved) {
-			GridLogic.Instance.Destroy(selected);
+			gridLogic.Destroy(selected);
 		}
 		Deselect();
 	}
 
 	public void Flood(){
 		if (selected != null && !selected.reserved){
-			GridLogic.Instance.Flood(selected);
+			gridLogic.Flood(selected);
 		}
 		Deselect();
 	}
@@ -68,10 +71,10 @@ public class PlayerActions : MonoBehaviour {
 	public void Update(){
 		if (swiping) {
 			Vector2 diff = (Vector2)selected.transform.position - (Vector2)InputHandler.Instance.inputVectorWorld;
-			IconController.Instance.SetTarget (Mathf.Clamp(diff.x/8.7f, -1, 1));
+			iconController.SetTarget (Mathf.Clamp(diff.x/8.7f, -1, 1));
 		}
 		else
-			IconController.Instance.SetInvisible ();
+			iconController.SetInvisible ();
 
 		if (swiping && InputHandler.Instance.inputSignalUp){
 			UpAction();

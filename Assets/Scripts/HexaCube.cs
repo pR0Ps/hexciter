@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 public class HexaCube : InteractiveObject {
 	
-	public Constants.HexColors hexColor;
+	public int hexColor;
 	public GridPlace gridPlace;
 
 	VertexColor vertexColor;
 	
-	IEnumerator ColorLerp (Constants.HexColors newHexColor) {
-		Color newColor = Constants.Colors[(int)newHexColor];
+	IEnumerator ColorLerp (int newHexColor) {
+		Color newColor = Constants.HEX_COLORS[newHexColor];
 		Color initialColor = vertexColor.vColor;
 		float t = 0;
 		while (vertexColor.vColor != newColor) {
@@ -22,12 +22,12 @@ public class HexaCube : InteractiveObject {
 	
 	//A public method to tell a cube to lerp to a new color
 	//Currently used by the color selector
-	public void GUIColorLerp (Constants.HexColors newHexColor) {
+	public void GUIColorLerp (int newHexColor) {
 		hexColor = newHexColor;
 		StartCoroutine(ColorLerp(newHexColor));
 	}
 	
-	public void Fill (Constants.HexColors newHexColor) {
+	public void Fill (int newHexColor) {
 		hexColor = newHexColor;
 		StartCoroutine(ColorLerp(newHexColor));
 		animation.Play("Wiggle");
@@ -38,8 +38,8 @@ public class HexaCube : InteractiveObject {
 	}
 	
 	void RandomizeColor () {
-		hexColor = (Constants.HexColors)Random.Range(0, Constants.NUMBER_OF_COLORS);
-		vertexColor.UpdateColor(Constants.Colors[(int)hexColor]);
+		hexColor = Random.Range(0, Constants.NUMBER_OF_COLORS);
+		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
 	}
 
 	public void Spawn () {
@@ -47,10 +47,10 @@ public class HexaCube : InteractiveObject {
 		RandomizeColor();
 	}
 
-	public void Spawn (Constants.HexColors newColor) {
+	public void Spawn (int newColor) {
 		animation.Play("Spawn");
 		hexColor = newColor;
-		vertexColor.UpdateColor(Constants.Colors[(int)hexColor]);
+		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
 	}
 	
 	public void SlowSpawn () {
@@ -58,10 +58,10 @@ public class HexaCube : InteractiveObject {
 		RandomizeColor();
 	}
 	
-	public void SlowSpawn (Constants.HexColors newColor) {
+	public void SlowSpawn (int newColor) {
 		animation.Play("SlowSpawn");
 		hexColor = newColor;
-		vertexColor.UpdateColor(Constants.Colors[(int)hexColor]);
+		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
 	}
 
 	public void Kill () {

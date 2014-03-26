@@ -9,7 +9,7 @@ public class ScoreBar : MonoBehaviour {
 	void Start () {
 		for (int i=0; i<32; i++) {
 			progressCubes[i] = transform.FindChild(i.ToString()).GetComponent<HexaCube>();
-			progressCubes[i].Spawn(Constants.HexColors.Black);
+			progressCubes[i].Spawn(Constants.HEX_BLACK);
 			progressCubes[i].Despawn();
 		}
 	}
@@ -42,7 +42,7 @@ public class ScoreBar : MonoBehaviour {
 	public IEnumerator Flood (int startIndex, int endIndex) {
 		for (int i=startIndex; i<endIndex; i++) {
 			activeCubes[i] = true;
-			progressCubes[i].Spawn(Constants.HexColors.White);
+			progressCubes[i].Spawn(Constants.HEX_WHITE);
 			yield return new WaitForSeconds(0.05f);
 		}
 	}

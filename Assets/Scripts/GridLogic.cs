@@ -34,7 +34,7 @@ public class GridLogic : MonoBehaviour {
 		level = 1;
 		score = 0;
 		startScore = 0;
-		targetScore = 4000;
+		targetScore = 5000;
 		colorSelector.Init ();
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
 
@@ -55,7 +55,7 @@ public class GridLogic : MonoBehaviour {
 	void NextLevel(){
 
 		//Calculate bonus points
-		int scorePer = level * 500;
+		int scorePer = level * 200;
 		score += moves.Remaining() * scorePer;
 
 		//Calculate how many black hexes to add
@@ -65,7 +65,7 @@ public class GridLogic : MonoBehaviour {
 		moves.ResetMoves(scorePer);
 		level++;
 		startScore = score;
-		targetScore = score + level * 2000;
+		targetScore = score + level * 5000;
 		
 		UpdateUI();
 
@@ -115,7 +115,7 @@ public class GridLogic : MonoBehaviour {
 
 
 	public void Flood(GridPlace start) {
-		lastMoveScore /= 2; // halves your combo bonus
+		lastMoveScore /= 4; // halves your combo bonus
 		if (!start.busy){
 			Utils.ReserveAll(start);
 			StartCoroutine(Utils.FillSiblings(start, colorSelector.Current()));
@@ -128,7 +128,8 @@ public class GridLogic : MonoBehaviour {
 		if (colorSelector.Current () == start.hexaCube.hexColor) multiplier = 2;
 
 		int tally = Utils.TallyScore(start);
-		int earnedScore = ((int)(lastMoveScore * (tally/61f) + tally * 100)/10) * 10 * multiplier;
+		int levelBonus = 100 + (level - 1) * 10;
+		int earnedScore = ((int)(lastMoveScore * Mathf.Sqrt(tally/61f) + tally * levelBonus)/10) * 10 * multiplier;
 		lastMoveScore = earnedScore;
 
 		score += earnedScore;

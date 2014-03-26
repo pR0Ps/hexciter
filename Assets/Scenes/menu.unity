@@ -102,8 +102,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 8.68500042, y: 1.63256848}
-  m_Center: {x: 0, y: 2.71684257e-08}
+  m_Size: {x: 7.36999989, y: 1.60000002}
+  m_Center: {x: 3.75, y: 2.71684257e-08}
 --- !u!114 &73651025
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,17 +123,17 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 73651023}
-  m_Text: Leaderboards
+  m_Text: leaderboards
   m_OffsetZ: 0
-  m_CharacterSize: .0799999982
+  m_CharacterSize: .100000001
   m_LineSpacing: 1
-  m_Anchor: 4
+  m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 120
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 863b1a04ed0d69f408d16a129e1fff71, type: 3}
+  m_Font: {fileID: 12800000, guid: 93c705750bcfe044694a465bf48a8916, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
@@ -149,7 +149,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 863b1a04ed0d69f408d16a129e1fff71, type: 3}
+  - {fileID: 2100000, guid: 93c705750bcfe044694a465bf48a8916, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -165,7 +165,69 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 73651023}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.77028656, z: -9}
+  m_LocalPosition: {x: -7.93652916, y: -1.28049088, z: -9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!1 &667567485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 667567487}
+  - 108: {fileID: 667567486}
+  m_Layer: 0
+  m_Name: Directional light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &667567486
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 667567485}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
+--- !u!4 &667567487
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 667567485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -.272936583, y: -2.53412819, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -200,7 +262,8 @@ MonoBehaviour:
   inputSignalHold: 0
   inputSignalDown: 0
   inputSignalUp: 0
-  inputVector: {x: 0, y: 0}
+  inputVectorScreen: {x: 0, y: 0}
+  inputVectorWorld: {x: 0, y: 0}
   inputEndMagnitude: 0
   inputPosition: {x: 0, y: 0}
   inputZoom: 0
@@ -311,17 +374,17 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 995570935}
-  m_Text: Start game
+  m_Text: new game
   m_OffsetZ: 0
-  m_CharacterSize: .0799999982
+  m_CharacterSize: .100000001
   m_LineSpacing: 1
-  m_Anchor: 4
+  m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 120
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 863b1a04ed0d69f408d16a129e1fff71, type: 3}
+  m_Font: {fileID: 12800000, guid: 93c705750bcfe044694a465bf48a8916, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
@@ -337,7 +400,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 863b1a04ed0d69f408d16a129e1fff71, type: 3}
+  - {fileID: 2100000, guid: 93c705750bcfe044694a465bf48a8916, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -353,7 +416,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 995570935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.88582659, z: -9}
+  m_LocalPosition: {x: -7.93652916, y: .581970692, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -377,8 +440,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 8.68500042, y: 1.63256848}
-  m_Center: {x: 0, y: 2.71684257e-08}
+  m_Size: {x: 6, y: 1.60000002}
+  m_Center: {x: 2.93000007, y: 2.71684257e-08}
 --- !u!1 &1454848405
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,17 +466,17 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1454848405}
-  m_Text: Hexciter
+  m_Text: hexciter
   m_OffsetZ: 0
   m_CharacterSize: .150000006
   m_LineSpacing: 1
-  m_Anchor: 4
+  m_Anchor: 3
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 0
+  m_FontSize: 120
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 863b1a04ed0d69f408d16a129e1fff71, type: 3}
+  m_Font: {fileID: 12800000, guid: 93c705750bcfe044694a465bf48a8916, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
@@ -429,7 +492,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 863b1a04ed0d69f408d16a129e1fff71, type: 3}
+  - {fileID: 2100000, guid: 93c705750bcfe044694a465bf48a8916, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -445,7 +508,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1454848405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.12879562, z: -9}
+  m_LocalPosition: {x: -7.93652916, y: 4.12879562, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

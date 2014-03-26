@@ -33,5 +33,8 @@ public class GameoverDialog : MonoBehaviour {
 				texts [i].color = new Color (0, 0, 0, alpha);
 			}
 		}
+		else if (InputHandler.Instance.inputSignalDown){
+			Application.LoadLevel("menu");
+		}
 	}
 }

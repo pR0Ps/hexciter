@@ -43,7 +43,6 @@ public class ScoreBar : MonoBehaviour {
 			if (!activeCubes[i] || progress == NUM_CUBES) {
 				if (progress < i) { // reporting progess decrease (ie, new level)
 					StartCoroutine(Despawn(progress, NUM_CUBES));
-					StartCoroutine(Flood (i, NUM_CUBES));
 				}
 				StartCoroutine(Flood (i, progress));
 				return;

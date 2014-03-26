@@ -16,7 +16,6 @@ public class ScoreBar : MonoBehaviour {
 
 	public void ReportProgress (int currentScore, int startScore, int endScore) {
 		int progress = (int)(Mathf.Lerp(0, 1, (float)(currentScore - startScore)/(float)(endScore - startScore)) * 32);
-		Debug.Log (progress);
 		for (int i=0; i<32; i++) {
 			if (!activeCubes[i]) {
 				//StopAllCoroutines();

@@ -79,13 +79,12 @@ public class GridLogic : MonoBehaviour {
 		disabled = true;
 
 		while (true) {
-			int i = 0;
-			for (i = 0; i < gridPlaces.Count; i++) {
-				if (gridPlaces[i].busy || gridPlaces[i].reserved) break;
+			for (int i = 0; i < gridPlaces.Count; i++) {
+				if (gridPlaces[i].busy || gridPlaces[i].reserved)
+					goto Fail;
 			}
-			if (i == gridPlaces.Count) {
-				break;
-			}
+			break;
+		Fail:
 			yield return new WaitForEndOfFrame();
 		}
 

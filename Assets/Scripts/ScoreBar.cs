@@ -3,11 +3,12 @@ using System.Collections;
 
 public class ScoreBar : MonoBehaviour {
 
-	HexaCube[] progressCubes = new HexaCube[32];
-	bool[] activeCubes = new bool[32];
+	public const int NUM_CUBES = 32;
+	HexaCube[] progressCubes = new HexaCube[NUM_CUBES];
+	bool[] activeCubes = new bool[NUM_CUBES];
 	
 	void Start () {
-		for (int i=0; i<32; i++) {
+		for (int i=0; i<NUM_CUBES; i++) {
 			progressCubes[i] = transform.FindChild(i.ToString()).GetComponent<HexaCube>();
 			progressCubes[i].Spawn(Constants.HEX_BLACK);
 			progressCubes[i].Despawn();
@@ -18,7 +19,7 @@ public class ScoreBar : MonoBehaviour {
 
 	IEnumerator StartupAnimation () {
 
-		for (int i=0; i<32; i++) {
+		for (int i=0; i<NUM_CUBES; i++) {
 			HexaCube cube = transform.FindChild("startupAnimation/"+i.ToString()).GetComponent<HexaCube>();
 			cube.Spawn(Constants.HEX_BLACK);
 			cube.transform.FindChild("LookRotation").localScale = Vector3.one * 1.3f;
@@ -30,19 +31,19 @@ public class ScoreBar : MonoBehaviour {
 		transform.FindChild ("progressBar").gameObject.SetActive (true);
 		transform.FindChild ("progressBarBG").gameObject.SetActive (true);
 
-		for (int i=0; i<32; i++)
+		for (int i=0; i<NUM_CUBES; i++)
 			progressCubes[i].gameObject.SetActive(true);
 
 	}
 
 	public void ReportProgress (int currentScore, int startScore, int endScore) {
-		int progress = (int)(Mathf.Lerp(0, 1, (float)(currentScore - startScore)/(float)(endScore - startScore)) * 32);
+		int progress = (int)(Mathf.Lerp(0, 1, (float)(currentScore - startScore)/(float)(endScore - startScore)) * NUM_CUBES);
 		Debug.Log (progress);
-		for (int i=0; i<32; i++) {
-			if (!activeCubes[i] || progress == 32) {
+		for (int i=0; i<NUM_CUBES; i++) {
+			if (!activeCubes[i] || progress == NUM_CUBES) {
 				if (progress < i) { // reporting progess decrease (ie, new level)
-					StartCoroutine(Despawn(progress, 32));
-					StartCoroutine(Flood (i, 32));
+					StartCoroutine(Despawn(progress, NUM_CUBES));
+					StartCoroutine(Flood (i, NUM_CUBES));
 				}
 				StartCoroutine(Flood (i, progress));
 				return;

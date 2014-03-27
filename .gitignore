@@ -1,3 +1,5 @@
+user.keystore
+
 #From http://kleber-swf.com/the-definitive-gitignore-for-unity-projects/
 #Make sure Edit -> Project Settings -> Editor -> Version Control Mode = Meta Files
 

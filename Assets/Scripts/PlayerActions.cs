@@ -30,14 +30,14 @@ public class PlayerActions : MonoBehaviour {
 	}
 
 	public void Destroy(){
-		if (selected != null && !selected.reserved && selected.hexaCube.hexColor != Constants.HEX_BLACK) {
+		if (selected != null && !selected.reserved && selected.hexaCube.hexColor != Constants.HEX_WHITE) {
 			gridLogic.Destroy(selected);
 		}
 		Deselect();
 	}
 
 	public void Flood(){
-		if (selected != null && !selected.reserved && selected.hexaCube.hexColor != Constants.HEX_BLACK){
+		if (selected != null && !selected.reserved && selected.hexaCube.hexColor != Constants.HEX_WHITE){
 			gridLogic.Flood(selected);
 		}
 		Deselect();
@@ -46,7 +46,7 @@ public class PlayerActions : MonoBehaviour {
 	public void DownAction(GridPlace gp){
 		if (gp == null) return;
 
-		if (!swiping && !gp.busy && gp.hexaCube.hexColor != Constants.HEX_BLACK) {
+		if (!swiping && !gp.busy && gp.hexaCube.hexColor != Constants.HEX_WHITE) {
 			swiping = true;
 			selected = gp;
 			Utils.ScaleSiblings(selected, true);

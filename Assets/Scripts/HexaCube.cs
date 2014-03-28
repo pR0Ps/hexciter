@@ -6,7 +6,7 @@ public class HexaCube : InteractiveObject {
 	
 	public int hexColor;
 	public GridPlace gridPlace;
-	public bool spawnBlack {get; set;}
+	public bool spawnWhite {get; set;}
 
 	VertexColor vertexColor;
 	
@@ -60,13 +60,13 @@ public class HexaCube : InteractiveObject {
 	}
 
 	private void DoSpawn(string anim, int color){
-		animation.Play(anim);
-		if (spawnBlack) {
-			color = Constants.HEX_BLACK;
-			spawnBlack = false;
+		if (spawnWhite) {
+			color = Constants.HEX_WHITE;
+			spawnWhite = false;
 		}
 		hexColor = color;
 		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
+		animation.Play(anim);
 	}
 
 	public void Kill () {

@@ -94,7 +94,7 @@ public class GridLogic : MonoBehaviour {
 			for (int i = 0; i < leftover && gridPlaces.Count > 0; i++) {
 				GridPlace newBlack = gridPlaces[Random.Range(0, gridPlaces.Count)];
 				gridPlaces.Remove(newBlack);
-				newBlack.hexaCube.spawnBlack = true;
+				newBlack.hexaCube.spawnWhite = true;
 				newBlack.hexaCube.Kill();
 			}
 		}

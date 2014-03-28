@@ -15,7 +15,6 @@ public class GameoverDialog : MonoBehaviour {
 		best = transform.FindChild ("best").GetComponent<TextMesh> ();
 		sr = GetComponentInChildren<SpriteRenderer> ();
 		alpha = sr.color.a;
-
 		gameObject.SetActive (false);
 	}
 

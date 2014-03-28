@@ -76,17 +76,20 @@ public class GridLogic : MonoBehaviour {
 
 	}
 
+	bool GridBusy () {
+		for (int i = 0; i < gridPlaces.Count; i++) {
+			if (gridPlaces[i].busy || gridPlaces[i].reserved) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	IEnumerator LevelCleanup (int leftover) {
 
 		disabled = true;
 
-		while (true) {
-			for (int i = 0; i < gridPlaces.Count; i++) {
-				if (gridPlaces[i].busy || gridPlaces[i].reserved)
-					goto Fail;
-			}
-			break;
-		Fail:
+		while (GridBusy()) {
 			yield return new WaitForEndOfFrame();
 		}
 

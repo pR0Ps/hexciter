@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 19006685}
   - 212: {fileID: 19006686}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1949,7 +1949,7 @@ GameObject:
   - 4: {fileID: 157574644}
   - 23: {fileID: 157574646}
   - 102: {fileID: 157574645}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8132,7 +8132,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 625738776}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .162428349, y: 1.18572748, z: -3.84615397}
+  m_LocalPosition: {x: .162428349, y: 1.18572748, z: 0}
   m_LocalScale: {x: .923076987, y: .923076987, z: .923076987}
   m_Children:
   - {fileID: 1376503224}
@@ -13729,7 +13729,7 @@ GameObject:
   - 4: {fileID: 1078147902}
   - 23: {fileID: 1078147904}
   - 102: {fileID: 1078147903}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: scoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15874,7 +15874,7 @@ GameObject:
   - 4: {fileID: 1220821487}
   - 23: {fileID: 1220821489}
   - 102: {fileID: 1220821488}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: gameOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16307,6 +16307,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7a2abd1fe8a15624eb0d3b9382bced36, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a2abd1fe8a15624eb0d3b9382bced36, type: 2}
   m_RootGameObject: {fileID: 295777103}
@@ -16376,7 +16380,8 @@ GameObject:
   - 4: {fileID: 1265169408}
   - 111: {fileID: 1265169409}
   - 114: {fileID: 1265169410}
-  m_Layer: 9
+  - 61: {fileID: 1265169411}
+  m_Layer: 8
   m_Name: GameoverDialog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16427,6 +16432,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff730e5a34b1a584e8075579b99d764e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1265169411
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1265169407}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 16, y: 8}
+  m_Center: {x: 0, y: 0}
 --- !u!1 &1266119115
 GameObject:
   m_ObjectHideFlags: 0
@@ -17959,7 +17975,7 @@ GameObject:
   - 4: {fileID: 1342469677}
   - 23: {fileID: 1342469679}
   - 102: {fileID: 1342469678}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: tapToResetText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24710,7 +24726,7 @@ GameObject:
   - 4: {fileID: 1814481709}
   - 23: {fileID: 1814481711}
   - 102: {fileID: 1814481710}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: best
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24868,7 +24884,7 @@ GameObject:
   - 4: {fileID: 1831349298}
   - 23: {fileID: 1831349300}
   - 102: {fileID: 1831349299}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: bestText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

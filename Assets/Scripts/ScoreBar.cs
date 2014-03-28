@@ -11,7 +11,7 @@ public class ScoreBar : MonoBehaviour {
 	void Start () {
 		for (int i=0; i<NUM_CUBES; i++) {
 			progressCubes[i] = transform.FindChild(i.ToString()).GetComponent<HexaCube>();
-			progressCubes[i].Spawn(Constants.HEX_BLACK);
+			progressCubes[i].Spawn(Constants.HEX_WHITE);
 			progressCubes[i].Despawn();
 			progressCubes[i].gameObject.SetActive(false);
 		}
@@ -27,10 +27,21 @@ public class ScoreBar : MonoBehaviour {
 			yield return new WaitForSeconds(0.02f);
 		}
 		yield return new WaitForSeconds (0.5f);
-
-		transform.FindChild ("startupAnimation").gameObject.SetActive (false);
+		
 		transform.FindChild ("progressBar").gameObject.SetActive (true);
 		transform.FindChild ("progressBarBG").gameObject.SetActive (true);
+
+		for (int i=NUM_CUBES-1; i>=0; i--) {
+			HexaCube cube = transform.FindChild("startupAnimation/"+i.ToString()).GetComponent<HexaCube>();
+			cube.Despawn();
+			cube.Spawn(Constants.HEX_WHITE);
+			yield return new WaitForSeconds(0.02f);
+		}
+
+		yield return new WaitForSeconds (0.5f);
+
+		transform.FindChild ("progressBarBG").gameObject.SetActive (false);
+		transform.FindChild ("startupAnimation").gameObject.SetActive (false);
 
 		for (int i=0; i<NUM_CUBES; i++)
 			progressCubes[i].gameObject.SetActive(true);
@@ -64,7 +75,7 @@ public class ScoreBar : MonoBehaviour {
 	public IEnumerator Flood (int startIndex, int endIndex) {
 		for (int i=startIndex; i<endIndex; i++) {
 			activeCubes[i] = true;
-			progressCubes[i].Spawn(Constants.HEX_WHITE);
+			progressCubes[i].Spawn(Constants.HEX_BLACK);
 			yield return new WaitForSeconds(0.05f);
 		}
 	}

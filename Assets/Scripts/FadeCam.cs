@@ -6,6 +6,7 @@ public class FadeCam : MonoBehaviour {
 
 	private static FadeCam _instance;
 	GameObject whiteplane;
+	bool busy;
 
 	public static FadeCam Instance {
 		get {
@@ -23,33 +24,39 @@ public class FadeCam : MonoBehaviour {
 	}
 
 	public void FadeIn () {
-		StartCoroutine (IFadeIn(() => { })); // pass an empty lambda if no callback is specified
+		FadeIn(() => { }); // pass an empty lambda if no callback is specified
 	}
 
 	public void FadeIn (Action callback) {
+		if (busy) return;
 		StartCoroutine (IFadeIn(callback));
 	}
 
 	IEnumerator IFadeIn (Action callback) {
+		busy = true;
 		whiteplane.SetActive (true);
 		animation.Play ("fadein");
 		yield return new WaitForSeconds (0.5f);
 		callback.Invoke ();
 		whiteplane.SetActive (false);
+		busy = false;
 	}
 
 	public void FadeOut () {
-		StartCoroutine (IFadeOut(() => { })); // pass an empty lambda if no callback is specified
+		FadeOut(() => { }); // pass an empty lambda if no callback is specified
 	}
 	
 	public void FadeOut (Action callback) {
+		if (busy) return;
 		StartCoroutine (IFadeOut(callback));
 	}
 	
 	IEnumerator IFadeOut (Action callback) {
+		busy = true;
 		whiteplane.SetActive (true);
 		animation.Play ("fadeout");
 		yield return new WaitForSeconds (0.5f);
 		callback.Invoke ();
+		busy = false;
 	}
 }

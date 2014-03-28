@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameoverDialog : MonoBehaviour {
+public class GameoverDialog : InteractiveObject {
 
 	TextMesh[] texts;
 	TextMesh score;
@@ -25,15 +25,16 @@ public class GameoverDialog : MonoBehaviour {
 		best.text = b.ToString ("N0");
 	}
 
+	public override void DownAction () {
+		FadeCam.Instance.FadeOut(() => {Application.LoadLevel("game");});
+	}
+
 	void Update () {
 		if (sr.color.a != alpha) {
 			alpha = sr.color.a;
 			for (int i=0; i<texts.Length; i++) {
 				texts [i].color = new Color (0, 0, 0, alpha);
 			}
-		}
-		else if (InputHandler.Instance.inputSignalDown){
-			Application.LoadLevel("menu");
 		}
 	}
 }

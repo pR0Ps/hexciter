@@ -9,6 +9,7 @@ public class GridLogic : MonoBehaviour {
 
 	GridPlace origin;
 	List<GridPlace> gridPlaces = new List<GridPlace>();
+	List<GridPlace> deadPlaces = new List<GridPlace> ();
 
 	public AnimationCurve ScoreCurve;
 	private MoveProgress moves;
@@ -60,7 +61,10 @@ public class GridLogic : MonoBehaviour {
 		int scorePer = level * 200;
 		score += moves.Remaining() * scorePer;
 
-		//Calculate how many black hexes to add
+		//How many (if any) white hexes should be revived
+		int revived = moves.Remaining ();
+
+		//Calculate how many white hexes to add
 		int leftover = scoreBar.NumBlackHexes ();
 
 		//Setup next level
@@ -72,7 +76,7 @@ public class GridLogic : MonoBehaviour {
 		UpdateUI(leftover != 0);
 
 		//coroutine waits for everything to be at rest
-		StartCoroutine (LevelCleanup (leftover));
+		StartCoroutine (LevelCleanup (leftover, revived));
 
 	}
 
@@ -85,7 +89,7 @@ public class GridLogic : MonoBehaviour {
 		return false;
 	}
 
-	IEnumerator LevelCleanup (int leftover) {
+	IEnumerator LevelCleanup (int leftover, int revived) {
 
 		disabled = true;
 
@@ -95,12 +99,24 @@ public class GridLogic : MonoBehaviour {
 
 		bool gameover = false;
 
-		if (leftover != 0) {
+		if (revived != 0) {
+			for (int i = 0; i < revived && deadPlaces.Count > 0; i++) {
+				GridPlace newRevived = deadPlaces[Random.Range(0, deadPlaces.Count)];
+				deadPlaces.Remove(newRevived);
+				gridPlaces.Add(newRevived);
+				newRevived.hexaCube.spawnWhite = false;
+				newRevived.hexaCube.Despawn();
+				newRevived.hexaCube.Spawn();
+			}
+		}
+
+		else if (leftover != 0) {
 			for (int i = 0; i < leftover && gridPlaces.Count > 0; i++) {
-				GridPlace newBlack = gridPlaces[Random.Range(0, gridPlaces.Count)];
-				gridPlaces.Remove(newBlack);
-				newBlack.hexaCube.spawnWhite = true;
-				newBlack.hexaCube.Kill();
+				GridPlace newWhite = gridPlaces[Random.Range(0, gridPlaces.Count)];
+				gridPlaces.Remove(newWhite);
+				deadPlaces.Add(newWhite);
+				newWhite.hexaCube.spawnWhite = true;
+				newWhite.hexaCube.Kill();
 			}
 		}
 

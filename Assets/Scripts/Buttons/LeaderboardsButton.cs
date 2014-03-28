@@ -11,7 +11,8 @@ public class LeaderboardsButton : InteractiveObject {
 		#endif
 	}
 	
-	public override void TapAction () {
+	public override void DownAction () {
+		animation.Play ("buttonpress");
 		if (Social.localUser.authenticated){
 			#if UNITY_ANDROID
 			((GooglePlayGames.PlayGamesPlatform)Social.Active).ShowLeaderboardUI("30-move");

@@ -44,7 +44,9 @@ public class GridLogic : MonoBehaviour {
 			gridPlaces.Add(GPs[i]);
 		}
 
-		StartCoroutine(Utils.SlowSpawnSiblings(origin));
+		FadeCam.Instance.FadeIn(() => {StartCoroutine(Utils.SlowSpawnSiblings(origin));});
+
+		
 	}
 
 	void UpdateUI(bool lose){

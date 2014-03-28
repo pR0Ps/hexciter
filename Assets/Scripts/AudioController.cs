@@ -24,6 +24,11 @@ public class AudioController : MonoBehaviour {
 		
 	void Awake() {
 		source = GetComponent<AudioSource>();
+		if (AudioController.Instance && AudioController.Instance!= this) {
+			//this stops the audio controller from duplicating when moving between scenes
+			Destroy(gameObject);
+			return;
+		}
 		DontDestroyOnLoad(gameObject);
 		foreach (object o in Resources.LoadAll("SFX")) {
 			SFX.Add((AudioClip)o);

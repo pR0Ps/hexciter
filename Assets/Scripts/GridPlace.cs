@@ -68,6 +68,8 @@ public class GridPlace : InteractiveObject {
 
 		targetScale = Vector3.one;
 		targetPosition = transform.localPosition;
+
+		busy = true;
 	}
 
 	public override void DownAction () {

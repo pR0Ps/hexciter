@@ -135,7 +135,7 @@ public static class Utils {
 
 	//Slow spawn all siblings of the passed in GridPlace
 	public static IEnumerator SlowSpawnSiblings (GridPlace start) {
-		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false))){
+		foreach (GridPlace[] ring in GetSiblings(start)){
 			foreach (GridPlace gp in ring){
 				gp.busy = true;
 				gp.hexaCube.SlowSpawn();

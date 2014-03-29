@@ -81,23 +81,6 @@ public static class Utils {
 		}
 	}
 
-	//Set all the linked GridPlaces to reserved
-	public static void ReserveAll(GridPlace start){
-		foreach (GridPlace gp in Unpack<GridPlace>(GetSiblings(start, check_color(start.hexaCube.hexColor)))){
-			gp.reserved = true;
-		}
-	}
-
-	//Tally the score starting with the passed in GridPlace
-	public static int TallyScore (GridPlace start) {
-		int tally = 0;
-		foreach (GridPlace gp in Unpack<GridPlace>(GetSiblings(start, check_color(start.hexaCube.hexColor)))){
-			gp.reserved = true;
-			tally += 1;
-		}
-		return tally;
-	}
-
 	//Scale the siblings of the passed in GridPlace (to a depth of 2)
 	public static void ScaleSiblings(GridPlace start, bool normalize){
 		int depth = 0;
@@ -114,8 +97,6 @@ public static class Utils {
 	public static IEnumerator FillSiblings (GridPlace start, int fillColor) {
 		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_color(start.hexaCube.hexColor))){
 			foreach (GridPlace gp in ring){
-				gp.busy = true;
-				gp.reserved = false;
 				gp.hexaCube.Fill(fillColor);
 			}
 			yield return new WaitForSeconds (0.1f);
@@ -123,35 +104,28 @@ public static class Utils {
 	}
 
 	//Kill the connected siblings of the passed in GridPlace
-	public static IEnumerator KillSiblings (GridPlace start) {
+	//Call the callback with the current score
+	public static IEnumerator KillSiblings (GridPlace start, Action<int,bool> callback) {
+		int count = 0;
 		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_color(start.hexaCube.hexColor))){
 			foreach (GridPlace gp in ring){
-				gp.busy = true;
 				gp.hexaCube.Kill();
+
+				count++;
+				callback(count, false);
 			}
 			yield return new WaitForSeconds (0.1f);
 		}
+		callback(count, true);
 	}
 
 	//Slow spawn all siblings of the passed in GridPlace
 	public static IEnumerator SlowSpawnSiblings (GridPlace start) {
 		foreach (GridPlace[] ring in GetSiblings(start)){
 			foreach (GridPlace gp in ring){
-				gp.busy = true;
 				gp.hexaCube.SlowSpawn();
 			}
 			yield return new WaitForSeconds(.3f);
-		}
-	}
-
-	//Despawn all siblings of the passed in GridPlace
-	public static IEnumerator DespawnSiblings (GridPlace start) {
-		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false))){
-			foreach (GridPlace gp in ring){
-				gp.busy = true;
-				gp.hexaCube.Despawn();
-			}
-			yield return new WaitForSeconds(.1f);
 		}
 	}
 }

@@ -143,9 +143,9 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	//Return a callback for the current kill action
-	public sys.Action<int, bool> KillCallback(GridPlace start, int color){
-		return (count, done) => {
-			if (done){
+	public sys.Action<GridPlace, int> KillCallback(GridPlace start, int color){
+		return (gp, count) => {
+			if (gp == null){
 				//Done counting, award score
 				int levelBonus = 100 + (level - 1) * 10;
 				int multiplier = start.hexaCube.hexColor == color ? 2 : 1;
@@ -160,6 +160,7 @@ public class GridLogic : MonoBehaviour {
 			}
 			else{
 				//Still counting, do animations and stuff
+				//ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(count, gp.transform.position);
 			}
 		};
 	}

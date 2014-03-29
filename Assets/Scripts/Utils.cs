@@ -105,18 +105,18 @@ public static class Utils {
 
 	//Kill the connected siblings of the passed in GridPlace
 	//Call the callback with the current score
-	public static IEnumerator KillSiblings (GridPlace start, Action<int,bool> callback) {
+	public static IEnumerator KillSiblings (GridPlace start, Action<GridPlace,int> callback) {
 		int count = 0;
 		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_color(start.hexaCube.hexColor))){
 			foreach (GridPlace gp in ring){
 				gp.hexaCube.Kill();
 
 				count++;
-				callback(count, false);
+				callback(gp, count);
 			}
 			yield return new WaitForSeconds (0.1f);
 		}
-		callback(count, true);
+		callback(null, count);
 	}
 
 	//Slow spawn all siblings of the passed in GridPlace

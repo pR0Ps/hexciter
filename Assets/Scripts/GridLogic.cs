@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using sys = System; //System.Random conflicts with UnityEngine.Random
 
 public class GridLogic : MonoBehaviour {
 
@@ -82,7 +83,7 @@ public class GridLogic : MonoBehaviour {
 
 	bool GridBusy () {
 		for (int i = 0; i < gridPlaces.Count; i++) {
-			if (gridPlaces[i].busy || gridPlaces[i].reserved) {
+			if (gridPlaces[i].busy) {
 				return true;
 			}
 		}
@@ -133,31 +134,40 @@ public class GridLogic : MonoBehaviour {
 		}
 	}
 
-
 	public void Flood(GridPlace start) {
 		lastMoveScore /= 4; // halves your combo bonus
 		if (!start.busy){
-			Utils.ReserveAll(start);
 			StartCoroutine(Utils.FillSiblings(start, colorSelector.Current()));
 			DoMove();
 		}
 	}
 
+	//Return a callback for the current kill action
+	public sys.Action<GridPlace, int> KillCallback(GridPlace start, int color){
+		return (gp, count) => {
+			if (gp == null){
+				//Done counting, award score
+				int levelBonus = 100 + (level - 1) * 10;
+				int multiplier = start.hexaCube.hexColor == color ? 2 : 1;
+				float bonus = lastMoveScore * Mathf.Sqrt(count/61f);
+				int earnedScore = ((int)(bonus + count * levelBonus)/10) * 10 * multiplier;
+				lastMoveScore = earnedScore;
+
+				score += earnedScore;
+				UpdateUI(false);
+
+				ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(earnedScore, start.transform.position);
+			}
+			else{
+				//Still counting, do animations and stuff
+				//ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(count, gp.transform.position);
+			}
+		};
+	}
+
 	public void Destroy (GridPlace start) {
-		int multiplier = 1;
-		if (colorSelector.Current () == start.hexaCube.hexColor) multiplier = 2;
-
-		int tally = Utils.TallyScore(start);
-		int levelBonus = 100 + (level - 1) * 10;
-		int earnedScore = ((int)(lastMoveScore * Mathf.Sqrt(tally/61f) + tally * levelBonus)/10) * 10 * multiplier;
-		lastMoveScore = earnedScore;
-
-		score += earnedScore;
-		UpdateUI(false);
-		StartCoroutine(Utils.KillSiblings(start));
-
-		ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show (earnedScore, start.transform.position);
-		DoMove ();
+		StartCoroutine(Utils.KillSiblings(start, KillCallback(start, colorSelector.Current())));
+		DoMove();
 	}
 
 	//Anytyime a move is made, this is called

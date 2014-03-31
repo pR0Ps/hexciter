@@ -24,7 +24,6 @@ public class ScoreBar : MonoBehaviour {
 			HexaCube cube = transform.FindChild("startupAnimation/"+i.ToString()).GetComponent<HexaCube>();
 			cube.Spawn(Constants.HEX_BLACK);
 			cube.transform.FindChild("LookRotation").localScale = Vector3.one * 1.3f;
-			yield return new WaitForSeconds(0.02f);
 		}
 		yield return new WaitForSeconds (0.5f);
 		

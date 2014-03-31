@@ -23,13 +23,14 @@ public class FadeCam : MonoBehaviour {
 		whiteplane.SetActive (false);
 	}
 
-	public void FadeIn () {
-		FadeIn(() => { }); // pass an empty lambda if no callback is specified
+	public bool FadeIn () {
+		return FadeIn(() => { }); // pass an empty lambda if no callback is specified
 	}
 
-	public void FadeIn (Action callback) {
-		if (busy) return;
+	public bool FadeIn (Action callback) {
+		if (busy) return false;
 		StartCoroutine (IFadeIn(callback));
+		return true;
 	}
 
 	IEnumerator IFadeIn (Action callback) {
@@ -42,13 +43,14 @@ public class FadeCam : MonoBehaviour {
 		busy = false;
 	}
 
-	public void FadeOut () {
-		FadeOut(() => { }); // pass an empty lambda if no callback is specified
+	public bool FadeOut () {
+		return FadeOut(() => { }); // pass an empty lambda if no callback is specified
 	}
 	
-	public void FadeOut (Action callback) {
-		if (busy) return;
+	public bool FadeOut (Action callback) {
+		if (busy) return false;
 		StartCoroutine (IFadeOut(callback));
+		return true;
 	}
 	
 	IEnumerator IFadeOut (Action callback) {

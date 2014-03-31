@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +27,11 @@ public static class Utils {
 	public static Func<GridPlace,Boolean> check_busy(bool busy){
 		return gp => {
 			return gp.busy == busy;
+		};
+	}
+	public static Func<GridPlace,Boolean> check_alive(bool alive){
+		return gp => {
+			return gp.hexaCube.alive == alive;
 		};
 	}
 	public static Func<GridPlace,Boolean> check_color(int color){
@@ -84,7 +89,7 @@ public static class Utils {
 	//Scale the siblings of the passed in GridPlace (to a depth of 2)
 	public static void ScaleSiblings(GridPlace start, bool normalize){
 		int depth = 0;
-		foreach (GridPlace[] ring in Utils.GetSiblings(start)){
+		foreach (GridPlace[] ring in Utils.GetSiblings(start, check_alive(true))){
 			foreach (GridPlace gp in ring){
 				gp.Scale(depth, normalize);
 			}
@@ -95,7 +100,7 @@ public static class Utils {
 
 	//Fill the connected siblings of the passed in GridPlace
 	public static IEnumerator FillSiblings (GridPlace start, int fillColor) {
-		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_color(start.hexaCube.hexColor))){
+		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_alive(true), check_color(start.hexaCube.hexColor))){
 			foreach (GridPlace gp in ring){
 				gp.hexaCube.Fill(fillColor);
 			}
@@ -107,7 +112,7 @@ public static class Utils {
 	//Call the callback with the current score
 	public static IEnumerator KillSiblings (GridPlace start, Action<GridPlace,int> callback) {
 		int count = 0;
-		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_color(start.hexaCube.hexColor))){
+		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_alive(true), check_color(start.hexaCube.hexColor))){
 			foreach (GridPlace gp in ring){
 				gp.hexaCube.Kill();
 

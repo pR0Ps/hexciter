@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -105,8 +105,6 @@ public class GridLogic : MonoBehaviour {
 				GridPlace newRevived = deadPlaces[Random.Range(0, deadPlaces.Count)];
 				deadPlaces.Remove(newRevived);
 				gridPlaces.Add(newRevived);
-				newRevived.hexaCube.spawnWhite = false;
-				newRevived.hexaCube.Despawn();
 				newRevived.hexaCube.Spawn();
 			}
 		}
@@ -116,8 +114,7 @@ public class GridLogic : MonoBehaviour {
 				GridPlace newWhite = gridPlaces[Random.Range(0, gridPlaces.Count)];
 				gridPlaces.Remove(newWhite);
 				deadPlaces.Add(newWhite);
-				newWhite.hexaCube.spawnWhite = true;
-				newWhite.hexaCube.Kill();
+				newWhite.hexaCube.Despawn();
 			}
 		}
 

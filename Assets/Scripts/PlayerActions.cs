@@ -30,7 +30,7 @@ public class PlayerActions : MonoBehaviour {
 	}
 
 	bool validPlace(GridPlace gp){
-		return gp != null && !gp.busy && gp.hexaCube.hexColor != Constants.HEX_WHITE;
+		return gp != null && !gp.busy && gp.hexaCube.alive;
 	}
 
 	public void Destroy(){

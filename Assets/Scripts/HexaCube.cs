@@ -6,19 +6,13 @@ public class HexaCube : InteractiveObject {
 	
 	public int hexColor;
 	public GridPlace gridPlace;
-	public bool spawnWhite {get; set;}
+	public bool alive { get; private set; }
 
 	VertexColor vertexColor;
 	
-	IEnumerator ColorLerp (int newHexColor) {
-		Color newColor = Constants.HEX_COLORS[newHexColor];
-		Color initialColor = vertexColor.vColor;
-		float t = 0;
-		while (vertexColor.vColor != newColor) {
-			t += Time.deltaTime * 2;
-			vertexColor.UpdateColor(Color.Lerp(initialColor, newColor, t));
-			yield return new WaitForEndOfFrame();
-		}
+	void Awake () {
+		vertexColor = GetComponentInChildren<VertexColor>();
+		alive = true;
 	}
 
 	void setBusy(bool b){
@@ -34,8 +28,15 @@ public class HexaCube : InteractiveObject {
 		StartCoroutine(ColorLerp(newHexColor));
 	}
 	
-	void Awake () {
-		vertexColor = GetComponentInChildren<VertexColor> ();
+	IEnumerator ColorLerp (int newHexColor) {
+		Color newColor = Constants.HEX_COLORS[newHexColor];
+		Color initialColor = vertexColor.vColor;
+		float t = 0;
+		while (vertexColor.vColor != newColor) {
+			t += Time.deltaTime * 2;
+			vertexColor.UpdateColor(Color.Lerp(initialColor, newColor, t));
+			yield return new WaitForEndOfFrame();
+		}
 	}
 
 	public void Fill (int newHexColor) {
@@ -50,10 +51,10 @@ public class HexaCube : InteractiveObject {
 	}
 	
 	IEnumerator KillCo () {
-		Despawn ();
-		while(gridPlace.busy)
+		Despawn();
+		while(alive)
 			yield return new WaitForEndOfFrame();
-		Spawn ();
+		Spawn();
 	}
 
 	public void Spawn () {
@@ -74,10 +75,7 @@ public class HexaCube : InteractiveObject {
 
 	private void DoSpawn(string anim, int color){
 		setBusy(true);
-		if (spawnWhite) {
-			color = Constants.HEX_WHITE;
-			spawnWhite = false;
-		}
+		alive = true;
 		hexColor = color;
 		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
 		animation.Play(anim);
@@ -94,6 +92,7 @@ public class HexaCube : InteractiveObject {
 	
 	void DespawnedCallback () {
 		setBusy(false);
+		alive = false;
 	}
 	
 	void WiggleCallback () {

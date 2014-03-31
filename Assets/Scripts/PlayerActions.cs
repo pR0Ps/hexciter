@@ -29,24 +29,26 @@ public class PlayerActions : MonoBehaviour {
 		selected = null;
 	}
 
+	bool validPlace(GridPlace gp){
+		return gp != null && !gp.busy && gp.hexaCube.hexColor != Constants.HEX_WHITE;
+	}
+
 	public void Destroy(){
-		if (selected != null && !selected.reserved && selected.hexaCube.hexColor != Constants.HEX_WHITE) {
+		if (validPlace(selected)) {
 			gridLogic.Destroy(selected);
 		}
 		Deselect();
 	}
 
 	public void Flood(){
-		if (selected != null && !selected.reserved && selected.hexaCube.hexColor != Constants.HEX_WHITE){
+		if (validPlace(selected)){
 			gridLogic.Flood(selected);
 		}
 		Deselect();
 	}
 
 	public void DownAction(GridPlace gp){
-		if (gp == null) return;
-
-		if (!swiping && !gp.busy && gp.hexaCube.hexColor != Constants.HEX_WHITE) {
+		if (!swiping && validPlace(gp)) {
 			swiping = true;
 			selected = gp;
 			Utils.ScaleSiblings(selected, true);
@@ -58,7 +60,7 @@ public class PlayerActions : MonoBehaviour {
 			// not the same place, do swiping action
 			Vector2 diff = (Vector2)selected.transform.position - (Vector2)Camera.main.ScreenToWorldPoint(InputHandler.Instance.inputVectorScreen);
 			if (Mathf.Abs(diff.x) >= OFFSET) {
-				//Action was a drag - perform action based on up positio
+				//Action was a long enough drag, do the action
 				if (diff.x > 0)
 					Flood();
 				else

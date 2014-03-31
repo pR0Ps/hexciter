@@ -46,7 +46,6 @@ public class GridPlace : InteractiveObject {
 	public HexaCube hexaCube;
 	
 	public bool busy {get; set;}
-	public bool reserved {get; set;}
 
 	Transform lookTransform;
 	Quaternion targetRotation;

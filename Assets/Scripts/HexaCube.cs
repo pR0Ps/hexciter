@@ -12,7 +12,7 @@ public class HexaCube : InteractiveObject {
 	
 	void Awake () {
 		vertexColor = GetComponentInChildren<VertexColor>();
-		alive = true;
+		alive = false;
 	}
 
 	void setBusy(bool b){

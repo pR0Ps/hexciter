@@ -71,6 +71,12 @@ public class GridPlace : InteractiveObject {
 		busy = true;
 	}
 
+	private bool alive{
+		get{
+			return hexaCube.alive;
+		}
+	}
+
 	public override void DownAction () {
 		playerActions.DownAction(this);
 	}
@@ -95,7 +101,7 @@ public class GridPlace : InteractiveObject {
 	}
 
 	void Update () {
-		if (!busy){
+		if (!busy && alive){
 			if (playerActions.swiping) {
 				Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
 				targetRotation = Quaternion.LookRotation(lookPoint - lookTransform.position);

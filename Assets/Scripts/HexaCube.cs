@@ -20,6 +20,12 @@ public class HexaCube : InteractiveObject {
 			yield return new WaitForEndOfFrame();
 		}
 	}
+
+	void setBusy(bool b){
+		if (gridPlace) {
+			gridPlace.busy = b;
+		}
+	}
 	
 	//A public method to tell a cube to lerp to a new color
 	//Currently used by the color selector
@@ -28,19 +34,26 @@ public class HexaCube : InteractiveObject {
 		StartCoroutine(ColorLerp(newHexColor));
 	}
 	
+	void Awake () {
+		vertexColor = GetComponentInChildren<VertexColor> ();
+	}
+
 	public void Fill (int newHexColor) {
+		setBusy(true);
 		hexColor = newHexColor;
 		StartCoroutine(ColorLerp(newHexColor));
 		animation.Play("Wiggle");
 	}
-	
-	void Awake () {
-		vertexColor = GetComponentInChildren<VertexColor> ();
+
+	public void Kill () {
+		StartCoroutine(KillCo());
 	}
 	
-	void RandomizeColor () {
-		hexColor = Random.Range(0, Constants.NUMBER_OF_COLORS);
-		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
+	IEnumerator KillCo () {
+		Despawn ();
+		while(gridPlace.busy)
+			yield return new WaitForEndOfFrame();
+		Spawn ();
 	}
 
 	public void Spawn () {
@@ -60,6 +73,7 @@ public class HexaCube : InteractiveObject {
 	}
 
 	private void DoSpawn(string anim, int color){
+		setBusy(true);
 		if (spawnWhite) {
 			color = Constants.HEX_WHITE;
 			spawnWhite = false;
@@ -68,42 +82,21 @@ public class HexaCube : InteractiveObject {
 		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
 		animation.Play(anim);
 	}
-
-	public void Kill () {
-		StartCoroutine(KillCo());
-	}
-	
-	IEnumerator KillCo () {
-		Despawn ();
-		while(gridPlace.busy) {
-			yield return new WaitForEndOfFrame();
-		}
-		Spawn ();
-	}
 	
 	public void Despawn () {
+		setBusy(true);
 		animation.Play("Despawn");
-		if (!gridPlace)
-			return;
-		gridPlace.busy = true;
 	}
 	
 	void SpawnedCallback () {
-		if (!gridPlace)
-			return;
-		gridPlace.busy = false;
-		gridPlace.reserved = false;
+		setBusy(false);
 	}
 	
 	void DespawnedCallback () {
-		if (!gridPlace)
-			return;
-		gridPlace.busy = false;
+		setBusy(false);
 	}
 	
 	void WiggleCallback () {
-		if (!gridPlace)
-			return;
-		gridPlace.busy = false;
+		setBusy(false);
 	}
 }

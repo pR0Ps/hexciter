@@ -74,11 +74,9 @@ PlayerSettings:
     16:9: 1
     Others: 1
   iPhoneBundleIdentifier: com.teamsalt.hexciter
-  metroEnableIndependentInputSource: 0
-  metroEnableLowLatencyPresentationAPI: 0
   productGUID: cad335a36aed17442a7c7d582076ee81
-  iPhoneBundleVersion: 0.7
-  AndroidBundleVersionCode: 7
+  iPhoneBundleVersion: 0.8
+  AndroidBundleVersionCode: 8
   AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -112,8 +110,20 @@ PlayerSettings:
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
-    - m_Icon: {fileID: 2800000, guid: efcef4f11fda7ea45aa8575a33bc450c, type: 3}
+    - m_Icon: {fileID: 2800000, guid: 06828103344884e4fa8c70f8cf28258c, type: 3}
       m_Size: 128
+  - m_BuildTarget: Android
+    m_Icons:
+    - m_Icon: {fileID: 2800000, guid: c8f04f254fa055e48b33891d1bef0d99, type: 3}
+      m_Size: 144
+    - m_Icon: {fileID: 2800000, guid: c6921333c06df0a4289db3e0e2b34e59, type: 3}
+      m_Size: 96
+    - m_Icon: {fileID: 2800000, guid: eb2e526ffeb247f4da4c42183c8386fe, type: 3}
+      m_Size: 72
+    - m_Icon: {fileID: 2800000, guid: 7a6825fb8104d87408fbc177fde7c041, type: 3}
+      m_Size: 48
+    - m_Icon: {fileID: 2800000, guid: d19ad5b700228594db19e518042a64e0, type: 3}
+      m_Size: 36
   m_BuildTargetBatching:
   - m_BuildTarget: Android
     m_StaticBatching: 1
@@ -184,7 +194,6 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   metroCapabilities: {}
-  metroUnprocessedPlugins: []
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 
   blackberryDevicePassword: 

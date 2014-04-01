@@ -3,6 +3,16 @@ Hexciter
 
 A hexagon-based arcade-puzzle game.
 
+Join the Beta!
+==============
+
+The game is currently available via an open beta test. It will be officially
+released soon.
+
+1. Join the [Google+ community](https://plus.google.com/communities/113518882152366646905)
+2. Become a tester at https://play.google.com/apps/testing/com.teamsalt.hexciter
+3. Download the application from [the Play store](https://play.google.com/store/apps/details?id=com.teamsalt.hexciter)
+
 How to Play
 ===========
 
@@ -27,13 +37,11 @@ potential moves.
 
 When the entire game board has been disabled it's game over.
 
+Screenshots
+============
 
-Join the Beta!
-==============
+![Poster](https://raw.githubusercontent.com/pR0Ps/hexciter/master/Flash%20Art/poster300dpi.png)
 
-The game is currently available via an open beta test. It will be officially
-released soon.
+![Gameplay](https://raw.githubusercontent.com/pR0Ps/hexciter/master/Flash%20Art/screenshot20140331220259655.png)
 
-1. Join the [Google+ community](https://plus.google.com/communities/113518882152366646905)
-2. Become a tester at https://play.google.com/apps/testing/com.teamsalt.hexciter
-3. Download the application from [the Play store](https://play.google.com/store/apps/details?id=com.teamsalt.hexciter)
+![Menu](https://raw.githubusercontent.com/pR0Ps/hexciter/master/Flash%20Art/screenshot20140331230553211.png)

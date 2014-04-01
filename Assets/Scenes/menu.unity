@@ -763,7 +763,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 30
+      scalar: 35
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -778,7 +778,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .5
+          value: .714285731
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -822,10 +822,10 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 2003310846
+          rgba: 2355632382
         key1:
           serializedVersion: 2
-          rgba: 2497039367
+          rgba: 2362821639
         key2:
           serializedVersion: 2
           rgba: 4279893647
@@ -988,7 +988,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: .699999988
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1234,7 +1234,7 @@ ParticleSystem:
         serializedVersion: 2
         m_Curve:
         - time: 0
-          value: .400000006
+          value: .399999976
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -2131,3 +2131,41 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: a42f2b23da63bad4fa8bc3657f585e96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &2142661500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2142661502}
+  - 114: {fileID: 2142661501}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2142661501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2142661500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90fb4e3dc4ece1845ba70ac4391ae658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2142661502
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2142661500}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.00985384, y: -5.15130377, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}

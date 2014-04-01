@@ -46,7 +46,16 @@ public class GridLogic : MonoBehaviour {
 			gridPlaces.Add(GPs[i]);
 		}
 
-		FadeCam.Instance.FadeIn(() => {StartCoroutine(Utils.SlowSpawnSiblings(origin));});
+		FadeCam.Instance.FadeIn(() => {StartCoroutine(StartGame());});
+	}
+
+	IEnumerator StartGame(){
+		disabled = true;
+		StartCoroutine(Utils.SlowSpawnSiblings(origin));
+		while (GridBusy()) {
+			yield return new WaitForEndOfFrame();
+		}
+		disabled = false;
 	}
 
 	void UpdateUI(bool lose){

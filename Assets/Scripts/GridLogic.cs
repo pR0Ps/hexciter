@@ -140,13 +140,15 @@ public class GridLogic : MonoBehaviour {
 
 	//Return a callback for the current kill action
 	public sys.Action<GridPlace, int> KillCallback(GridPlace start, int color){
+		int startColor = start.hexaCube.hexColor;
 		return (gp, count) => {
 			if (gp == null){
 				//Done counting, award score
 				int levelBonus = 100 + (level - 1) * 10;
-				int multiplier = start.hexaCube.hexColor == color ? 2 : 1;
-				float bonus = lastMoveScore * Mathf.Sqrt(count/61f);
-				int earnedScore = ((int)(bonus + count * levelBonus)/10) * 10 * multiplier;
+				int multiplier = startColor == color ? 2 : 1;
+				int bonus = (int)(lastMoveScore * Mathf.Sqrt(count/61f));
+				int earnedScore = ((bonus + count * levelBonus)/10) * 10 * multiplier;
+
 				lastMoveScore = earnedScore;
 
 				score += earnedScore;

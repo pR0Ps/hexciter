@@ -47,8 +47,6 @@ public class GridLogic : MonoBehaviour {
 		}
 
 		FadeCam.Instance.FadeIn(() => {StartCoroutine(Utils.SlowSpawnSiblings(origin));});
-
-		
 	}
 
 	void UpdateUI(bool lose){
@@ -56,7 +54,21 @@ public class GridLogic : MonoBehaviour {
 		scoreTextMesh.text = score.ToString("N0");
 	}
 
-	void NextLevel(){
+	bool GridBusy () {
+		for (int i = 0; i < gridPlaces.Count; i++) {
+			if (gridPlaces[i].busy) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	IEnumerator NextLevel () {
+		disabled = true;
+
+		while (GridBusy()) {
+			yield return new WaitForEndOfFrame();
+		}
 
 		//Calculate bonus points
 		int scorePer = level * 200;
@@ -73,30 +85,8 @@ public class GridLogic : MonoBehaviour {
 		level++;
 		startScore = score;
 		targetScore = score + level * 5000;
-		
+
 		UpdateUI(leftover != 0);
-
-		//coroutine waits for everything to be at rest
-		StartCoroutine (LevelCleanup (leftover, revived));
-
-	}
-
-	bool GridBusy () {
-		for (int i = 0; i < gridPlaces.Count; i++) {
-			if (gridPlaces[i].busy) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	IEnumerator LevelCleanup (int leftover, int revived) {
-
-		disabled = true;
-
-		while (GridBusy()) {
-			yield return new WaitForEndOfFrame();
-		}
 
 		bool gameover = false;
 
@@ -198,8 +188,8 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	void Update () {
-		if (score >= targetScore || moves.NoneLeft()){
-			NextLevel();
+		if (!disabled && (score >= targetScore || moves.NoneLeft())){
+			StartCoroutine (NextLevel());
 		}
 	}
 }

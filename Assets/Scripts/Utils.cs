@@ -89,7 +89,7 @@ public static class Utils {
 	//Scale the siblings of the passed in GridPlace (to a depth of 2)
 	public static void ScaleSiblings(GridPlace start, bool normalize){
 		int depth = 0;
-		foreach (GridPlace[] ring in Utils.GetSiblings(start, check_alive(true))){
+		foreach (GridPlace[] ring in Utils.GetSiblings(start)){
 			foreach (GridPlace gp in ring){
 				gp.Scale(depth, normalize);
 			}

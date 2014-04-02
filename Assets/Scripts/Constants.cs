@@ -7,37 +7,37 @@ public static class Constants {
 	public const int NUM_COLORS = 4;
 	public const int NUM_COLOR_SCHEMES = 3;
 
-	public static Color32 BLACK = HexToColor("000000");
-	public static Color32 WHITE = HexToColor("FFFFFF");
-	public static Color32 GREY = HexToColor("808080");
+	public static Color32 BLACK = HexToColor32("000000");
+	public static Color32 WHITE = HexToColor32("FFFFFF");
+	public static Color32 GREY = HexToColor32("808080");
 
 	//Each color scheme is a different array
 	public static Color32[][] ALL_COLORS = new Color32[][] {
 		new Color32[]{
-			HexToColor("E40045"), //red
-			HexToColor("FF7600"), //orange
-			HexToColor("01939A"), //blue
-			HexToColor("67E300"), //green
+			HexToColor32("E40045"), //red
+			HexToColor32("FF7600"), //orange
+			HexToColor32("01939A"), //blue
+			HexToColor32("67E300"), //green
 		},
 		new Color32[]{
-			HexToColor("00AC6B"), //green
-			HexToColor("FFEB00"), //yellow
-			HexToColor("560EAD"), //purple
-			HexToColor("FF4F00"), //orange
+			HexToColor32("00AC6B"), //green
+			HexToColor32("FFEB00"), //yellow
+			HexToColor32("560EAD"), //purple
+			HexToColor32("FF4F00"), //orange
 		},
 		new Color32[]{
-			HexToColor("C9770A"), //purple
-			HexToColor("1144AA"), //blue
-			HexToColor("FF8700"), //orange
-			HexToColor("A5Ef00"), //green
+			HexToColor32("C9007A"), //purple
+			HexToColor32("1144AA"), //blue
+			HexToColor32("FFA700"), //orange
+			HexToColor32("5DE100"), //green
 		}
 	};
 
 	public static Color32 RandomColor(){
-		return ALL_COLORS[0][Random.Range (0, NUM_COLORS)];
+		return ALL_COLORS[PlayerPrefs.GetInt("color_scheme", 0)][Random.Range (0, NUM_COLORS)];
 	}
 
-	static Color32 HexToColor (string hexadecimal) {
+	static Color32 HexToColor32 (string hexadecimal) {
 		
 		byte r = System.Convert.ToByte (hexadecimal.Substring (0, 2), 16);
 		byte g = System.Convert.ToByte (hexadecimal.Substring (2, 2), 16);

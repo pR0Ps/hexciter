@@ -1,31 +1,47 @@
 using UnityEngine;
 using System.Collections;
-using System;
 using System.Collections.Generic;
 
 public static class Constants {
 	
-	public const int NUMBER_OF_COLORS = 4;
+	public const int NUM_COLORS = 4;
+	public const int NUM_COLOR_SCHEMES = 3;
 
-	public const int HEX_BLACK = 4;
-	public const int HEX_WHITE = 5;
-	public const int HEX_GREY = 6;
-	
-	public static Color32[] HEX_COLORS = new Color32[] {
-		HexToColor32("E40045"),
-		HexToColor32("FF7600"),
-		HexToColor32("01939A"),
-		HexToColor32("67E300"),
-		HexToColor32("000000"),
-		HexToColor32("FFFFFF"),
-		HexToColor32("808080"),
+	public static Color32 BLACK = HexToColor("000000");
+	public static Color32 WHITE = HexToColor("FFFFFF");
+	public static Color32 GREY = HexToColor("808080");
+
+	//Each color scheme is a different array
+	public static Color32[][] ALL_COLORS = new Color32[][] {
+		new Color32[]{
+			HexToColor("E40045"), //red
+			HexToColor("FF7600"), //orange
+			HexToColor("01939A"), //blue
+			HexToColor("67E300"), //green
+		},
+		new Color32[]{
+			HexToColor("00AC6B"), //green
+			HexToColor("FFEB00"), //yellow
+			HexToColor("560EAD"), //purple
+			HexToColor("FF4F00"), //orange
+		},
+		new Color32[]{
+			HexToColor("C9770A"), //purple
+			HexToColor("1144AA"), //blue
+			HexToColor("FF8700"), //orange
+			HexToColor("A5Ef00"), //green
+		}
 	};
 
-	static Color32 HexToColor32 (string hexadecimal) {
+	public static Color32 RandomColor(){
+		return ALL_COLORS[0][Random.Range (0, NUM_COLORS)];
+	}
+
+	static Color32 HexToColor (string hexadecimal) {
 		
-		byte r = Convert.ToByte (hexadecimal.Substring (0, 2), 16);
-		byte g = Convert.ToByte (hexadecimal.Substring (2, 2), 16);
-		byte b = Convert.ToByte (hexadecimal.Substring (4, 2), 16);
+		byte r = System.Convert.ToByte (hexadecimal.Substring (0, 2), 16);
+		byte g = System.Convert.ToByte (hexadecimal.Substring (2, 2), 16);
+		byte b = System.Convert.ToByte (hexadecimal.Substring (4, 2), 16);
 
 		return new Color32 (r, g, b, 255);
 	}

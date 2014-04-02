@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ScoreBar : MonoBehaviour {
@@ -11,7 +11,7 @@ public class ScoreBar : MonoBehaviour {
 	void Start () {
 		for (int i=0; i<NUM_CUBES; i++) {
 			progressCubes[i] = transform.FindChild(i.ToString()).GetComponent<HexaCube>();
-			progressCubes[i].Spawn(Constants.HEX_WHITE);
+			progressCubes[i].Spawn(Constants.WHITE);
 			progressCubes[i].Despawn();
 			progressCubes[i].gameObject.SetActive(false);
 		}
@@ -22,7 +22,7 @@ public class ScoreBar : MonoBehaviour {
 
 		for (int i=0; i<NUM_CUBES; i++) {
 			HexaCube cube = transform.FindChild("startupAnimation/"+i.ToString()).GetComponent<HexaCube>();
-			cube.Spawn(Constants.HEX_BLACK);
+			cube.Spawn(Constants.BLACK);
 			cube.transform.FindChild("LookRotation").localScale = Vector3.one * 1.3f;
 		}
 		yield return new WaitForSeconds (0.5f);
@@ -33,7 +33,7 @@ public class ScoreBar : MonoBehaviour {
 		for (int i=NUM_CUBES-1; i>=0; i--) {
 			HexaCube cube = transform.FindChild("startupAnimation/"+i.ToString()).GetComponent<HexaCube>();
 			cube.Despawn();
-			cube.Spawn(Constants.HEX_WHITE);
+			cube.Spawn(Constants.WHITE);
 			yield return new WaitForSeconds(0.02f);
 		}
 
@@ -74,7 +74,7 @@ public class ScoreBar : MonoBehaviour {
 	public IEnumerator Flood (int startIndex, int endIndex) {
 		for (int i=startIndex; i<endIndex; i++) {
 			activeCubes[i] = true;
-			progressCubes[i].Spawn(Constants.HEX_BLACK);
+			progressCubes[i].Spawn(Constants.BLACK);
 			yield return new WaitForSeconds(0.05f);
 		}
 	}

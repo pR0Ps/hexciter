@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MoveProgress : MonoBehaviour {
@@ -26,7 +26,7 @@ public class MoveProgress : MonoBehaviour {
 
 	void SpawnCube(int i){
 		if (!state[i]){
-			progressCubes[i].SlowSpawn(Constants.HEX_GREY);
+			progressCubes[i].SlowSpawn(Constants.GREY);
 			state[i] = true;
 		}
 	}

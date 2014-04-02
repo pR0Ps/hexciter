@@ -140,8 +140,8 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	//Return a callback for the current kill action
-	public sys.Action<GridPlace, int> KillCallback(GridPlace start, int color){
-		int startColor = start.hexaCube.hexColor;
+	public sys.Action<GridPlace, int> KillCallback(GridPlace start, Color color){
+		Color startColor = start.hexaCube.hexColor;
 		return (gp, count) => {
 			if (gp == null){
 				//Done counting, award score

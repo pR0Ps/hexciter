@@ -34,7 +34,7 @@ public static class Utils {
 			return gp.hexaCube.alive == alive;
 		};
 	}
-	public static Func<GridPlace,Boolean> check_color(int color){
+	public static Func<GridPlace,Boolean> check_color(Color color){
 		return gp => {
 			return gp.hexaCube.hexColor == color;
 		};
@@ -99,7 +99,7 @@ public static class Utils {
 	}
 
 	//Fill the connected siblings of the passed in GridPlace
-	public static IEnumerator FillSiblings (GridPlace start, int fillColor) {
+	public static IEnumerator FillSiblings (GridPlace start, Color fillColor) {
 		foreach (GridPlace[] ring in GetSiblings(start, check_busy(false), check_alive(true), check_color(start.hexaCube.hexColor))){
 			foreach (GridPlace gp in ring){
 				gp.hexaCube.Fill(fillColor);

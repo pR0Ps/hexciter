@@ -99,18 +99,19 @@ public class GridPlace : InteractiveObject {
 	}
 
 	void Update () {
-		if (!busy && alive){
-			if (playerActions.swiping) {
-				Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
-				targetRotation = Quaternion.LookRotation(lookPoint - displayTransform.position);
-			}
-			else
-				targetRotation = Quaternion.identity;
-
-			displayTransform.rotation = Quaternion.Slerp (displayTransform.rotation, targetRotation, Constants.CUBE_LOOK_SPEED * Time.deltaTime);
-		}
-
 		if (alive){
+			if (!busy){
+				// Look at the players cursor/finger as a cool effect
+				if (playerActions.swiping) {
+					Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
+					targetRotation = Quaternion.LookRotation(lookPoint - displayTransform.position);
+				}
+				else
+					targetRotation = Quaternion.identity;
+
+				displayTransform.rotation = Quaternion.Slerp (displayTransform.rotation, targetRotation, Constants.CUBE_LOOK_SPEED * Time.deltaTime);
+			}
+
 			displayTransform.localScale = Vector3.Lerp(displayTransform.localScale, targetScale, 10f * Time.deltaTime);
 		}
 	}

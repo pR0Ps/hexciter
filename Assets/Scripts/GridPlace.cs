@@ -44,8 +44,6 @@ public class GridPlace : InteractiveObject {
 
 	public GameObject HexaCubePrefab;
 	public HexaCube hexaCube;
-	
-	public bool busy {get; set;}
 
 	Transform lookTransform;
 	Quaternion targetRotation;
@@ -67,13 +65,17 @@ public class GridPlace : InteractiveObject {
 
 		targetScale = Vector3.one;
 		targetPosition = transform.localPosition;
-
-		busy = true;
 	}
 
 	private bool alive{
 		get{
 			return hexaCube.alive;
+		}
+	}
+
+	public bool busy{
+		get{
+			return hexaCube.busy;
 		}
 	}
 

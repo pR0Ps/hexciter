@@ -7,18 +7,14 @@ public class HexaCube : InteractiveObject {
 	public Color hexColor;
 	public GridPlace gridPlace;
 	public bool alive { get; private set; }
+	public bool busy { get; private set; }
 
 	VertexColor vertexColor;
 	
 	void Awake () {
 		vertexColor = GetComponentInChildren<VertexColor>();
 		alive = false;
-	}
-
-	void setBusy(bool b){
-		if (gridPlace) {
-			gridPlace.busy = b;
-		}
+		busy = false;
 	}
 	
 	//A public method to tell a cube to lerp to a new color
@@ -39,7 +35,7 @@ public class HexaCube : InteractiveObject {
 	}
 
 	public void Fill (Color newHexColor) {
-		setBusy(true);
+		busy = true;
 		hexColor = newHexColor;
 		StartCoroutine(ColorLerp(newHexColor));
 		animation.Play("Wiggle");
@@ -77,7 +73,7 @@ public class HexaCube : InteractiveObject {
 	}
 
 	private void DoSpawn(string anim, Color color){
-		setBusy(true);
+		busy = true;
 		alive = true;
 		hexColor = color;
 		vertexColor.UpdateColor(hexColor);
@@ -85,20 +81,20 @@ public class HexaCube : InteractiveObject {
 	}
 	
 	public void Despawn () {
-		setBusy(true);
+		busy = true;
 		animation.Play("Despawn");
 	}
 	
 	void SpawnedCallback () {
-		setBusy(false);
+		busy = false;
 	}
 	
 	void DespawnedCallback () {
-		setBusy(false);
+		busy = false;
 		alive = false;
 	}
 	
 	void WiggleCallback () {
-		setBusy(false);
+		busy = false;
 	}
 }

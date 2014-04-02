@@ -9,9 +9,8 @@ public class GridLogic : MonoBehaviour {
 	private ColorSelector colorSelector;
 
 	GridPlace origin;
-	List<GridPlace> gridPlaces = new List<GridPlace>();
-	List<GridPlace> deadPlaces = new List<GridPlace> ();
-
+	GridPlace[] gridPlaces = new GridPlace[61];
+	int deadPointer = 0; //everything less than this is dead
 	public AnimationCurve ScoreCurve;
 	private MoveProgress moves;
 	int score;
@@ -39,12 +38,11 @@ public class GridLogic : MonoBehaviour {
 		targetScore = 5000;
 		colorSelector.Init ();
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
-
-		//populate the list of grid places
-		GridPlace[] GPs = GetComponentsInChildren<GridPlace> ();
-		for (int i = 0; i < GPs.Length; i++) {
-			gridPlaces.Add(GPs[i]);
+		
+		for (int i = 1; i < 61; i++) {
+			gridPlaces[i-1] = transform.FindChild(i.ToString()).GetComponent<GridPlace>();
 		}
+		gridPlaces[60] = origin;
 
 		FadeCam.Instance.FadeIn(() => {StartCoroutine(StartGame());});
 	}
@@ -64,7 +62,7 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	bool GridBusy () {
-		for (int i = 0; i < gridPlaces.Count; i++) {
+		for (int i = 0; i < gridPlaces.Length; i++) {
 			if (gridPlaces[i].busy) {
 				return true;
 			}
@@ -100,24 +98,24 @@ public class GridLogic : MonoBehaviour {
 		bool gameover = false;
 
 		if (revived != 0) {
-			for (int i = 0; i < revived && deadPlaces.Count > 0; i++) {
-				GridPlace newRevived = deadPlaces[Random.Range(0, deadPlaces.Count)];
-				deadPlaces.Remove(newRevived);
-				gridPlaces.Add(newRevived);
+			int target = deadPointer - revived;
+			for (; deadPointer > target && deadPointer > 0; deadPointer--) {
+				GridPlace newRevived = gridPlaces[deadPointer - 1];
 				newRevived.hexaCube.Spawn();
+				yield return new WaitForSeconds (0.07f);
 			}
 		}
 
 		else if (leftover != 0) {
-			for (int i = 0; i < leftover && gridPlaces.Count > 0; i++) {
-				GridPlace newWhite = gridPlaces[Random.Range(0, gridPlaces.Count)];
-				gridPlaces.Remove(newWhite);
-				deadPlaces.Add(newWhite);
+			int target = deadPointer + leftover;
+			for (; deadPointer < target && deadPointer < gridPlaces.Length; deadPointer++) {
+				GridPlace newWhite = gridPlaces[deadPointer];
 				newWhite.hexaCube.Despawn();
+				yield return new WaitForSeconds (0.07f);
 			}
 		}
 
-		if (gridPlaces.Count == 0) {
+		if (deadPointer > 60) {
 			gameover = true;
 		}
 		

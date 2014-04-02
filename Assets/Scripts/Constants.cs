@@ -21,13 +21,13 @@ public static class Constants {
 		},
 		new Color32[]{
 			HexToColor32("FF4F00"), //orange
-			HexToColor32("FFEB00"), //yellow
+			HexToColor32("FFA700"), //yellow
 			HexToColor32("560EAD"), //purple
 			HexToColor32("00AC6B"), //green
 		},
 		new Color32[]{
 			HexToColor32("C9007A"), //purple
-			HexToColor32("FFA700"), //orange
+			HexToColor32("FFA700"), //yellow
 			HexToColor32("1144AA"), //blue
 			HexToColor32("5DE100"), //green
 		}

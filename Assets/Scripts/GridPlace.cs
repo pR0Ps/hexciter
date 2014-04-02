@@ -45,11 +45,10 @@ public class GridPlace : InteractiveObject {
 	public GameObject HexaCubePrefab;
 	public HexaCube hexaCube;
 
-	Transform lookTransform;
+	Transform displayTransform;
 	Quaternion targetRotation;
 
 	Vector3 targetScale;
-	Vector3 targetPosition;
 	
 	[SerializeField]
 	public Siblings sibs;
@@ -61,10 +60,9 @@ public class GridPlace : InteractiveObject {
 		hexaCube.transform.parent = transform;
 		hexaCube.transform.localPosition = Vector3.zero;
 		hexaCube.gridPlace = this;
-		lookTransform = hexaCube.transform.FindChild ("LookRotation");
+		displayTransform = hexaCube.transform.FindChild("LookRotation");
 
 		targetScale = Vector3.one;
-		targetPosition = transform.localPosition;
 	}
 
 	private bool alive{
@@ -89,7 +87,6 @@ public class GridPlace : InteractiveObject {
 			if (depth == 0){
 				//I was the chosen one
 				targetScale = Vector3.one * 1.2f;
-				targetPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -2);
 			}
 			else{
 				targetScale = Vector3.one * (float)(0.3 + 0.7 * (depth/3f));
@@ -98,24 +95,25 @@ public class GridPlace : InteractiveObject {
 		else{
 			//Return to normal
 			targetScale = Vector3.one;
-			targetPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
 		}
 	}
 
 	void Update () {
-		if (!busy && alive){
-			if (playerActions.swiping) {
-				Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
-				targetRotation = Quaternion.LookRotation(lookPoint - lookTransform.position);
+		if (alive){
+			if (!busy){
+				// Look at the players cursor/finger as a cool effect
+				if (playerActions.swiping) {
+					Vector3 lookPoint = new Vector3 (InputHandler.Instance.inputVectorWorld.x, InputHandler.Instance.inputVectorWorld.y, Constants.CUBE_LOOK_DIST);
+					targetRotation = Quaternion.LookRotation(lookPoint - displayTransform.position);
+				}
+				else
+					targetRotation = Quaternion.identity;
+
+				displayTransform.rotation = Quaternion.Slerp (displayTransform.rotation, targetRotation, Constants.CUBE_LOOK_SPEED * Time.deltaTime);
 			}
-			else
-				targetRotation = Quaternion.identity;
 
-			lookTransform.rotation = Quaternion.Slerp (lookTransform.rotation, targetRotation, Constants.CUBE_LOOK_SPEED * Time.deltaTime);
+			displayTransform.localScale = Vector3.Lerp(displayTransform.localScale, targetScale, 10f * Time.deltaTime);
 		}
-
-		transform.localScale = Vector3.Lerp(transform.localScale, targetScale, 10f * Time.deltaTime);
-		transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, 10f * Time.deltaTime);
 	}
 	
 	//An editor utility function to populate sibling lists

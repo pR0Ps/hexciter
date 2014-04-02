@@ -6,7 +6,7 @@ public class FadeCam : MonoBehaviour {
 
 	private static FadeCam _instance;
 	GameObject whiteplane;
-	bool busy;
+	public bool busy {get; private set;}
 
 	public static FadeCam Instance {
 		get {

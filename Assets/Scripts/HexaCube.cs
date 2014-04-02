@@ -4,32 +4,27 @@ using System.Collections.Generic;
 
 public class HexaCube : InteractiveObject {
 	
-	public int hexColor;
+	public Color hexColor;
 	public GridPlace gridPlace;
 	public bool alive { get; private set; }
+	public bool busy { get; private set; }
 
 	VertexColor vertexColor;
 	
 	void Awake () {
 		vertexColor = GetComponentInChildren<VertexColor>();
 		alive = false;
-	}
-
-	void setBusy(bool b){
-		if (gridPlace) {
-			gridPlace.busy = b;
-		}
+		busy = false;
 	}
 	
 	//A public method to tell a cube to lerp to a new color
 	//Currently used by the color selector
-	public void GUIColorLerp (int newHexColor) {
+	public void GUIColorLerp (Color newHexColor) {
 		hexColor = newHexColor;
 		StartCoroutine(ColorLerp(newHexColor));
 	}
 	
-	IEnumerator ColorLerp (int newHexColor) {
-		Color newColor = Constants.HEX_COLORS[newHexColor];
+	IEnumerator ColorLerp (Color newColor) {
 		Color initialColor = vertexColor.vColor;
 		float t = 0;
 		while (vertexColor.vColor != newColor) {
@@ -39,63 +34,67 @@ public class HexaCube : InteractiveObject {
 		}
 	}
 
-	public void Fill (int newHexColor) {
-		setBusy(true);
+	public void Fill (Color newHexColor) {
+		busy = true;
 		hexColor = newHexColor;
 		StartCoroutine(ColorLerp(newHexColor));
 		animation.Play("Wiggle");
 	}
 
 	public void Kill () {
-		StartCoroutine(KillCo());
+		StartCoroutine(KillCo(Constants.RandomColor()));
 	}
-	
-	IEnumerator KillCo () {
+
+	public void Kill (Color color) {
+		StartCoroutine(KillCo(color));
+	}
+
+	IEnumerator KillCo (Color color) {
 		Despawn();
 		while(alive)
 			yield return new WaitForEndOfFrame();
-		Spawn();
+		Spawn(color);
 	}
 
 	public void Spawn () {
-		Spawn (Random.Range (0, Constants.NUMBER_OF_COLORS));
+		Spawn (Constants.RandomColor());
 	}
 
-	public void Spawn (int newColor) {
+	public void Spawn (Color newColor) {
 		DoSpawn("Spawn", newColor);
 	}
 
 	public void SlowSpawn () {
-		SlowSpawn (Random.Range (0, Constants.NUMBER_OF_COLORS));
+		SlowSpawn (Constants.RandomColor());
 	}
 
-	public void SlowSpawn (int newColor) {
+	public void SlowSpawn (Color newColor) {
 		DoSpawn("SlowSpawn", newColor);
 	}
 
-	private void DoSpawn(string anim, int color){
-		setBusy(true);
+	private void DoSpawn(string anim, Color color){
+		busy = true;
 		alive = true;
 		hexColor = color;
-		vertexColor.UpdateColor(Constants.HEX_COLORS[hexColor]);
+		vertexColor.UpdateColor(hexColor);
 		animation.Play(anim);
 	}
 	
 	public void Despawn () {
-		setBusy(true);
+		busy = true;
 		animation.Play("Despawn");
 	}
 	
 	void SpawnedCallback () {
-		setBusy(false);
+		busy = false;
 	}
 	
 	void DespawnedCallback () {
-		setBusy(false);
+		busy = false;
 		alive = false;
 	}
 	
 	void WiggleCallback () {
-		setBusy(false);
+		busy = false;
 	}
 }

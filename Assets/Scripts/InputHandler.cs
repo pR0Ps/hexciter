@@ -96,12 +96,14 @@ public class InputHandler : MonoBehaviour {
 		//Put this somewhere else?
 		//Android back button
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			if (Application.loadedLevelName == "game"){
-				Application.LoadLevel("menu");
-			}
-			else if (Application.loadedLevelName == "menu"){
-				Debug.Log("Exiting");
-				Application.Quit();
+			if (!FadeCam.Instance.busy){
+				if (Application.loadedLevelName == "game" || Application.loadedLevelName == "options"){
+					FadeCam.Instance.FadeOut(() => {Application.LoadLevel("menu");});
+				}
+				else if (Application.loadedLevelName == "menu"){
+					Debug.Log("Exiting");
+					Application.Quit();
+				}
 			}
 		}
 	}

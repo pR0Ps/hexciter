@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3005c6c88e4a44225b533fe9daeee37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialSong: 
+  InitialSong: pamgaea_loop
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

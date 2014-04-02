@@ -134,6 +134,7 @@ public class GridLogic : MonoBehaviour {
 		lastMoveScore /= 4; // halves your combo bonus
 		if (!start.busy){
 			StartCoroutine(Utils.FillSiblings(start, colorSelector.Current()));
+			AudioController.Instance.PlaySound ("fillchime");
 			DoMove();
 		}
 	}
@@ -157,6 +158,12 @@ public class GridLogic : MonoBehaviour {
 				ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(earnedScore, start.transform.position);
 			}
 			else{
+				if (count == 10) {
+					AudioController.Instance.PlaySound ("chime2");
+				}
+				else if (count == 20) {
+					AudioController.Instance.PlaySound ("chime3");
+				}
 				//Still counting, do animations and stuff
 				//ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(count, gp.transform.position);
 			}
@@ -165,6 +172,7 @@ public class GridLogic : MonoBehaviour {
 
 	public void Destroy (GridPlace start) {
 		StartCoroutine(Utils.KillSiblings(start, KillCallback(start, colorSelector.Current())));
+		AudioController.Instance.PlaySound ("chime1");
 		DoMove();
 	}
 

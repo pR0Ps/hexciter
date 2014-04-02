@@ -44,10 +44,15 @@ public class AudioController : MonoBehaviour {
 		for (int i = 0; i < SFX.Count; i ++) {
 			AudioClip wav = SFX[i];
 			if (wav.name == soundName) {
-				AudioSource.PlayClipAtPoint(wav, Vector3.zero, 1);
+				AudioSource.PlayClipAtPoint(wav, Vector3.zero, 0.4f);
 				return;
 			}
 		}
+	}
+
+	public void PlayRandomChime () {
+		int i = Random.Range (1, 4);
+		PlaySound ("chime" + i.ToString ());
 	}
 	
 	public void CrossFadeLoop(string loopName) {

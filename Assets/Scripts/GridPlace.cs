@@ -49,7 +49,6 @@ public class GridPlace : InteractiveObject {
 	Quaternion targetRotation;
 
 	Vector3 targetScale;
-	Vector3 targetPosition;
 	
 	[SerializeField]
 	public Siblings sibs;
@@ -64,7 +63,6 @@ public class GridPlace : InteractiveObject {
 		displayTransform = hexaCube.transform.FindChild("LookRotation");
 
 		targetScale = Vector3.one;
-		targetPosition = Vector3.zero;
 	}
 
 	private bool alive{
@@ -89,7 +87,6 @@ public class GridPlace : InteractiveObject {
 			if (depth == 0){
 				//I was the chosen one
 				targetScale = Vector3.one * 1.2f;
-				targetPosition = new Vector3(0, 0, -2);
 			}
 			else{
 				targetScale = Vector3.one * (float)(0.3 + 0.7 * (depth/3f));
@@ -98,7 +95,6 @@ public class GridPlace : InteractiveObject {
 		else{
 			//Return to normal
 			targetScale = Vector3.one;
-			targetPosition = Vector3.zero;
 		}
 	}
 
@@ -114,8 +110,9 @@ public class GridPlace : InteractiveObject {
 			displayTransform.rotation = Quaternion.Slerp (displayTransform.rotation, targetRotation, Constants.CUBE_LOOK_SPEED * Time.deltaTime);
 		}
 
-		displayTransform.localScale = Vector3.Lerp(displayTransform.localScale, targetScale, 10f * Time.deltaTime);
-		displayTransform.localPosition = Vector3.Lerp(displayTransform.localPosition, targetPosition, 10f * Time.deltaTime);
+		if (alive){
+			displayTransform.localScale = Vector3.Lerp(displayTransform.localScale, targetScale, 10f * Time.deltaTime);
+		}
 	}
 	
 	//An editor utility function to populate sibling lists

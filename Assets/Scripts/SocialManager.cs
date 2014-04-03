@@ -8,9 +8,11 @@ public class SocialManager: MonoBehaviour {
 
 	private static string[] NAMES = {"hexciting", "total annihilation", "everyone wins", "hello world",
 									 "phoenix down", "last man standing", "even horizon", "millionaires club",
+									 "breakin the law",
 									 "highscores"};
 	private static string[] IDS = {"CgkIucKVsZ8TEAIQCA", "CgkIucKVsZ8TEAIQCQ", "CgkIucKVsZ8TEAIQCg", "CgkIucKVsZ8TEAIQCw",
 								   "CgkIucKVsZ8TEAIQDA", "CgkIucKVsZ8TEAIQDQ", "CgkIucKVsZ8TEAIQDg", "CgkIucKVsZ8TEAIQDw",
+								   "CgkIucKVsZ8TEAIQEQ",
 								   "CgkIucKVsZ8TEAIQEA"};
 	
 	private static SocialManager _instance;

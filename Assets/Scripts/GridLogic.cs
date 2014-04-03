@@ -370,6 +370,9 @@ public class GridLogic : MonoBehaviour {
 	IEnumerator FailInstructions (){
 		TutorialText tText = GameObject.Find ("TutorialText").GetComponentInChildren<TutorialText> ();
 		yield return StartCoroutine(tText.Hide ());
+
+		SocialManager.Instance.UnlockAchievement("breakin the law");
+
 		yield return StartCoroutine(ShowWaitTap (tText, "not going to follow intructions?", ""));
 		yield return StartCoroutine(ShowWaitTap (tText, "maybe you don't need a tutorial...", ""));
 		yield return StartCoroutine(ShowWaitTap (tText, "...so good luck!", "tap to start the game"));

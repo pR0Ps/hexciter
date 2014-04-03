@@ -148,6 +148,11 @@ public class GridLogic : MonoBehaviour {
 			roundsdown = 0;
 		}
 
+		//Only a single gridplace alive
+		if (deadPointer == gridPlaces.Length - 1) {
+			SocialManager.Instance.UnlockAchievement("last man standing");
+		}
+
 		if (deadPointer > 60) {
 			gameover = true;
 		}

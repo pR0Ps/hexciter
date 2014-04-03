@@ -27,6 +27,9 @@ public class GridLogic : MonoBehaviour {
 	bool flooded = false;
 	bool destroyed = false;
 
+	int earnedback;
+	int roundsdown;
+
 	void Awake () {
 		// tell the game to run at 60 fps, maybe put this some where better later
 		Application.targetFrameRate = 60;
@@ -58,6 +61,9 @@ public class GridLogic : MonoBehaviour {
 		startScore = 0;
 		targetScore = 5000;
 		colorSelector.Init ();
+
+		earnedback = 0;
+		roundsdown = 0;
 		
 		StartCoroutine(Utils.SlowSpawnSiblings(origin));
 		while (GridBusy()) {
@@ -112,7 +118,13 @@ public class GridLogic : MonoBehaviour {
 			for (; deadPointer > target && deadPointer > 0; deadPointer--) {
 				GridPlace newRevived = gridPlaces[deadPointer - 1];
 				newRevived.hexaCube.Spawn();
+				earnedback++;
+
 				yield return new WaitForSeconds (0.07f);
+			}
+
+			if (earnedback >= 20){
+				SocialManager.Instance.UnlockAchievement("phoenix down");
 			}
 		}
 
@@ -123,6 +135,22 @@ public class GridLogic : MonoBehaviour {
 				newWhite.hexaCube.Despawn();
 				yield return new WaitForSeconds (0.07f);
 			}
+		}
+
+		if (deadPointer > 23) {
+			roundsdown++;
+
+			if (roundsdown >= 5){
+				SocialManager.Instance.UnlockAchievement("event horizon");
+			}
+		}
+		else{
+			roundsdown = 0;
+		}
+
+		//Only a single gridplace alive
+		if (deadPointer == gridPlaces.Length - 1) {
+			SocialManager.Instance.UnlockAchievement("last man standing");
 		}
 
 		if (deadPointer > 60) {
@@ -165,6 +193,11 @@ public class GridLogic : MonoBehaviour {
 				UpdateUI(false);
 
 				ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(earnedScore, start.transform.position);
+
+				//Clear all hexes in a single move
+				if (count >= gridPlaces.Length){
+					SocialManager.Instance.UnlockAchievement("total annihilation");
+				}
 			}
 			else{
 				if (count == 10) {
@@ -198,7 +231,25 @@ public class GridLogic : MonoBehaviour {
 	
 	void GameOver () {
 
-		int best = PlayerPrefs.GetInt ("Best_Score");
+		int best = PlayerPrefs.GetInt("Best_Score", 0);
+		int plays = PlayerPrefs.GetInt("num_plays", 0) + 1;
+		PlayerPrefs.SetInt ("num_plays", plays);
+
+		if (level <= 3) {
+			SocialManager.Instance.UnlockAchievement("everyone wins");
+		}
+
+		if (plays >= 10) {
+			SocialManager.Instance.UnlockAchievement("hexciting");
+		}
+
+		//Score achievements
+		if (score >= 100000){
+			SocialManager.Instance.UnlockAchievement("gettin it");
+		}
+		if(score >= 1000000){
+			SocialManager.Instance.UnlockAchievement("millionaires club");
+		}
 
 		if (score > best) {
 			PlayerPrefs.SetInt ("Best_Score", score);
@@ -348,12 +399,16 @@ public class GridLogic : MonoBehaviour {
 		yield return StartCoroutine(ShowWaitTap (tText, "you ran out of turns", "before the score bar was filled"));
 		yield return StartCoroutine(ShowWaitTap (tText, "when the board is empty...", "it's gameover!"));
 		yield return StartCoroutine(ShowWaitTap (tText, "now you're ready to play!", "tap to start the game"));
+		SocialManager.Instance.UnlockAchievement ("hello world");
 		FadeCam.Instance.FadeOut(() => {Application.LoadLevel("game");});
 	}
 
 	IEnumerator FailInstructions (){
 		TutorialText tText = GameObject.Find ("TutorialText").GetComponentInChildren<TutorialText> ();
 		yield return StartCoroutine(tText.Hide ());
+
+		SocialManager.Instance.UnlockAchievement("breakin the law");
+
 		yield return StartCoroutine(ShowWaitTap (tText, "not going to follow intructions?", ""));
 		yield return StartCoroutine(ShowWaitTap (tText, "maybe you don't need a tutorial...", ""));
 		yield return StartCoroutine(ShowWaitTap (tText, "...so good luck!", "tap to start the game"));

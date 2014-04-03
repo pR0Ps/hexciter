@@ -33,6 +33,10 @@ public static class Constants {
 		}
 	};
 
+	public static Color32 ChooseColor(int i){
+		return ALL_COLORS[PlayerPrefs.GetInt("color_scheme", 0)][i];
+	}
+
 	public static Color32 RandomColor(){
 		return ALL_COLORS[PlayerPrefs.GetInt("color_scheme", 0)][Random.Range (0, NUM_COLORS)];
 	}

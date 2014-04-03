@@ -198,7 +198,13 @@ public class GridLogic : MonoBehaviour {
 	
 	void GameOver () {
 
-		int best = PlayerPrefs.GetInt ("Best_Score");
+		int best = PlayerPrefs.GetInt("Best_Score", 0);
+		int plays = PlayerPrefs.GetInt("num_plays", 0) + 1;
+		PlayerPrefs.SetInt ("num_plays", plays);
+
+		if (plays >= 10) {
+			SocialManager.Instance.UnlockAchievement("hexciting");
+		}
 
 		if (score > best) {
 			PlayerPrefs.SetInt ("Best_Score", score);

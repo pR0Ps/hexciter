@@ -6,6 +6,7 @@ public class SocialManager: MonoBehaviour {
 
 	public bool busy {get; private set;}
 
+	#if (UNITY_IPHONE || UNITY_ANDROID)
 	private static string[] NAMES = {"hexciting", "total annihilation", "everyone wins", "hello world",
 									 "phoenix down", "last man standing", "event horizon", "millionaires club",
 									 "breakin the law", "gettin it",
@@ -14,6 +15,7 @@ public class SocialManager: MonoBehaviour {
 								   "CgkIucKVsZ8TEAIQDA", "CgkIucKVsZ8TEAIQEg", "CgkIucKVsZ8TEAIQDg", "CgkIucKVsZ8TEAIQDw",
 								   "CgkIucKVsZ8TEAIQEQ", "CgkIucKVsZ8TEAIQDQ",
 								   "CgkIucKVsZ8TEAIQEA"};
+	#endif
 	
 	private static SocialManager _instance;
 	public static SocialManager Instance {

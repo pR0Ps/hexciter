@@ -290,7 +290,7 @@ public class GridLogic : MonoBehaviour {
 		yield return StartCoroutine(ShowWaitTap (tText, "welcome to hexciter", "(tap to continue)"));
 
 		while (!passed) {
-			yield return StartCoroutine(tText.Show ("press and hold a hex to select", "select the center hex"));
+			yield return StartCoroutine(tText.Show ("press and hold the center hex", ""));
 			yield return StartCoroutine(WaitForCenterSelect ());
 			yield return StartCoroutine(tText.Hide ());
 			colorSelector.GetComponentInChildren<TutorialArrow> ().FadeIn ();
@@ -332,8 +332,8 @@ public class GridLogic : MonoBehaviour {
 		flooded = false;
 		destroyed = false;
 
-		while (!passed) {
-			yield return StartCoroutine(tText.Show ("select the center hex", ""));
+		while (!passed) {							
+			yield return StartCoroutine(tText.Show ("press and hold the center hex", ""));
 			yield return StartCoroutine(WaitForCenterSelect ());
 			yield return StartCoroutine(tText.Hide ());
 			yield return StartCoroutine(tText.Show ("swipe right to destroy!", ""));
@@ -398,8 +398,9 @@ public class GridLogic : MonoBehaviour {
 
 		yield return StartCoroutine(ShowWaitTap (tText, "you ran out of turns", "before the score bar was filled"));
 		yield return StartCoroutine(ShowWaitTap (tText, "when the board is empty...", "it's gameover!"));
-		yield return StartCoroutine(ShowWaitTap (tText, "now you're ready to play!", "tap to start the game"));
-		SocialManager.Instance.UnlockAchievement ("hello world");
+		yield return StartCoroutine(ShowWaitTap (tText, "now you're ready to play!", "(tap to start the game)"));
+    SocialManager.Instance.UnlockAchievement ("hello world");
+    
 		FadeCam.Instance.FadeOut(() => {Application.LoadLevel("game");});
 	}
 
@@ -411,7 +412,7 @@ public class GridLogic : MonoBehaviour {
 
 		yield return StartCoroutine(ShowWaitTap (tText, "not going to follow intructions?", ""));
 		yield return StartCoroutine(ShowWaitTap (tText, "maybe you don't need a tutorial...", ""));
-		yield return StartCoroutine(ShowWaitTap (tText, "...so good luck!", "tap to start the game"));
+		yield return StartCoroutine(ShowWaitTap (tText, "...so good luck!", "(tap to start the game)"));
 		FadeCam.Instance.FadeOut(() => {Application.LoadLevel("game");});
 	}
 

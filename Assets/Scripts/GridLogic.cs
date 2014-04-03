@@ -165,6 +165,11 @@ public class GridLogic : MonoBehaviour {
 				UpdateUI(false);
 
 				ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(earnedScore, start.transform.position);
+
+				//Clear all hexes in a single move
+				if (count >= gridPlaces.Length){
+					SocialManager.Instance.UnlockAchievement("total annihilation");
+				}
 			}
 			else{
 				if (count == 10) {

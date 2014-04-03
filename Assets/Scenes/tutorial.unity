@@ -150,6 +150,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d6a0b782c6483742ae57f1167125ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pulseCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: .150000006
+      value: .179999992
+      inSlope: -.032732293
+      outSlope: -.032732293
+      tangentMode: 0
+    - time: .391382575
+      value: -.106626213
+      inSlope: .0355455093
+      outSlope: .0355455093
+      tangentMode: 0
+    - time: .635665894
+      value: .0631306171
+      inSlope: -.141721725
+      outSlope: -.141721725
+      tangentMode: 0
+    - time: .850000024
+      value: -.0199999996
+      inSlope: .0160896089
+      outSlope: .0160896089
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: .152547464
+      outSlope: .152547464
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &3782624
 GameObject:
   m_ObjectHideFlags: 0

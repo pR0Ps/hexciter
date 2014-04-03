@@ -44,10 +44,10 @@ public class GridLogic : MonoBehaviour {
 			tutorialEnabled = true;
 		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
 		
-		for (int i = 1; i < 61; i++) {
+		for (int i = 1; i < gridPlaces.Length; i++) {
 			gridPlaces[i-1] = transform.FindChild(i.ToString()).GetComponent<GridPlace>();
 		}
-		gridPlaces[60] = origin;
+		gridPlaces[gridPlaces.Length - 1] = origin;
 
 		if (!tutorialEnabled)
 			FadeCam.Instance.FadeIn(() => {StartCoroutine(StartGame());});
@@ -153,7 +153,7 @@ public class GridLogic : MonoBehaviour {
 			SocialManager.Instance.UnlockAchievement("last man standing");
 		}
 
-		if (deadPointer > 60) {
+		if (deadPointer > gridPlaces.Length - 1) {
 			gameover = true;
 		}
 		
@@ -184,7 +184,7 @@ public class GridLogic : MonoBehaviour {
 				//Done counting, award score
 				int levelBonus = 100 + (level - 1) * 10;
 				int multiplier = startColor == color ? 2 : 1;
-				int bonus = (int)(lastMoveScore * Mathf.Sqrt(count/61f));
+				int bonus = (int)(lastMoveScore * Mathf.Sqrt(count/(float)gridPlaces.Length));
 				int earnedScore = ((bonus + count * levelBonus)/10) * 10 * multiplier;
 
 				lastMoveScore = earnedScore;

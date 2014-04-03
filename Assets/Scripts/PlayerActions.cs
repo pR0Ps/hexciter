@@ -5,6 +5,7 @@ public class PlayerActions : MonoBehaviour {
 
 	private GridLogic gridLogic;
 	private IconController iconController;
+	private ColorSelector colorSelector;
 
 	public bool swiping { get; private set; }
 	public GridPlace selected { get; private set; }
@@ -14,6 +15,7 @@ public class PlayerActions : MonoBehaviour {
 	void Awake(){
 		gridLogic = GameObject.Find("Grid").GetComponent<GridLogic>();
 		iconController = GameObject.Find("Icons").GetComponent<IconController>();
+		colorSelector = GameObject.Find("GUICamera").GetComponentInChildren<ColorSelector>();
 	}
 	
 	void Start () {
@@ -41,7 +43,7 @@ public class PlayerActions : MonoBehaviour {
 	}
 
 	public void Flood(){
-		if (validPlace(selected)){
+		if (validPlace(selected) && selected.hexaCube.hexColor != colorSelector.Current()){
 			gridLogic.Flood(selected);
 		}
 		Deselect();

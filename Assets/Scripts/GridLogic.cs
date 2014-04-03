@@ -225,6 +225,14 @@ public class GridLogic : MonoBehaviour {
 			SocialManager.Instance.UnlockAchievement("hexciting");
 		}
 
+		//Score achievements
+		if (score >= 100000){
+			SocialManager.Instance.UnlockAchievement("gettin it");
+		}
+		if(score >= 1000000){
+			SocialManager.Instance.UnlockAchievement("millionaires club");
+		}
+
 		if (score > best) {
 			PlayerPrefs.SetInt ("Best_Score", score);
 			best = score;

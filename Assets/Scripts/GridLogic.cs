@@ -27,6 +27,8 @@ public class GridLogic : MonoBehaviour {
 	bool flooded = false;
 	bool destroyed = false;
 
+	int earnedback;
+
 	void Awake () {
 		// tell the game to run at 60 fps, maybe put this some where better later
 		Application.targetFrameRate = 60;
@@ -58,6 +60,8 @@ public class GridLogic : MonoBehaviour {
 		startScore = 0;
 		targetScore = 5000;
 		colorSelector.Init ();
+
+		earnedback = 0;
 		
 		StartCoroutine(Utils.SlowSpawnSiblings(origin));
 		while (GridBusy()) {
@@ -112,7 +116,13 @@ public class GridLogic : MonoBehaviour {
 			for (; deadPointer > target && deadPointer > 0; deadPointer--) {
 				GridPlace newRevived = gridPlaces[deadPointer - 1];
 				newRevived.hexaCube.Spawn();
+				earnedback++;
+
 				yield return new WaitForSeconds (0.07f);
+			}
+
+			if (earnedback >= 20){
+				SocialManager.Instance.UnlockAchievement("phoenix down");
 			}
 		}
 

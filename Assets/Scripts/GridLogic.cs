@@ -13,7 +13,7 @@ public class GridLogic : MonoBehaviour {
 	int deadPointer = 0; //everything less than this is dead
 	public AnimationCurve ScoreCurve;
 	private MoveProgress moves;
-	int score;
+	int _score;
 	int lastMoveScore;
 	int level;
 	int startScore;
@@ -53,6 +53,23 @@ public class GridLogic : MonoBehaviour {
 			FadeCam.Instance.FadeIn(() => {StartCoroutine(StartGame());});
 		else
 			FadeCam.Instance.FadeIn(() => {StartCoroutine(Tutorial());});
+	}
+
+	public int score {
+		get {
+			return _score;
+		}
+		set {
+			_score = value;
+
+			//Score achievements
+			if (_score >= 100000){
+				SocialManager.Instance.UnlockAchievement("gettin it");
+			}
+			if(_score >= 1000000){
+				SocialManager.Instance.UnlockAchievement("millionaires club");
+			}
+		}
 	}
 
 	IEnumerator StartGame() {
@@ -241,14 +258,6 @@ public class GridLogic : MonoBehaviour {
 
 		if (plays >= 10) {
 			SocialManager.Instance.UnlockAchievement("hexciting");
-		}
-
-		//Score achievements
-		if (score >= 100000){
-			SocialManager.Instance.UnlockAchievement("gettin it");
-		}
-		if(score >= 1000000){
-			SocialManager.Instance.UnlockAchievement("millionaires club");
 		}
 
 		if (score > best) {

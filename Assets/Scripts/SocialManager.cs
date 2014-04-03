@@ -30,6 +30,13 @@ public class SocialManager: MonoBehaviour {
 
 	//Activate the play games platform
 	void Awake(){
+
+		//Check if already active (and destroy if so)
+		if (SocialManager.Instance != this) {
+			Destroy(gameObject);
+			return;
+		}
+
 		DontDestroyOnLoad(gameObject);
 		busy = false;
 		#if UNITY_ANDROID
@@ -69,6 +76,10 @@ public class SocialManager: MonoBehaviour {
 					if (success){
 						//Automatically log in in the future
 						PlayerPrefs.SetInt("auto_login", 1);
+					}
+					else{
+						//Login failed, don't try again unless the player asks
+						PlayerPrefs.SetInt("auto_login", 0);
 					}
 					busy = false;
 					UpdateButton();

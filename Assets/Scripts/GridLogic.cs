@@ -140,7 +140,7 @@ public class GridLogic : MonoBehaviour {
 		if (deadPointer > 23) {
 			roundsdown++;
 
-			if (roundsdown >= 5){
+			if (roundsdown > 5){
 				SocialManager.Instance.UnlockAchievement("event horizon");
 			}
 		}

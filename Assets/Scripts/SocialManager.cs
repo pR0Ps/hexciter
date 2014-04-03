@@ -1,94 +1,166 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class SocialManager: MonoBehaviour {
 
-	public static SocialManager Instance {get; private set;} // Singleton Instance
+	public bool busy {get; private set;}
 
-	//Only flesh out this class if we are on a platform that supports GPG
-	#if (UNITY_IPHONE || UNITY_ANDROID)
+	private static string[] NAMES = {"hexciting", "total annihilation", "everyone wins", "hello world",
+									"phoenix down", "last man standing", "even horizon", "millionaires club",
+									"highscores"};
+	private static string[] IDS = {"CgkIucKVsZ8TEAIQCA", "CgkIucKVsZ8TEAIQCQ", "CgkIucKVsZ8TEAIQCg", "CgkIucKVsZ8TEAIQCw",
+								  "CgkIucKVsZ8TEAIQDA", "CgkIucKVsZ8TEAIQDQ", "CgkIucKVsZ8TEAIQDg", "CgkIucKVsZ8TEAIQDw",
+								  "CgkIucKVsZ8TEAIQAg"};
+	
+	private static SocialManager _instance;
+	public static SocialManager Instance {
+		get {
+			if (!_instance) {
+				_instance = GameObject.Find("SocialManager").GetComponent<SocialManager>();
+			}
+			return _instance;
+		}
+		private set {}
+	}
 
 	//Activate the play games platform
 	void Awake(){
-		Instance = this;
-		Debug.Log ("Activating GPG");
+		DontDestroyOnLoad(gameObject);
+		busy = false;
+		#if UNITY_ANDROID
 		GooglePlayGames.PlayGamesPlatform.Activate();
-
 		//Set up human-readable mappings
-		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("complete-takeover", "CgkIucKVsZ8TEAIQCQ");
-		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("hexciting", "CgkIucKVsZ8TEAIQCA");
-		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("30-move", "CgkIucKVsZ8TEAIQAg");
-		((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping("60-move", "CgkIucKVsZ8TEAIQBw");
+		for (int i = 0 ; i < NAMES.Length; i++)
+			((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping(NAMES[i], IDS[i]);
+		#elif UNITY_IPHONE
+		GameCenterPlatform.Activate();
+		#endif
+	}
 
-		//Attempt to login to the service
-		Login ();
+	void Start(){
+		#if (UNITY_IPHONE || UNITY_ANDROID)
+		if (PlayerPrefs.GetInt("auto_login", 1) == 1){
+			//Attempt to login to the service
+			Login();
+		}
+		#endif
+	}
+
+	private void UpdateButton(){
+		GameObject logoutButton = GameObject.Find("Main Camera/BottomRight/logout");
+		if (logoutButton){
+			bool auth = Social.localUser.authenticated;
+			logoutButton.GetComponent<TextMesh>().text = auth ? "logged in" : "logged out";
+			logoutButton.gameObject.animation.Play("buttonpress");
+		}
 	}
 	
-	void Login () {
+	public void Login () {
+		#if (UNITY_IPHONE || UNITY_ANDROID)
 		if (!Social.localUser.authenticated) {
-			Social.localUser.Authenticate((bool success) => {
-				if(success){
-					Debug.Log("Logged in!");
-				}
-				else{
-					Debug.Log("Couldn't log in");
-				}
-			});
+			busy = true;
+			try{
+				Social.localUser.Authenticate((bool success) => {
+					if (success){
+						//Automatically log in in the future
+						PlayerPrefs.SetInt("auto_login", 1);
+					}
+					busy = false;
+					UpdateButton();
+				});
+			}
+			catch(Exception){
+				//Exception is thrown when failing to call into the plugin code
+				busy = false;
+				UpdateButton();
+			}
+		}
+		else{
+			UpdateButton();
+		}
+		#endif
+	}
+
+	IEnumerator LogoutCo(){
+		busy = true;
+		try{
+			((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
+			while (Social.localUser.authenticated) {
+				yield return new WaitForEndOfFrame();
+			}
+			//Don't automatically log in in the future
+			PlayerPrefs.SetInt("auto_login", 0);
+		}
+		finally{
+			busy = false;
+			UpdateButton();
 		}
 	}
 
 	public void Logout(){
+		#if (UNITY_IPHONE || UNITY_ANDROID)
 		if (Social.localUser.authenticated) {
-			((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
+			StartCoroutine(LogoutCo());
 		}
-		else{
-			Debug.Log("Already logged out");
-		}
+		#endif
 	}
 
-	public void PostScore(int score){
-		Debug.Log("Attempting to post score");
-		Social.ReportScore(score, "30-move", (bool success) => {
-			if(success){
-				Debug.Log("Posted score!");
-			}
-			else{
-				Debug.Log("Couldn't post score");
-			}
+	public void PostScore(string board, int score){
+		#if (UNITY_IPHONE || UNITY_ANDROID)
+		if (Array.IndexOf (NAMES, board) < 0 || !Social.localUser.authenticated)
+			return;
+
+		busy = true;
+		Social.ReportScore(score, board, (bool success) => {
+			busy = false;
 		});
+		#endif
 	}
 
-	public void UnlockAchievement(){
-		Social.ReportProgress("complete-takeover", 100.0f, (bool success) => {
-			if(success){
-				Debug.Log("Unlocked achievement!");
-			}
-			else{
-				Debug.Log("Couldn't unlock achievement");
-			}
-		});
-	}
+	public void UnlockAchievement(string name){
+		#if (UNITY_IPHONE || UNITY_ANDROID)
+		if (Array.IndexOf (NAMES, name) < 0 || !Social.localUser.authenticated)
+			return;
 
-	public void IncrementAchievement(){
-		((GooglePlayGames.PlayGamesPlatform) Social.Active).IncrementAchievement(
-			"hexciting", 1, (bool success) => {
-			if(success){
-				Debug.Log("Incremented achievement by 1!");
-			}
-			else{
-				Debug.Log("Couldn't increment achievement");
-			}
+		busy = true;
+		Social.ReportProgress(name, 100.0f, (bool success) => {
+			busy = false;
 		});
+		#endif
 	}
 
 	public void ShowAchievements(){
+		#if (UNITY_IPHONE || UNITY_ANDROID)
+		if (!Social.localUser.authenticated)
+			return;
+
 		Social.ShowAchievementsUI();
+		#endif
 	}
 
 	public void ShowLeaderboards(){
-		Debug.Log("Attempting show scores");
+		#if (UNITY_IPHONE || UNITY_ANDROID)
+		if (!Social.localUser.authenticated)
+			return;
+
 		Social.ShowLeaderboardUI();
+		#endif
 	}
 
-	#endif
+	public void ShowLeaderboards(string name){
+		#if (UNITY_IPHONE || UNITY_ANDROID)
+		if (!Social.localUser.authenticated)
+			return;
+		#endif
+
+		#if UNITY_ANDROID
+		if (Array.IndexOf (NAMES, name) >= 0)
+			((GooglePlayGames.PlayGamesPlatform)Social.Active).ShowLeaderboardUI(name);
+		else
+			Social.ShowLeaderboardUI();
+		#elif (UNITY_IPHONE)
+			Social.ShowLeaderboardUI();
+		#endif
+	}
 }

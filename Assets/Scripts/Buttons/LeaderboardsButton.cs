@@ -3,26 +3,47 @@ using System.Collections;
 
 public class LeaderboardsButton : InteractiveObject {
 
-	public SocialButton socialButton;
+	public GameObject socialButton;
+	private bool busy;
 
 	public void Awake(){
 		#if (!UNITY_ANDROID && !UNITY_IPHONE)
 			gameObject.SetActive(false);
+		#elif UNITY_ANDROID
+			socialButton.transform.Find("gpgicon").gameObject.SetActive(true);
+		#elif UNITY_IPHONE
+			socialButton.transform.Find("gcicon").gameObject.SetActive(true);
 		#endif
+		busy = false;
+	}
+
+	IEnumerator ShowHighscores(){
+
+		try{
+			if (!Social.localUser.authenticated){
+				SocialManager.Instance.Login();
+
+				while (SocialManager.Instance.busy)
+					yield return new WaitForEndOfFrame();
+			}
+
+			if (Social.localUser.authenticated){
+				SocialManager.Instance.ShowLeaderboards("highscores");
+			}
+		}
+		finally{
+			busy = false;
+		}
 	}
 	
 	public override void DownAction () {
+		if (busy)
+			return;
+
+		busy = true;
 		animation.Play ("buttonpress");
-		if (Social.localUser.authenticated){
-			#if UNITY_ANDROID
-			((GooglePlayGames.PlayGamesPlatform)Social.Active).ShowLeaderboardUI("30-move");
-			#elif UNITY_IPHONE
-			Social.ShowLeaderboardUI();
-			#endif
-		}
-		else{
-			Debug.Log("Not logged in, can't show leaderboards");
-			if (socialButton != null) socialButton.Shake();
-		}
+		socialButton.animation.Play("ShakeButton");
+
+		StartCoroutine(ShowHighscores());
 	}
 }

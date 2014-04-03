@@ -207,6 +207,10 @@ public class GridLogic : MonoBehaviour {
 		int plays = PlayerPrefs.GetInt("num_plays", 0) + 1;
 		PlayerPrefs.SetInt ("num_plays", plays);
 
+		if (level <= 3) {
+			SocialManager.Instance.UnlockAchievement("everyone wins");
+		}
+
 		if (plays >= 10) {
 			SocialManager.Instance.UnlockAchievement("hexciting");
 		}

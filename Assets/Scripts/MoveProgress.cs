@@ -7,6 +7,9 @@ public class MoveProgress : MonoBehaviour {
 	HexaCube[] progressCubes = new HexaCube[MAX_MOVES]; // populated with the 9 child hexacubes
 	bool[] state = new bool[MAX_MOVES];
 
+	Transform[] lookRots = new Transform[9];
+	public AnimationCurve pulseCurve;
+
 	int _moves;
 	void Awake () {
 
@@ -15,6 +18,9 @@ public class MoveProgress : MonoBehaviour {
 		// Setup references to child hexacubes (in the correct order)
 		for (int i = 0; i < MAX_MOVES; i++)
 			progressCubes[i] = transform.FindChild ((i).ToString()).GetComponent<HexaCube>();
+
+		for (int i = 0; i < lookRots.Length; i++)
+			lookRots[i] = transform.FindChild(i.ToString() + "/LookRotation");
 	}
 	
 	void Start () {
@@ -22,6 +28,29 @@ public class MoveProgress : MonoBehaviour {
 			state[i] = false;
 			SpawnCube(i);
 		}
+		StartCoroutine (Pulse ());
+	}
+
+	IEnumerator Pulse () {
+		float t = 0;
+		while (t < 1) {
+			t = Mathf.Min(1, t + Time.deltaTime);
+			for (int i = 0; i < lookRots.Length; i++) {
+				lookRots[i].localScale = Vector3.one + Vector3.one * pulseCurve.Evaluate(t) * _moves/2;
+			}
+			yield return new WaitForEndOfFrame();
+		}
+		int count = 1;
+		while (count < Remaining()) {
+			count ++;
+			yield return new WaitForSeconds (1);
+		}
+		StartCoroutine (Pulse ());
+	}
+
+	void Update () {
+		if (Input.GetKeyDown(KeyCode.Space))
+			StartCoroutine(Pulse());
 	}
 
 	void SpawnCube(int i){

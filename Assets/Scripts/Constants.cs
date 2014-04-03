@@ -50,6 +50,6 @@ public static class Constants {
 		return new Color32 (r, g, b, 255);
 	}
 
-	public static float CUBE_LOOK_DIST = 150.0f; // the closer this is to 0, the more intense the look effect
+	public static float CUBE_LOOK_DIST = 100.0f; // the closer this is to 0, the more intense the look effect
 	public static float CUBE_LOOK_SPEED = 10.0f;
 }

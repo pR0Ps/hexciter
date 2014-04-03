@@ -7,7 +7,7 @@ public class SocialManager: MonoBehaviour {
 	public bool busy {get; private set;}
 
 	private static string[] NAMES = {"hexciting", "total annihilation", "everyone wins", "hello world",
-									 "phoenix down", "last man standing", "even horizon", "millionaires club",
+									 "phoenix down", "last man standing", "event horizon", "millionaires club",
 									 "breakin the law", "gettin it",
 									 "highscores"};
 	private static string[] IDS = {"CgkIucKVsZ8TEAIQCA", "CgkIucKVsZ8TEAIQCQ", "CgkIucKVsZ8TEAIQCg", "CgkIucKVsZ8TEAIQCw",

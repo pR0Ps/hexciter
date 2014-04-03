@@ -28,6 +28,7 @@ public class GridLogic : MonoBehaviour {
 	bool destroyed = false;
 
 	int earnedback;
+	int roundsdown;
 
 	void Awake () {
 		// tell the game to run at 60 fps, maybe put this some where better later
@@ -62,6 +63,7 @@ public class GridLogic : MonoBehaviour {
 		colorSelector.Init ();
 
 		earnedback = 0;
+		roundsdown = 0;
 		
 		StartCoroutine(Utils.SlowSpawnSiblings(origin));
 		while (GridBusy()) {
@@ -133,6 +135,17 @@ public class GridLogic : MonoBehaviour {
 				newWhite.hexaCube.Despawn();
 				yield return new WaitForSeconds (0.07f);
 			}
+		}
+
+		if (deadPointer > 23) {
+			roundsdown++;
+
+			if (roundsdown >= 5){
+				SocialManager.Instance.UnlockAchievement("event horizon");
+			}
+		}
+		else{
+			roundsdown = 0;
 		}
 
 		if (deadPointer > 60) {

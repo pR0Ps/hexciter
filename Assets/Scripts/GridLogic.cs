@@ -192,16 +192,7 @@ public class GridLogic : MonoBehaviour {
 
 		gameoverDialog.Show (score, best);
 
-		#if (UNITY_IPHONE || UNITY_ANDROID)
-		Social.ReportScore(score, "30-move", (bool success) => {
-			if(success){
-				Debug.Log("Posted score!");
-			}
-			else{
-				Debug.Log("Couldn't post score");
-			}
-		});
-		#endif
+		SocialManager.Instance.PostScore("highscores", score);
 	}
 
 	void Update () {

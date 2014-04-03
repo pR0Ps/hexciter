@@ -7,11 +7,11 @@ public class SocialManager: MonoBehaviour {
 	public bool busy {get; private set;}
 
 	private static string[] NAMES = {"hexciting", "total annihilation", "everyone wins", "hello world",
-									"phoenix down", "last man standing", "even horizon", "millionaires club",
-									"highscores"};
+									 "phoenix down", "last man standing", "even horizon", "millionaires club",
+									 "highscores"};
 	private static string[] IDS = {"CgkIucKVsZ8TEAIQCA", "CgkIucKVsZ8TEAIQCQ", "CgkIucKVsZ8TEAIQCg", "CgkIucKVsZ8TEAIQCw",
-								  "CgkIucKVsZ8TEAIQDA", "CgkIucKVsZ8TEAIQDQ", "CgkIucKVsZ8TEAIQDg", "CgkIucKVsZ8TEAIQDw",
-								  "CgkIucKVsZ8TEAIQAg"};
+								   "CgkIucKVsZ8TEAIQDA", "CgkIucKVsZ8TEAIQDQ", "CgkIucKVsZ8TEAIQDg", "CgkIucKVsZ8TEAIQDw",
+								   "CgkIucKVsZ8TEAIQEA"};
 	
 	private static SocialManager _instance;
 	public static SocialManager Instance {

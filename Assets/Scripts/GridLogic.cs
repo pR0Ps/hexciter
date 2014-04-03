@@ -363,6 +363,7 @@ public class GridLogic : MonoBehaviour {
 		yield return StartCoroutine(ShowWaitTap (tText, "you ran out of turns", "before the score bar was filled"));
 		yield return StartCoroutine(ShowWaitTap (tText, "when the board is empty...", "it's gameover!"));
 		yield return StartCoroutine(ShowWaitTap (tText, "now you're ready to play!", "tap to start the game"));
+		SocialManager.Instance.UnlockAchievement ("hello world");
 		FadeCam.Instance.FadeOut(() => {Application.LoadLevel("game");});
 	}
 

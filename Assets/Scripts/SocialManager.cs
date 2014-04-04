@@ -5,7 +5,6 @@ using System;
 public class SocialManager: MonoBehaviour {
 
 	public bool busy {get; private set;}
-	GameObject logoutButton;
 
 	#if (UNITY_IPHONE || UNITY_ANDROID)
 	private static string[] NAMES = {"hexciting", "total annihilation", "everyone wins", "hello world",
@@ -32,6 +31,9 @@ public class SocialManager: MonoBehaviour {
 	//Activate the play games platform
 	void Awake(){
 
+		//Update the button before self-destruction
+		UpdateButton();
+
 		//Check if already active (and destroy if so)
 		if (SocialManager.Instance != this) {
 			Destroy(gameObject);
@@ -41,8 +43,6 @@ public class SocialManager: MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		busy = false;
 
-		logoutButton = GameObject.Find("Main Camera/BottomRight/logout");
-
 		#if UNITY_ANDROID
 		GooglePlayGames.PlayGamesPlatform.Activate();
 		//Set up human-readable mappings
@@ -50,8 +50,6 @@ public class SocialManager: MonoBehaviour {
 			((GooglePlayGames.PlayGamesPlatform) Social.Active).AddIdMapping(NAMES[i], IDS[i]);
 		#elif UNITY_IPHONE
 		GameCenterPlatform.Activate();
-		#else
-		logoutButton.SetActive(false);
 		#endif
 	}
 
@@ -66,9 +64,12 @@ public class SocialManager: MonoBehaviour {
 
 	private void UpdateButton(){
 		#if (UNITY_IPHONE || UNITY_ANDROID)
-		bool auth = Social.localUser.authenticated;
-		logoutButton.GetComponent<TextMesh>().text = auth ? "logged in" : "logged out";
-		logoutButton.gameObject.animation.Play("buttonpress");
+		GameObject statusButton = GameObject.Find("Main Camera/BottomRight/socialStatus");
+		if (statusButton){
+			bool auth = Social.localUser.authenticated;
+			statusButton.GetComponent<TextMesh>().text = auth ? "logged in" : "logged out";
+			statusButton.gameObject.animation.Play("buttonpress");
+		}
 		#endif
 	}
 	

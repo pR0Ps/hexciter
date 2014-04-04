@@ -366,7 +366,7 @@ GameObject:
   - 102: {fileID: 458395291}
   - 111: {fileID: 458395288}
   m_Layer: 8
-  m_Name: logout
+  m_Name: socialStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,7 +405,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 458395286}
-  m_Text: logged out
+  m_Text: 
   m_OffsetZ: 0
   m_CharacterSize: .0500000007
   m_LineSpacing: 1

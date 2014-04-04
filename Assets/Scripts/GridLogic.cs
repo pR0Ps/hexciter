@@ -186,7 +186,6 @@ public class GridLogic : MonoBehaviour {
 	}
 
 	public void Flood(GridPlace start) {
-		lastMoveScore /= 4; // halves your combo bonus
 		if (!start.busy){
 			flooded = true;
 			if (tutorialEnabled && !canFlood)
@@ -196,6 +195,8 @@ public class GridLogic : MonoBehaviour {
 				//Don't let players make dumb moves (unless it's the tutorial)
 				return;
 			}
+
+			lastMoveScore /= 4; // halves your combo bonus
 
 			StartCoroutine(Utils.FillSiblings(start, colorSelector.Current()));
 			AudioController.Instance.PlaySound ("fillchime");

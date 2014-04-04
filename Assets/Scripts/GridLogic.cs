@@ -26,6 +26,8 @@ public class GridLogic : MonoBehaviour {
 	bool tutorialEnabled = false;
 	bool flooded = false;
 	bool destroyed = false;
+	bool canFlood = false;
+	bool canDestroy = false;
 
 	int earnedback;
 	int roundsdown;
@@ -187,6 +189,14 @@ public class GridLogic : MonoBehaviour {
 		lastMoveScore /= 4; // halves your combo bonus
 		if (!start.busy){
 			flooded = true;
+			if (tutorialEnabled && !canFlood)
+				return;
+
+			if (!tutorialEnabled && start.hexaCube.hexColor == colorSelector.Current()){
+				//Don't let players make dumb moves (unless it's the tutorial)
+				return;
+			}
+
 			StartCoroutine(Utils.FillSiblings(start, colorSelector.Current()));
 			AudioController.Instance.PlaySound ("fillchime");
 			DoMove();
@@ -231,6 +241,9 @@ public class GridLogic : MonoBehaviour {
 
 	public void Destroy (GridPlace start) {
 		destroyed = true;
+		if (tutorialEnabled && !canDestroy)
+			return;
+
 		StartCoroutine(Utils.KillSiblings(start, KillCallback(start, colorSelector.Current())));
 		AudioController.Instance.PlaySound ("chime1");
 		DoMove();
@@ -295,10 +308,17 @@ public class GridLogic : MonoBehaviour {
 		targetScore = 4000;
 
 		bool passed = false;
+		int failcount = 0;
+
+		canFlood = true;
+		canDestroy = false;
 
 		yield return StartCoroutine(ShowWaitTap (tText, "welcome to hexciter", "(tap to continue)"));
 
 		while (!passed) {
+			flooded = false;
+			destroyed = false;
+
 			yield return StartCoroutine(tText.Show ("press and hold the center hex", ""));
 			yield return StartCoroutine(WaitForCenterSelect ());
 			yield return StartCoroutine(tText.Hide ());
@@ -308,19 +328,22 @@ public class GridLogic : MonoBehaviour {
 			colorSelector.GetComponentInChildren<TutorialArrow> ().FadeOut ();
 			disabled = true;
 
-			if (!flooded && !destroyed) {
+			//Check if they're purposefully failing
+			if (failcount > 4)
+				break;
+
+			if (!flooded){
+
+				//did the wrong move
+				if (destroyed)
+					failcount++;
+
 				yield return StartCoroutine(tText.Hide ());
 				continue;
 			}
 
-			if (flooded) {
-				passed = true;
-				break;
-			}
-
-			if (destroyed) {
-				break;
-			}
+			//Player flooded
+			passed = true;
 		}
 		if (!passed) {
 			StartCoroutine(FailInstructions());
@@ -338,10 +361,13 @@ public class GridLogic : MonoBehaviour {
 		colorSelector.GetComponentInChildren<TutorialArrow> ().FadeOut ();
 
 		passed = false;
-		flooded = false;
-		destroyed = false;
+		canFlood = false;
+		canDestroy = true;
 
-		while (!passed) {							
+		while (!passed) {
+			flooded = false;
+			destroyed = false;
+
 			yield return StartCoroutine(tText.Show ("press and hold the center hex", ""));
 			yield return StartCoroutine(WaitForCenterSelect ());
 			yield return StartCoroutine(tText.Hide ());
@@ -349,19 +375,22 @@ public class GridLogic : MonoBehaviour {
 			yield return StartCoroutine(WaitForMoveCenter ());
 			disabled = true;
 			
-			if (!flooded && !destroyed) {
+			//Check if they're purposefully failing
+			if (failcount > 4)
+				break;
+			
+			if (!destroyed){
+				
+				//did the wrong move
+				if (flooded)
+					failcount++;
+				
 				yield return StartCoroutine(tText.Hide ());
 				continue;
 			}
 			
-			if (destroyed) {
-				passed = true;
-				break;
-			}
-			
-			if (flooded) {
-				break;
-			}
+			//Player destroyed
+			passed = true;
 		}
 		if (!passed) {
 			StartCoroutine(FailInstructions());

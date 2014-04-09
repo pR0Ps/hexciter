@@ -9,7 +9,10 @@ Hexciter is a unique puzzle/arcade game about hexagons.
 
 Get the Game
 ----------------
-The game is currently availble for free on the Google Play store [here](https://play.google.com/store/apps/details?id=com.teamsalt.hexciter).
+The game is availble for free:
+* [Play in your browser](http://broxxar.itch.io/hexciter)
+* [Android version on Google Play](https://play.google.com/store/apps/details?id=com.teamsalt.hexciter).
+* iOS and downloadable builds coming soon!
 
 Screenshots
 -----------

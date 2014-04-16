@@ -13,8 +13,12 @@ public class ScorePopup : MonoBehaviour {
 
 	// change the text mesh to show the score, move the object and start the animation
 	public void Show (int score, Vector3 position) {
+		Show(score.ToString(), position);
+	}
+
+	public void Show (string text, Vector3 position) {
 		gameObject.SetActive (true);
-		tm.text = score.ToString();
+		tm.text = text;
 		anim.Play("popup");
 		transform.position = position;
 	}

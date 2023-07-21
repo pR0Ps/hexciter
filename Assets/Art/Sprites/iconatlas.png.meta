@@ -1,32 +1,50 @@
 fileFormatVersion: 2
 guid: b37ee8a0d99265f4081cc50ea3233b80
 TextureImporter:
-  serializedVersion: 2
+  fileIDToRecycleName:
+    21300000: bucket
+    21300002: paintdrip
+    21300004: cube3
+    21300006: shard2
+    21300008: shard1
+    21300010: cube1
+    21300012: cube2
+    21300014: shard3
+    21300016: shard4
+    21300018: shard5
+  externalObjects: {}
+  serializedVersion: 4
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
+    sRGBTexture: 1
     linearTexture: 0
-    correctGamma: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
-  generateCubemap: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
   seamlessCubemap: 0
   textureFormat: -3
   maxTextureSize: 1024
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: 1
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -34,14 +52,34 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
-  buildTargetSettings: []
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 1024
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: bucket
+    - serializedVersion: 2
+      name: bucket
       rect:
         serializedVersion: 2
         x: 22
@@ -49,8 +87,13 @@ TextureImporter:
         width: 540
         height: 592
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: paintdrip
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: paintdrip
       rect:
         serializedVersion: 2
         x: 626
@@ -58,8 +101,13 @@ TextureImporter:
         width: 178
         height: 122
       alignment: 9
-      pivot: {x: -.282957613, y: -.455076635}
-    - name: cube3
+      pivot: {x: -0.2829576, y: -0.45507663}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: cube3
       rect:
         serializedVersion: 2
         x: 607
@@ -67,8 +115,13 @@ TextureImporter:
         width: 256
         height: 145
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: shard2
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shard2
       rect:
         serializedVersion: 2
         x: 50
@@ -76,8 +129,13 @@ TextureImporter:
         width: 90
         height: 144
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: shard1
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shard1
       rect:
         serializedVersion: 2
         x: 182
@@ -85,8 +143,13 @@ TextureImporter:
         width: 99
         height: 38
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: cube1
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: cube1
       rect:
         serializedVersion: 2
         x: 405
@@ -94,8 +157,13 @@ TextureImporter:
         width: 245
         height: 395
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: cube2
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: cube2
       rect:
         serializedVersion: 2
         x: 661
@@ -103,8 +171,13 @@ TextureImporter:
         width: 343
         height: 497
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: shard3
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shard3
       rect:
         serializedVersion: 2
         x: 49
@@ -112,8 +185,13 @@ TextureImporter:
         width: 71
         height: 99
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: shard4
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shard4
       rect:
         serializedVersion: 2
         x: 169
@@ -121,8 +199,13 @@ TextureImporter:
         width: 126
         height: 82
       alignment: 0
-      pivot: {x: .5, y: .5}
-    - name: shard5
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shard5
       rect:
         serializedVersion: 2
         x: 200
@@ -130,6 +213,14 @@ TextureImporter:
         width: 81
         height: 22
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+    outline: []
+    physicsShape: []
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

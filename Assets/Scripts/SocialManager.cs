@@ -68,7 +68,7 @@ public class SocialManager: MonoBehaviour {
 		if (statusButton){
 			bool auth = Social.localUser.authenticated;
 			statusButton.GetComponent<TextMesh>().text = auth ? "logged in" : "logged out";
-			statusButton.gameObject.animation.Play("buttonpress");
+			statusButton.gameObject.GetComponent<Animation>().Play("buttonpress");
 		}
 		#endif
 	}

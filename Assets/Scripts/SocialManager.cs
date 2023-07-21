@@ -43,7 +43,7 @@ public class SocialManager: MonoBehaviour {
 		DontDestroyOnLoad(gameObject);
 		busy = false;
 
-		#if UNITY_ANDROID
+		#if FALSE && UNITY_ANDROID
 		GooglePlayGames.PlayGamesPlatform.Activate();
 		//Set up human-readable mappings
 		for (int i = 0 ; i < NAMES.Length; i++)
@@ -106,10 +106,14 @@ public class SocialManager: MonoBehaviour {
 	IEnumerator LogoutCo(){
 		busy = true;
 		try{
+			#if FALSE
 			((GooglePlayGames.PlayGamesPlatform)Social.Active).SignOut();
 			while (Social.localUser.authenticated) {
 				yield return new WaitForEndOfFrame();
 			}
+			#else
+			yield return new WaitForEndOfFrame();
+			#endif
 			//Don't automatically log in in the future
 			PlayerPrefs.SetInt("auto_login", 0);
 		}
@@ -175,7 +179,7 @@ public class SocialManager: MonoBehaviour {
 			return;
 		#endif
 
-		#if UNITY_ANDROID
+		#if FALSE && UNITY_ANDROID
 		if (Array.IndexOf (NAMES, name) >= 0)
 			((GooglePlayGames.PlayGamesPlatform)Social.Active).ShowLeaderboardUI(name);
 		else

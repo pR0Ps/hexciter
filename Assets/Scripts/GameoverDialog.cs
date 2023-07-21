@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameoverDialog : InteractiveObject {
@@ -11,8 +12,8 @@ public class GameoverDialog : InteractiveObject {
 
 	void Awake () {
 		texts = GetComponentsInChildren<TextMesh> ();
-		score = transform.FindChild ("score").GetComponent<TextMesh> ();
-		best = transform.FindChild ("best").GetComponent<TextMesh> ();
+		score = transform.Find ("score").GetComponent<TextMesh> ();
+		best = transform.Find ("best").GetComponent<TextMesh> ();
 		sr = GetComponentInChildren<SpriteRenderer> ();
 		alpha = sr.color.a;
 		gameObject.SetActive (false);
@@ -20,13 +21,13 @@ public class GameoverDialog : InteractiveObject {
 
 	public void Show (int s, int b) {
 		gameObject.SetActive (true);
-		animation.Play ("gameoverShow");
+		GetComponent<Animation>().Play ("gameoverShow");
 		score.text = s.ToString ("N0");
 		best.text = b.ToString ("N0");
 	}
 
 	public override void DownAction () {
-		FadeCam.Instance.FadeOut(() => {Application.LoadLevel("game");});
+		FadeCam.Instance.FadeOut(() => {SceneManager.LoadScene("game");});
 	}
 
 	void Update () {

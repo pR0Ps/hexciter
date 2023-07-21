@@ -8,15 +8,15 @@ public class TutorialText : MonoBehaviour {
 
 	void Awake () {
 		tm = GetComponent<TextMesh> ();
-		subText = transform.FindChild ("subText").GetComponent<TextMesh> ();
+		subText = transform.Find ("subText").GetComponent<TextMesh> ();
 	}
 
 	public IEnumerator Show (string s, string sub) {
 		tm.text = s;
 		subText.text = sub;
-		animation.Play ("tuttextshow");
-		while (animation ["tuttextshow"].normalizedTime < 1) {
-			tm.color = new Color (0, 0, 0, animation ["tuttextshow"].normalizedTime);
+		GetComponent<Animation>().Play ("tuttextshow");
+		while (GetComponent<Animation>() ["tuttextshow"].normalizedTime < 1) {
+			tm.color = new Color (0, 0, 0, GetComponent<Animation>() ["tuttextshow"].normalizedTime);
 			subText.color = tm.color;
 			yield return new WaitForEndOfFrame();
 		}
@@ -25,9 +25,9 @@ public class TutorialText : MonoBehaviour {
 	}
 
 	public IEnumerator Hide () {
-		animation.Play ("tuttexthide");
-		while (animation ["tuttexthide"].normalizedTime < 1) {
-			tm.color = new Color (0, 0, 0, 1 - animation ["tuttexthide"].normalizedTime);
+		GetComponent<Animation>().Play ("tuttexthide");
+		while (GetComponent<Animation>() ["tuttexthide"].normalizedTime < 1) {
+			tm.color = new Color (0, 0, 0, 1 - GetComponent<Animation>() ["tuttexthide"].normalizedTime);
 			subText.color = tm.color;
 			yield return new WaitForEndOfFrame();
 		}

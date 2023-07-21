@@ -19,7 +19,7 @@ public class FadeCam : MonoBehaviour {
 	}
 
 	void Awake () {
-		whiteplane = transform.FindChild ("whiteSprite").gameObject;
+		whiteplane = transform.Find ("whiteSprite").gameObject;
 		whiteplane.SetActive (false);
 	}
 
@@ -36,7 +36,7 @@ public class FadeCam : MonoBehaviour {
 	IEnumerator IFadeIn (Action callback) {
 		busy = true;
 		whiteplane.SetActive (true);
-		animation.Play ("fadein");
+		GetComponent<Animation>().Play ("fadein");
 		yield return new WaitForSeconds (0.5f);
 		callback.Invoke ();
 		whiteplane.SetActive (false);
@@ -56,7 +56,7 @@ public class FadeCam : MonoBehaviour {
 	IEnumerator IFadeOut (Action callback) {
 		busy = true;
 		whiteplane.SetActive (true);
-		animation.Play ("fadeout");
+		GetComponent<Animation>().Play ("fadeout");
 		yield return new WaitForSeconds (0.5f);
 		callback.Invoke ();
 		busy = false;

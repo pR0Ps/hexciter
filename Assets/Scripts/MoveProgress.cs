@@ -17,10 +17,10 @@ public class MoveProgress : MonoBehaviour {
 		
 		// Setup references to child hexacubes (in the correct order)
 		for (int i = 0; i < MAX_MOVES; i++)
-			progressCubes[i] = transform.FindChild ((i).ToString()).GetComponent<HexaCube>();
+			progressCubes[i] = transform.Find ((i).ToString()).GetComponent<HexaCube>();
 
 		for (int i = 0; i < lookRots.Length; i++)
-			lookRots[i] = transform.FindChild(i.ToString() + "/LookRotation");
+			lookRots[i] = transform.Find(i.ToString() + "/LookRotation");
 	}
 	
 	void Start () {

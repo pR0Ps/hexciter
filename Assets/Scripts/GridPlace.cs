@@ -60,7 +60,7 @@ public class GridPlace : InteractiveObject {
 		hexaCube.transform.parent = transform;
 		hexaCube.transform.localPosition = Vector3.zero;
 		hexaCube.gridPlace = this;
-		displayTransform = hexaCube.transform.FindChild("LookRotation");
+		displayTransform = hexaCube.transform.Find("LookRotation");
 
 		targetScale = Vector3.one;
 	}

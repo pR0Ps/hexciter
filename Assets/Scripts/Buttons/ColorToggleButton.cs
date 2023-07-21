@@ -34,7 +34,7 @@ public class ColorToggleButton : InteractiveObject {
 	
 	public override void DownAction () {
 		if (!Busy()){
-			animation.Play("buttonpress");
+			GetComponent<Animation>().Play("buttonpress");
 			scheme = ++scheme % NUM_SCHEMES;
 			PlayerPrefs.SetInt ("color_scheme", scheme);
 			Respawn();

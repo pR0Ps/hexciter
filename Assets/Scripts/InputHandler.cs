@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class InputHandler : MonoBehaviour {
@@ -97,15 +98,15 @@ public class InputHandler : MonoBehaviour {
 		//Android back button
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			if (!FadeCam.Instance.busy){
-				if (Application.loadedLevelName == "game" ||
-				    Application.loadedLevelName == "options" ||
-				    Application.loadedLevelName == "tutorial"){
-					FadeCam.Instance.FadeOut(() => {Application.LoadLevel("menu");});
+				if (SceneManager.GetActiveScene().name == "game" ||
+				    SceneManager.GetActiveScene().name == "options" ||
+				    SceneManager.GetActiveScene().name == "tutorial"){
+					FadeCam.Instance.FadeOut(() => {SceneManager.LoadScene("menu");});
 				}
-				else if (Application.loadedLevelName == "credits"){
-					FadeCam.Instance.FadeOut(() => {Application.LoadLevel("options");});
+				else if (SceneManager.GetActiveScene().name == "credits"){
+					FadeCam.Instance.FadeOut(() => {SceneManager.LoadScene("options");});
 				}
-				else if (Application.loadedLevelName == "menu"){
+				else if (SceneManager.GetActiveScene().name == "menu"){
 					Debug.Log("Exiting");
 					Application.Quit();
 				}

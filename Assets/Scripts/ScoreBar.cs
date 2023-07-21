@@ -10,7 +10,7 @@ public class ScoreBar : MonoBehaviour {
 
 	void Start () {
 		for (int i=0; i<NUM_CUBES; i++) {
-			progressCubes[i] = transform.FindChild(i.ToString()).GetComponent<HexaCube>();
+			progressCubes[i] = transform.Find(i.ToString()).GetComponent<HexaCube>();
 			progressCubes[i].Spawn(Constants.WHITE);
 			progressCubes[i].Despawn();
 			progressCubes[i].gameObject.SetActive(false);
@@ -21,17 +21,17 @@ public class ScoreBar : MonoBehaviour {
 	IEnumerator StartupAnimation () {
 
 		for (int i=0; i<NUM_CUBES; i++) {
-			HexaCube cube = transform.FindChild("startupAnimation/"+i.ToString()).GetComponent<HexaCube>();
+			HexaCube cube = transform.Find("startupAnimation/"+i.ToString()).GetComponent<HexaCube>();
 			cube.Spawn(Constants.BLACK);
-			cube.transform.FindChild("LookRotation").localScale = Vector3.one * 1.3f;
+			cube.transform.Find("LookRotation").localScale = Vector3.one * 1.3f;
 		}
 		yield return new WaitForSeconds (0.5f);
 		
-		transform.FindChild ("progressBar").gameObject.SetActive (true);
-		transform.FindChild ("progressBarBG").gameObject.SetActive (true);
+		transform.Find ("progressBar").gameObject.SetActive (true);
+		transform.Find ("progressBarBG").gameObject.SetActive (true);
 
 		for (int i=NUM_CUBES-1; i>=0; i--) {
-			HexaCube cube = transform.FindChild("startupAnimation/"+i.ToString()).GetComponent<HexaCube>();
+			HexaCube cube = transform.Find("startupAnimation/"+i.ToString()).GetComponent<HexaCube>();
 			cube.Despawn();
 			cube.Spawn(Constants.WHITE);
 			yield return new WaitForSeconds(0.02f);
@@ -39,8 +39,8 @@ public class ScoreBar : MonoBehaviour {
 
 		yield return new WaitForSeconds (0.5f);
 
-		transform.FindChild ("progressBarBG").gameObject.SetActive (false);
-		transform.FindChild ("startupAnimation").gameObject.SetActive (false);
+		transform.Find ("progressBarBG").gameObject.SetActive (false);
+		transform.Find ("startupAnimation").gameObject.SetActive (false);
 
 		for (int i=0; i<NUM_CUBES; i++)
 			progressCubes[i].gameObject.SetActive(true);

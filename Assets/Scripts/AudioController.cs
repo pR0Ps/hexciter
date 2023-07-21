@@ -66,7 +66,7 @@ public class AudioController : MonoBehaviour {
 	}
 
 	public void StopMusic () {
-		audio.volume = 0;
+		GetComponent<AudioSource>().volume = 0;
 	}
 
 	IEnumerator Cross (AudioClip newLoop) {

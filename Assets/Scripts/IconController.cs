@@ -7,8 +7,8 @@ public class IconController : MonoBehaviour {
 	IconAnimation cubeIcon;
 
 	void Awake () {
-		paintIcon = transform.FindChild ("PaintBucket").GetComponent<IconAnimation> ();
-		cubeIcon = transform.FindChild ("CubeExplode").GetComponent<IconAnimation> ();
+		paintIcon = transform.Find ("PaintBucket").GetComponent<IconAnimation> ();
+		cubeIcon = transform.Find ("CubeExplode").GetComponent<IconAnimation> ();
 	}
 
 	public void SetInvisible () {

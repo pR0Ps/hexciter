@@ -11,9 +11,9 @@ public class ColorSelector : InteractiveObject {
 	bool canSwap = true;
 	
 	void Awake () {
-		hex1 = transform.FindChild("rotator/HexaCube1").GetComponent<HexaCube>();
-		hex2 = transform.FindChild("rotator/HexaCube2").GetComponent<HexaCube>();
-		anim = transform.FindChild("rotator").GetComponent<Animation>();
+		hex1 = transform.Find("rotator/HexaCube1").GetComponent<HexaCube>();
+		hex2 = transform.Find("rotator/HexaCube2").GetComponent<HexaCube>();
+		anim = transform.Find("rotator").GetComponent<Animation>();
 	}
 	
 	public void Init () {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,12 +43,12 @@ public class GridLogic : MonoBehaviour {
 
 	void Start () {
 		disabled = true;
-		if (Application.loadedLevelName == "tutorial")
+		if (SceneManager.GetActiveScene().name == "tutorial")
 			tutorialEnabled = true;
-		origin = transform.FindChild("Origin").GetComponent<GridPlace>();
+		origin = transform.Find("Origin").GetComponent<GridPlace>();
 		
 		for (int i = 1; i < gridPlaces.Length; i++) {
-			gridPlaces[i-1] = transform.FindChild(i.ToString()).GetComponent<GridPlace>();
+			gridPlaces[i-1] = transform.Find(i.ToString()).GetComponent<GridPlace>();
 		}
 		gridPlaces[gridPlaces.Length - 1] = origin;
 
@@ -440,7 +441,7 @@ public class GridLogic : MonoBehaviour {
 		yield return StartCoroutine(ShowWaitTap (tText, "now you're ready to play!", "(tap to start the game)"));
     SocialManager.Instance.UnlockAchievement ("hello world");
     
-		FadeCam.Instance.FadeOut(() => {Application.LoadLevel("game");});
+		FadeCam.Instance.FadeOut(() => {SceneManager.LoadScene("game");});
 	}
 
 	IEnumerator FailInstructions (){
@@ -452,7 +453,7 @@ public class GridLogic : MonoBehaviour {
 		yield return StartCoroutine(ShowWaitTap (tText, "not going to follow intructions?", ""));
 		yield return StartCoroutine(ShowWaitTap (tText, "maybe you don't need a tutorial...", ""));
 		yield return StartCoroutine(ShowWaitTap (tText, "...so good luck!", "(tap to start the game)"));
-		FadeCam.Instance.FadeOut(() => {Application.LoadLevel("game");});
+		FadeCam.Instance.FadeOut(() => {SceneManager.LoadScene("game");});
 	}
 
 	IEnumerator ShowWaitTap (TutorialText tText, string s1, string s2) {

@@ -38,7 +38,7 @@ public class HexaCube : InteractiveObject {
 		busy = true;
 		hexColor = newHexColor;
 		StartCoroutine(ColorLerp(newHexColor));
-		animation.Play("Wiggle");
+		GetComponent<Animation>().Play("Wiggle");
 	}
 
 	public void Kill () {
@@ -77,12 +77,12 @@ public class HexaCube : InteractiveObject {
 		alive = true;
 		hexColor = color;
 		vertexColor.UpdateColor(hexColor);
-		animation.Play(anim);
+		GetComponent<Animation>().Play(anim);
 	}
 	
 	public void Despawn () {
 		busy = true;
-		animation.Play("Despawn");
+		GetComponent<Animation>().Play("Despawn");
 	}
 	
 	void SpawnedCallback () {

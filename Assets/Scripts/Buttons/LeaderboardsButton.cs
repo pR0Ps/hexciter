@@ -41,8 +41,8 @@ public class LeaderboardsButton : InteractiveObject {
 			return;
 
 		busy = true;
-		animation.Play ("buttonpress");
-		socialButton.animation.Play("ShakeButton");
+		GetComponent<Animation>().Play ("buttonpress");
+		socialButton.GetComponent<Animation>().Play("ShakeButton");
 
 		StartCoroutine(ShowHighscores());
 	}

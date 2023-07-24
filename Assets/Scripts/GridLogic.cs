@@ -214,14 +214,20 @@ public class GridLogic : MonoBehaviour {
 				int levelBonus = 100 + (level - 1) * 10;
 				int multiplier = startColor == color ? 2 : 1;
 				int bonus = (int)(lastMoveScore * Mathf.Sqrt(count/(float)gridPlaces.Length));
-				int earnedScore = ((bonus + count * levelBonus)/10) * 10 * multiplier;
+				int baseScore = ((bonus + count * levelBonus)/10) * 10;
+				int earnedScore = baseScore * multiplier;
 
 				lastMoveScore = earnedScore;
 
 				score += earnedScore;
 				UpdateUI(false);
 
-				ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(earnedScore, start.transform.position);
+				if (multiplier != 1){
+					ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(System.String.Format("{0}x{1}!", multiplier, baseScore), start.transform.position);
+				}
+				else{
+					ObjectPoolManager.Instance.Pop("ScorePopup").GetComponent<ScorePopup>().Show(earnedScore, start.transform.position);
+				}
 
 				//Clear all hexes in a single move
 				if (count >= gridPlaces.Length){
